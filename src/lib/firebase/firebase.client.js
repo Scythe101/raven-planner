@@ -1,5 +1,6 @@
 import { deleteApp, getApp, getApps, initializeApp } from "firebase/app";
-import { getAuth, setPersistence, inMemoryPersistence } from 'firebase/auth'
+import { getAuth, setPersistence, inMemoryPersistence } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,4 +23,5 @@ if (!getApps().length) {
     firebaseApp = initializeApp(firebaseConfig)
 }
 
-export const auth = getAuth(firebaseApp)
+export const auth = getAuth(firebaseApp);
+export const db = getFirestore(firebaseApp);
