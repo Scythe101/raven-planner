@@ -48,8 +48,8 @@
 		try {
 			const userRef = doc(db, 'users', $authStore.currentUser.uid);
 			const docSnap = await getDoc(userRef);
-			const courseRef = collection(db, 'courses');
-			const courseSnap = await getDocs(courseRef);
+			const courseRef = doc(db, 'courses', 'cca');
+			const courseSnap = await getDoc(courseRef);
 
 			if (docSnap.exists()) {
 				const userData = docSnap.data();
@@ -59,11 +59,9 @@
 				}
 			}
 			if (courseSnap.exists()) {
-				const courseData = courseSnap.data();
-				if (courseData.cca) {
-					courses = courseData.cca;
-					courseEdit = JSON.stringify(courses, null, 4);
-				}
+                const courseData = courseSnap.data();
+                courses = courseData;
+                courseEdit = JSON.stringify(courses, null, 4);
 			}
 		} catch (error) {
 			console.error('Error loading data:', error);
@@ -85,27 +83,19 @@
 				},
 				{ merge: true }
 			);
+
+            const courseRef = doc(db, 'courses', 'cca');
+			await setDoc(
+				courseRef,
+				courses,
+				{merge:false}
+			);
+
 			isSaving = true;
 			console.log('Data saved successfully!');
 		} catch (error) {
 			console.error('Error saving user data:', error);
 		} finally {
-			isSaving = false;
-			isSaved = true;
-		}
-		try {
-			const courseRef = collection(db, 'courses');
-			await setDoc(
-				doc(courseRef, 'cca'),
-				{
-					"AP Calc": "test"
-				},
-				{merge:true}
-			);
-			isSaving = true;
-		} catch (error) {
-			console.error("Error saving courses", error);
-		}finally {
 			isSaving = false;
 			isSaved = true;
 		}
