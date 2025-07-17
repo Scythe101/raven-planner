@@ -1,10 +1,10 @@
 <script>
 	import { auth, db } from '$lib/firebase/firebase.client';
 	import { authStore } from '../../../stores/AuthStore';
-	import { doc, setDoc, getDoc } from 'firebase/firestore';
+	import { doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 
-	let classes = $state({
+	let selection = $state({
 		freshman: {
 			fall: [],
 			spring: []
@@ -14,7 +14,15 @@
 			spring: []
 		}
 	});
-	let classEdit = $state(JSON.stringify(classes, null, 4));
+	let courses = $state({
+		cca: {
+			"AP Calculus AB": {
+
+			}
+		}
+	})
+	let selectionEdit = $state(JSON.stringify(selection, null, 4));
+	let courseEdit = $state(JSON.stringify(courses, null, 4));
 	let isLoading = false;
 	let isSaving = false;
 	let isSaved = false;
@@ -40,12 +48,21 @@
 		try {
 			const userRef = doc(db, 'users', $authStore.currentUser.uid);
 			const docSnap = await getDoc(userRef);
+			const courseRef = collection(db, 'courses');
+			const courseSnap = await getDocs(courseRef);
 
 			if (docSnap.exists()) {
-				const userData = docS1nap.data();
-				if (userData.classes) {
-					classes = userData.classes;
-					classEdit = JSON.stringify(classes, null, 4);
+				const userData = docSnap.data();
+				if (userData.selection) {
+					selection = userData.selection;
+					selectionEdit = JSON.stringify(selection, null, 4);
+				}
+			}
+			if (courseSnap.exists()) {
+				const courseData = courseSnap.data();
+				if (courseData.cca) {
+					courses = courseData.cca;
+					courseEdit = JSON.stringify(courses, null, 4);
 				}
 			}
 		} catch (error) {
@@ -64,25 +81,49 @@
 			await setDoc(
 				userRef,
 				{
-					classes: classes
+					selection: selection
 				},
 				{ merge: true }
 			);
 			isSaving = true;
 			console.log('Data saved successfully!');
 		} catch (error) {
-			console.error('Error saving data:', error);
+			console.error('Error saving user data:', error);
 		} finally {
+			isSaving = false;
+			isSaved = true;
+		}
+		try {
+			const courseRef = collection(db, 'courses');
+			await setDoc(
+				doc(courseRef, 'cca'),
+				{
+					"AP Calc": "test"
+				},
+				{merge:true}
+			);
+			isSaving = true;
+		} catch (error) {
+			console.error("Error saving courses", error);
+		}finally {
 			isSaving = false;
 			isSaved = true;
 		}
 	}
 
-	function parseClasses() {
+	function parseSelection() {
 		try {
-			classes = JSON.parse(classEdit);
+			selection = JSON.parse(selectionEdit);
 		} catch (error) {
-			classes = "error parsing";
+			selection = "error parsing";
+		}
+	}
+
+	function parseCourses() {
+		try {
+			courses = JSON.parse(courseEdit);
+		} catch (error) {
+			courses = "ERROR";
 		}
 	}
 	// auto-save
@@ -131,12 +172,17 @@
 			{/each} -->
 		</ul>
 		{#if !isLoading}
-			<textarea class="h-96" bind:value={classEdit}></textarea>
+			<textarea class="h-96 w-96" bind:value={selectionEdit}></textarea>
+			<textarea class="h-96 w-96" bind:value={courseEdit}></textarea>
 		{/if}
 		<button class="border-2 px-4 py-2 bg-blue-200" onclick={save}> Save </button>
-		<button class="border-2 px-4 py-2 bg-green-200" onclick={parseClasses}> Parse Classes </button>
+		<button class="border-2 px-4 py-2 bg-green-200" onclick={parseSelection}> Parse Selection </button>
+		<button class="border-2 px-4 py-2 bg-green-200" onclick={parseCourses}> Parse Courses </button>
 		<p class="text-sm text-gray-600 mt-4">
-			Current data: {JSON.stringify(classes)}
+			Selection data: {JSON.stringify(selection)}
+		</p>
+		<p class="text-sm text-gray-600 mt-4">
+			Course data: {JSON.stringify(courses)}
 		</p>
 	</div>
 {:else}
@@ -170,7 +216,7 @@
 
 
 {#if $authStore.currentUser}
-	{#each Object.entries(classes) as [year, semesters]}
+	{#each Object.entries(selection) as [year, semesters]}
 		<h3 class="text-lg font-black">{year}</h3>
 		<div class="flex flex-row">
 			{#each Object.entries(semesters) as [semester, courses]}
