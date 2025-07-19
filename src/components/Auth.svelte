@@ -1,6 +1,8 @@
 <script>
 import { authHandlers, authStore } from '../stores/AuthStore';
-
+import { auth } from "../lib/firebase/firebase.client";
+import { onMount } from 'svelte';
+import { getRedirectResult } from 'firebase/auth';
     let register = false;
     let email = '';
     let password = '';
@@ -28,6 +30,22 @@ import { authHandlers, authStore } from '../stores/AuthStore';
             window.location.href = '/app/home';
         }
     }
+    onMount(async () => {
+        console.log('onMount executed...');
+        try {
+            console.log('Checking for redirect result...');
+            const result = await getRedirectResult(auth);
+            if (result) {
+                const user = result.user;
+                console.log('Google Sign-In successful:', user);
+                window.location.href = '/app/home';
+            } else {
+                console.log('No redirect result found.');
+            }
+        } catch (error) {
+            console.error('Error handling Google Sign-In redirect:', error);
+        }
+    });
 </script>
 <div class="flex flex-col items-center justify-center">
     {#if register}
@@ -52,6 +70,12 @@ import { authHandlers, authStore } from '../stores/AuthStore';
             <button type="submit" class="border-2" on:click={handleSubmit}>Sign In</button>
             <button type="button" on:click={() => register = true}>Don't have an account? Sign Up</button>
         {/if}
-
+        
+<button 
+    class="border-2 px-4 py-2 bg-red-500 text-white rounded"
+    on:click={authHandlers.googleSignIn}
+>
+    Sign in with Google
+</button>
     </form>
 </div>

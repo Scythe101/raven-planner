@@ -88,7 +88,7 @@
 			await setDoc(
 				courseRef,
 				courses,
-				{merge:false}
+				{merge: false }
 			);
 
 			isSaving = true;
