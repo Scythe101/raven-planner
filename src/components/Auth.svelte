@@ -30,22 +30,6 @@ import { getRedirectResult } from 'firebase/auth';
             window.location.href = '/app/home';
         }
     }
-    onMount(async () => {
-        console.log('onMount executed...');
-        try {
-            console.log('Checking for redirect result...');
-            const result = await getRedirectResult(auth);
-            if (result) {
-                const user = result.user;
-                console.log('Google Sign-In successful:', user);
-                window.location.href = '/app/home';
-            } else {
-                console.log('No redirect result found.');
-            }
-        } catch (error) {
-            console.error('Error handling Google Sign-In redirect:', error);
-        }
-    });
 </script>
 <div class="flex flex-col items-center justify-center">
     {#if register}
@@ -71,11 +55,11 @@ import { getRedirectResult } from 'firebase/auth';
             <button type="button" on:click={() => register = true}>Don't have an account? Sign Up</button>
         {/if}
         
-<button 
-    class="border-2 px-4 py-2 bg-red-500 text-white rounded"
-    on:click={authHandlers.googleSignIn}
->
+    <button 
+        class="border-2 px-4 py-2 bg-red-500 text-white rounded"
+        on:click={authHandlers.googleSignIn}
+    >
     Sign in with Google
-</button>
+    </button>
     </form>
 </div>

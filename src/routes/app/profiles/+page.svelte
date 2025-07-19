@@ -1,5 +1,6 @@
 <script>
     import { auth, db } from '$lib/firebase/firebase.client';
+	import CourseTile from '../../../components/CourseTile.svelte';
 	import { authStore } from '../../../stores/AuthStore';
 	import { doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
@@ -107,7 +108,6 @@
 
 {#if $authStore.currentUser}
     {#each Object.entries(courses) as [courseName, courseDetails]}
-        <h3>{courseName}</h3>
-		<h1>{courseDetails.difficulty}</h1>
+		<CourseTile name={courseName} difficulty={courseDetails.difficulty} />
     {/each}
 {/if}

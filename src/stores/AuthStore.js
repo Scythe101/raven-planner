@@ -7,13 +7,11 @@ export const authStore = writable({
     currentUser: null
 });
 
-//TODO: add try/catch for errors, Google sign-in
+// TODO: add github auth and remove email auth
 export const authHandlers = {
     signup: async (email, password) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        await sendEmailVerification(user);
-
     },
     login: async (email, password) => {
         try {
@@ -49,10 +47,10 @@ export const authHandlers = {
     googleSignIn: async () => {
         try {
             const provider = new GoogleAuthProvider();
-            const result = await signInWithPopup(auth, provider); // Use signInWithPopup instead of signInWithRedirect
+            const result = await signInWithPopup(auth, provider);
             const user = result.user;
-        } catch(err) {
-            console.error(err);
+        } catch (err) {
+            console.error('Error during Google Sign-In:', err);
         }
     }
 }
