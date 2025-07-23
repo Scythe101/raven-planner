@@ -16,13 +16,18 @@
 				};
 			});
 
-			if (browser && !user && !$authStore.isLoading && window.location.pathname.startsWith('/app')) {
+			if (
+				browser &&
+				!user &&
+				!$authStore.isLoading &&
+				window.location.pathname.startsWith('/app')
+			) {
 				window.location.href = '/auth';
 				return;
 			}
-			
-			if (user && window.location.pathname === "/auth") {
-				window.location.href = "/app/home";
+
+			if (user && window.location.pathname === '/auth') {
+				window.location.href = '/app';
 				return;
 			}
 		});
@@ -30,11 +35,9 @@
 		return unsubscribe;
 	});
 
-
-
 	let { children } = $props();
 </script>
 
-<main class="bg-amber-50 min-h-dvh">
+<main class="min-h-dvh bg-white">
 	{@render children()}
 </main>

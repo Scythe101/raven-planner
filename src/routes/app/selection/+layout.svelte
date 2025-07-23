@@ -1,6 +1,7 @@
 <script>
-    let { children } = $props();
+	let { children } = $props();
 </script>
+
 <div class="mx-4">
-    {@render children()}
+	{@render children()}
 </div>

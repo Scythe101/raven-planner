@@ -1,1 +1,7 @@
 @import 'tailwindcss';
+@theme {
+	--font-noto-serif: 'Noto Serif', serif;
+	--font-dm-serif-display: 'DM Serif Display', serif;
+	--font-dm-serif-text: 'DM Serif Text', serif;
+	--shadow-sharp: 6px 6px 0px 0px;
+}

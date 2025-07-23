@@ -2,6 +2,6 @@
 	let { children } = $props();
 </script>
 
-<main class="bg-amber-50 min-h-dvh">
+<main class="min-h-dvh bg-white">
 	{@render children()}
 </main>

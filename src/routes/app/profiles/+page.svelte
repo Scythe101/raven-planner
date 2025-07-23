@@ -1,6 +1,7 @@
 <script>
     import { auth, db } from '$lib/firebase/firebase.client';
 	import CourseTile from '../../../components/CourseTile.svelte';
+	import CourseTileSkeleton from '../../../components/CourseTileSkeleton.svelte';
 	import { authStore } from '../../../stores/AuthStore';
 	import { doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
@@ -16,11 +17,7 @@
 		}
 	});
 	let courses = $state({
-		cca: {
-			"AP Calculus AB": {
-
-			}
-		}
+		
 	})
 	let selectionEdit = $state(JSON.stringify(selection, null, 4));
 	let courseEdit = $state(JSON.stringify(courses, null, 4));
@@ -106,8 +103,16 @@
 <h1>Course Profiles</h1>
 
 
-{#if $authStore.currentUser}
-    {#each Object.entries(courses) as [courseName, courseDetails]}
-		<CourseTile name={courseName} difficulty={courseDetails.difficulty} />
-    {/each}
+{#if $authStore.currentUser && !isLoading && Object.keys(courses).length > 0}
+	<div class="grid grid-cols-6 gap-4">
+    	{#each Object.entries(courses) as [courseName, courseDetails]}
+			<CourseTile name={courseName} difficulty={courseDetails.difficulty} type={courseDetails.type} homework={courseDetails.homework} url={courseDetails.url} />
+    	{/each}
+	</div>
+{:else}
+	<div class="grid grid-cols-6 gap-4">
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+	</div>
 {/if}

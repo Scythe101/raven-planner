@@ -7,19 +7,8 @@ export const authStore = writable({
     currentUser: null
 });
 
-// TODO: add github auth and remove email auth
+// TODO: add github auth
 export const authHandlers = {
-    signup: async (email, password) => {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-    },
-    login: async (email, password) => {
-        try {
-        await signInWithEmailAndPassword(auth, email, password);
-        } catch(err) {
-            console.error(err)
-        }
-    },
     logout: async () => {
         try {
             await signOut(auth);
@@ -27,30 +16,13 @@ export const authHandlers = {
             console.error(err);
         }
     },
-    resetPassword: async (email) => {
-        try {
-            await sendPasswordResetEmail(auth, email);
-        } catch(err) {
-            console.error(err);
-        }
-    },
-    updateEmail: async (email) => {
-        try {
-            await updateEmail(auth, email);
-        } catch(err) {
-            console.error(err);
-        }
-    },
-    updatePassword: async (password) => {
-        await updatePassword(auth, password);
-    },
     googleSignIn: async () => {
         try {
             const provider = new GoogleAuthProvider();
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
         } catch (err) {
-            console.error('Error during Google Sign-In:', err);
+            console.error(err);
         }
     }
 }

@@ -1,65 +1,20 @@
 <script>
-import { authHandlers, authStore } from '../stores/AuthStore';
-import { auth } from "../lib/firebase/firebase.client";
-import { onMount } from 'svelte';
-import { getRedirectResult } from 'firebase/auth';
-    let register = false;
-    let email = '';
-    let password = '';
-    let confirmPassword = '';
-
-    async function handleSubmit() {
-        if ( !email || !password || (register && !confirmPassword) ) {
-            return;
-        }
-
-        if ( register && password === confirmPassword ) {
-            try {
-                await authHandlers.signup(email, password);
-            } catch (error) {
-                console.error('Error during registration:', error);
-            }
-        } else {
-            try {
-                await authHandlers.login(email, password);
-            } catch (error) {
-                console.error('Error during login:', error);
-            }
-        }
-        if ($authStore.currentUser) {
-            window.location.href = '/app/home';
-        }
-    }
+	import { authHandlers } from '../stores/AuthStore';
+	import GoogleLogo from './GoogleLogo.svelte';
 </script>
+
 <div class="flex flex-col items-center justify-center">
-    {#if register}
-    <h1 class="font-bold">Sign Up</h1>
-    {:else}
-    <h1 class="font-bold">Log In</h1>
-    {/if}
-    <form class="flex flex-col gap-4">
-        <label>
-            <input bind:value={email} type="text" placeholder="Email"/>
-        </label>
-        <label>
-            <input bind:value={password} type="password" placeholder="Password"/>
-        </label>
-        {#if register}
-            <label>
-                <input bind:value={confirmPassword} type="password" placeholder="Confirm Password"/>
-            </label>
-            <button type="submit" class="border-2" on:click={handleSubmit}>Sign Up</button>
-            <button type="button" on:click={() => register = false}>Already have an account? Sign In</button>
-        {:else}
-            <button type="submit" class="border-2" on:click={handleSubmit}>Sign In</button>
-            <button type="button" on:click={() => register = true}>Don't have an account? Sign Up</button>
-        {/if}
-        
-    <button 
-        class="border-2 px-4 py-2 bg-red-500 text-white rounded"
-        on:click={authHandlers.googleSignIn}
-    >
-    Sign in with Google
-    </button>
-    </form>
+	<h1 class="font-noto-serif mt-32 text-center text-4xl font-semibold">Choose an Auth Provider</h1>
+	<p class="font-noto-serif mt-2 text-lg">
+		Make sure to sign in with the one you made the account with!
+	</p>
+	<div class="mt-24 flex flex-col">
+		<button
+			class="font-noto-serif shadow-sharp flex h-16 w-72 cursor-pointer flex-row items-center justify-center gap-3 rounded-full bg-white px-4 py-2 text-lg font-semibold ring-2 shadow-slate-900 ring-slate-900"
+			on:click={authHandlers.googleSignIn}
+		>
+			<GoogleLogo />
+			Continue with Google
+		</button>
+	</div>
 </div>
