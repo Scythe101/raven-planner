@@ -38,6 +38,6 @@
 	let { children } = $props();
 </script>
 
-<main class="min-h-dvh bg-white">
+<main class="min-h-screen-dvh bg-white">
 	{@render children()}
 </main>

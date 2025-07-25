@@ -1,7 +1,32 @@
 @import 'tailwindcss';
+
 @theme {
 	--font-noto-serif: 'Noto Serif', serif;
 	--font-dm-serif-display: 'DM Serif Display', serif;
 	--font-dm-serif-text: 'DM Serif Text', serif;
-	--shadow-sharp: 6px 6px 0px 0px;
+	--shadow-sharp: 6px 6px 0px 0px var(--color-slate-900);
+	--shadow-sharp-hover: 8px 8px 0px 0px var(--color-slate-900);
+	--breakpoint-2xl: 106rem;
+}
+
+@layer utilities {
+	.h-screen-dvh {
+		height: 100dvh;
+	}
+
+	@supports not (height: 100dvh) {
+		.h-screen-dvh {
+			height: 100vh;
+		}
+	}
+
+	.min-h-screen-dvh {
+		min-height: 100dvh;
+	}
+
+	@supports not (min-height: 100dvh) {
+		.min-h-screen-dvh {
+			min-height: 100vh;
+		}
+	}
 }

@@ -1,10 +1,10 @@
 <script>
-    import { auth, db } from '$lib/firebase/firebase.client';
-	import CourseTile from '../../../components/CourseTile.svelte';
+	import { db } from '$lib/firebase/firebase.client';
 	import CourseTileSkeleton from '../../../components/CourseTileSkeleton.svelte';
-	import { authStore } from '../../../stores/AuthStore';
+	import { authStore } from '$stores/AuthStore';
 	import { doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
+	import ProfilesCategory from '../../../components/ProfilesCategory.svelte';
 
 	let selection = $state({
 		freshman: {
@@ -16,50 +16,31 @@
 			spring: []
 		}
 	});
-	let courses = $state({
-		
-	})
-	let selectionEdit = $state(JSON.stringify(selection, null, 4));
-	let courseEdit = $state(JSON.stringify(courses, null, 4));
+	let courses = $state({});
 	let isLoading = false;
-	let isSaving = false;
-	let isSaved = false;
 
-	// Load data from Firestore when component mounts
 	onMount(async () => {
 		if ($authStore.currentUser) {
 			await loadData();
 		}
 	});
 
-	// Also load data when user becomes available
 	$effect(() => {
-        if ($authStore.currentUser && !$authStore.isLoading) {
-            loadData();
-        }
-    });
+		if ($authStore.currentUser && !$authStore.isLoading) {
+			loadData();
+		}
+	});
 
 	async function loadData() {
 		if (isLoading) return; // Prevent multiple simultaneous loads
 		isLoading = true;
 
 		try {
-			const userRef = doc(db, 'users', $authStore.currentUser.uid);
-			const docSnap = await getDoc(userRef);
 			const courseRef = doc(db, 'courses', 'cca');
 			const courseSnap = await getDoc(courseRef);
-
-			if (docSnap.exists()) {
-				const userData = docSnap.data();
-				if (userData.selection) {
-					selection = userData.selection;
-					selectionEdit = JSON.stringify(selection, null, 4);
-				}
-			}
 			if (courseSnap.exists()) {
-                const courseData = courseSnap.data();
-                courses = courseData;
-                courseEdit = JSON.stringify(courses, null, 4);
+				const courseData = courseSnap.data();
+				courses = courseData;
 			}
 		} catch (error) {
 			console.error('Error loading data:', error);
@@ -67,52 +48,33 @@
 			isLoading = false;
 		}
 	}
-
-	async function save() {
-		isSaving = true;
-		isSaved = false;
-
-		try {
-			const userRef = doc(db, 'users', $authStore.currentUser.uid);
-			await setDoc(
-				userRef,
-				{
-					selection: selection
-				},
-				{ merge: true }
-			);
-
-            const courseRef = doc(db, 'courses', 'cca');
-			await setDoc(
-				courseRef,
-				courses,
-				{merge: false }
-			);
-
-			isSaving = true;
-			console.log('Data saved successfully!');
-		} catch (error) {
-			console.error('Error saving user data:', error);
-		} finally {
-			isSaving = false;
-			isSaved = true;
-		}
-	}
 </script>
 
-<h1>Course Profiles</h1>
-
-
 {#if $authStore.currentUser && !isLoading && Object.keys(courses).length > 0}
-	<div class="grid grid-cols-6 gap-4">
-    	{#each Object.entries(courses) as [courseName, courseDetails]}
-			<CourseTile name={courseName} difficulty={courseDetails.difficulty} type={courseDetails.type} homework={courseDetails.homework} url={courseDetails.url} />
-    	{/each}
-	</div>
+	<ProfilesCategory {courses} type="math" />
+	<ProfilesCategory {courses} type="english" />
 {:else}
-	<div class="grid grid-cols-6 gap-4">
+	<h1 class="font-dm-serif-display mb-4 text-4xl italic">Math</h1>
+	<div class="mr-8 mb-8 grid grid-cols-4 gap-3 2xl:grid-cols-6">
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
+		<CourseTileSkeleton />
 		<CourseTileSkeleton />
 		<CourseTileSkeleton />
 		<CourseTileSkeleton />
 	</div>
+
+	<h1 class="font-dm-serif-display mb-4 text-4xl italic">English</h1>
 {/if}
