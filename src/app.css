@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant hover (&:hover);
+
 @theme {
 	--font-noto-serif: 'Noto Serif', serif;
 	--font-dm-serif-display: 'DM Serif Display', serif;
@@ -7,6 +9,22 @@
 	--shadow-sharp: 6px 6px 0px 0px var(--color-slate-900);
 	--shadow-sharp-hover: 8px 8px 0px 0px var(--color-slate-900);
 	--breakpoint-2xl: 106rem;
+}
+
+@layer base {
+	h1 {
+		font-size: var(--text-4xl);
+		font-family: var(--font-dm-serif-display);
+		font-style: italic;
+	}
+	h2 {
+		font-size: var(--text-3xl);
+		font-family: var(--font-dm-serif-display);
+		font-style: italic;
+	}
+	p {
+		font-family: var(--font-noto-serif);
+	}
 }
 
 @layer utilities {

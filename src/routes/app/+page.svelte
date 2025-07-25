@@ -208,7 +208,7 @@
 	});
 
 	async function loadData() {
-		if (isLoading) return; // Prevent multiple simultaneous loads
+		if (isLoading) return;
 		isLoading = true;
 
 		try {
@@ -267,7 +267,7 @@
 		try {
 			selection = JSON.parse(selectionEdit);
 		} catch (error) {
-			selection = 'error parsing';
+			selection = 'error parsing' + error;
 		}
 	}
 
@@ -294,7 +294,7 @@
 	// }
 </script>
 
-<h1 class="mt-4 text-7xl font-bold">Home</h1>
+<h1 class="mt-4">Home</h1>
 
 {#if $authStore.currentUser}
 	<h2 class="text-3xl">Current User: {$authStore.currentUser.email}</h2>

@@ -6,16 +6,6 @@
 	import { onMount } from 'svelte';
 	import ProfilesCategory from '../../../components/ProfilesCategory.svelte';
 
-	let selection = $state({
-		freshman: {
-			fall: [],
-			spring: []
-		},
-		sophomore: {
-			fall: [],
-			spring: []
-		}
-	});
 	let courses = $state({});
 	let isLoading = false;
 
@@ -54,7 +44,7 @@
 	<ProfilesCategory {courses} type="math" />
 	<ProfilesCategory {courses} type="english" />
 {:else}
-	<h1 class="font-dm-serif-display mb-4 text-4xl italic">Math</h1>
+	<h1 class="mb-4">Math</h1>
 	<div class="mr-8 mb-8 grid grid-cols-4 gap-3 2xl:grid-cols-6">
 		<CourseTileSkeleton />
 		<CourseTileSkeleton />
@@ -76,5 +66,5 @@
 		<CourseTileSkeleton />
 	</div>
 
-	<h1 class="font-dm-serif-display mb-4 text-4xl italic">English</h1>
+	<h1 class="mb-4">English</h1>
 {/if}

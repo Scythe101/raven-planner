@@ -13,7 +13,7 @@
 	);
 </script>
 
-<h1 class="font-dm-serif-display mb-4 text-4xl italic">{capitalize(type)}</h1>
+<h1 class="mb-4">{capitalize(type)}</h1>
 <div class="mr-8 mb-8 grid grid-cols-4 gap-3 2xl:grid-cols-6">
 	{#each Object.entries(sortedCourses) as [courseName, courseDetails] (courseName)}
 		{#if courseDetails.type === type}
