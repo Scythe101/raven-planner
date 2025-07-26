@@ -1,43 +1,31 @@
 <script>
-	import { db } from '$lib/firebase/firebase.client';
 	import CourseTileSkeleton from '../../../components/CourseTileSkeleton.svelte';
 	import { authStore } from '$stores/AuthStore';
-	import { doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 	import ProfilesCategory from '../../../components/ProfilesCategory.svelte';
+	import { loadCourseData, courseData } from '$stores/CourseStore';
 
 	let courses = $state({});
 	let isLoading = false;
+	let hasInitializedCourses = false;
+	let lastCoursesLoaded = null;
 
-	onMount(async () => {
-		if ($authStore.currentUser) {
-			await loadData();
+	$effect(() => {
+		if (!hasInitializedCourses) {
+			loadCourseData().catch((err) => {
+				console.error('error loading course data', err);
+			});
+			hasInitializedCourses = true;
 		}
 	});
 
 	$effect(() => {
-		if ($authStore.currentUser && !$authStore.isLoading) {
-			loadData();
+		const data = $courseData;
+		if (data && Object.keys(data).length > 0 && lastCoursesLoaded != data) {
+			courses = structuredClone(data);
+			lastCoursesLoaded = data;
 		}
 	});
-
-	async function loadData() {
-		if (isLoading) return; // Prevent multiple simultaneous loads
-		isLoading = true;
-
-		try {
-			const courseRef = doc(db, 'courses', 'cca');
-			const courseSnap = await getDoc(courseRef);
-			if (courseSnap.exists()) {
-				const courseData = courseSnap.data();
-				courses = courseData;
-			}
-		} catch (error) {
-			console.error('Error loading data:', error);
-		} finally {
-			isLoading = false;
-		}
-	}
 </script>
 
 {#if $authStore.currentUser && !isLoading && Object.keys(courses).length > 0}

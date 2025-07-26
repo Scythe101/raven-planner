@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 
 	import { auth } from '$lib/firebase/firebase.client';
+	import { authHandlers } from '$stores/AuthStore';
 	let currentPage = $derived(page.url.pathname);
 </script>
 
@@ -55,7 +56,7 @@
 	<div class="font-noto-serif mt-12 flex flex-col text-lg font-medium">
 		<button
 			class="-m-2 cursor-pointer rounded-full p-2 text-left ring-slate-900 transition-all duration-200 hover:bg-red-200 hover:ring-2"
-			onclick={() => auth.signOut()}>Sign Out</button
+			onclick={() => authHandlers.logout()}>Sign Out</button
 		>
 	</div>
 </div>

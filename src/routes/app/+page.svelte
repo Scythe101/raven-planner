@@ -3,6 +3,8 @@
 	import { authStore } from '../../stores/AuthStore';
 	import { doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
+	import { userData, loadUserData, loadingUserData } from '$stores/UserStore';
+	import { courseData, loadCourseData, loadingCourseData } from '$stores/CourseStore';
 
 	let selection = $state({
 		freshman: {
@@ -14,227 +16,239 @@
 			spring: []
 		}
 	});
-	let courses = $state({
-		'AP Calculus AB': {
-			difficulty: 'hard',
-			weighted: true,
-			url: '/app/profiles/ap_calculus_ab',
-			homework: '60-90',
-			type: 'math',
-			credits: 10,
-			academic: true
-		},
-		'Integrated Math 3 Honors': {
-			url: '/app/profiles/integrated_math_3_honors',
-			difficulty: 'hard',
-			academic: true,
-			homework: '60-90',
-			credits: 10,
-			type: 'math',
-			weighted: true
-		},
-		'Integrated Math 2': {
-			difficulty: 'moderate',
-			credits: 10,
-			url: '/app/profiles/integrated_math_2',
-			weighted: false,
-			academic: true,
-			homework: '60-90',
-			type: 'math'
-		},
-		'Integrated Math 2 Honors': {
-			type: 'math',
-			credits: 10,
-			homework: '60-90',
-			difficulty: 'hard',
-			academic: true,
-			weighted: false,
-			url: '/app/profiles/integrated_math_2_honors'
-		},
-		'AP Calculus BC': {
-			homework: '60-90',
-			academic: true,
-			credits: 10,
-			url: '/app/profiles/ap_calculus_bc',
-			difficulty: 'hard',
-			weighted: true,
-			type: 'math'
-		},
-		'English 9 Honors': {
-			academic: true,
-			homework: '30-60',
-			type: 'english',
-			url: '/app/profiles/english_9_honors',
-			credits: 10,
-			difficulty: 'hard',
-			weighted: false
-		},
-		'Advanced Math for Decision Making': {
-			credits: 10,
-			academic: true,
-			homework: '0-30',
-			weighted: false,
-			url: '/app/profiles/advanced_math_for_decision_making',
-			difficulty: 'easy',
-			type: 'math'
-		},
-		'Advanced Topics in Math': {
-			credits: 10,
-			academic: true,
-			homework: '0-30',
-			weighted: false,
-			url: '/app/profiles/advanced_topics_in_math',
-			difficulty: 'moderate',
-			type: 'math'
-		},
-		'AP Statistics': {
-			credits: 10,
-			academic: true,
-			homework: '60-90',
-			weighted: true,
-			url: '/app/profiles/ap_statistics',
-			difficulty: 'hard',
-			type: 'math'
-		},
-		'Calculus 3': {
-			credits: 5,
-			academic: true,
-			homework: '60-90',
-			weighted: false,
-			url: '/app/profiles/calculus_3',
-			difficulty: 'hard',
-			type: 'math'
-		},
-		'Integrated Math 1 Honors': {
-			credits: 10,
-			academic: true,
-			homework: '60-90',
-			weighted: false,
-			url: '/app/profiles/integrated_math_1_honors',
-			difficulty: 'hard',
-			type: 'math'
-		},
-		'Integrated Math 1 Readiness': {
-			credits: 10,
-			academic: true,
-			homework: '0-30',
-			weighted: false,
-			url: '/app/profiles/integrated_math_1_readiness',
-			difficulty: 'easy',
-			type: 'math'
-		},
-		'Integrated Math 1': {
-			credits: 10,
-			academic: true,
-			homework: '60-90',
-			weighted: false,
-			url: '/app/profiles/integrated_math_1',
-			difficulty: 'moderate',
-			type: 'math'
-		},
-		'Integrated Math 3': {
-			difficulty: 'moderate',
-			credits: 10,
-			url: '/app/profiles/integrated_math_3',
-			weighted: false,
-			academic: true,
-			homework: '60-90',
-			type: 'math'
-		},
-		'Integrated Math 1/2 Essentials': {
-			difficulty: 'easy',
-			credits: 10,
-			url: '/app/profiles/integrated_math_1-2_essentials',
-			weighted: false,
-			academic: true,
-			homework: '0-30',
-			type: 'math'
-		},
-		'Intro to Calculus': {
-			difficulty: 'moderate',
-			credits: 10,
-			url: '/app/profiles/intro_to_calculus',
-			weighted: false,
-			academic: true,
-			homework: '30-60',
-			type: 'math'
-		},
-		'Linear Algebra': {
-			difficulty: 'hard',
-			credits: 10,
-			url: '/app/profiles/linear_algebra',
-			weighted: false,
-			academic: true,
-			homework: '60-90',
-			type: 'math'
-		},
-		'Personal Financial Literacy': {
-			difficulty: 'easy',
-			credits: 10,
-			url: '/app/profiles/personal_financial_literacy',
-			weighted: false,
-			academic: true,
-			homework: '0-30',
-			type: 'math'
-		},
-		Statistics: {
-			difficulty: 'moderate',
-			credits: 10,
-			url: '/app/profiles/statistics',
-			weighted: false,
-			academic: true,
-			homework: '30-60',
-			type: 'math'
-		}
-	});
+	// let courses = $state({
+	// 	'AP Calculus AB': {
+	// 		difficulty: 'hard',
+	// 		weighted: true,
+	// 		url: '/app/profiles/ap_calculus_ab',
+	// 		homework: '60-90',
+	// 		type: 'math',
+	// 		credits: 10,
+	// 		academic: true
+	// 	},
+	// 	'Integrated Math 3 Honors': {
+	// 		url: '/app/profiles/integrated_math_3_honors',
+	// 		difficulty: 'hard',
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		credits: 10,
+	// 		type: 'math',
+	// 		weighted: true
+	// 	},
+	// 	'Integrated Math 2': {
+	// 		difficulty: 'moderate',
+	// 		credits: 10,
+	// 		url: '/app/profiles/integrated_math_2',
+	// 		weighted: false,
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		type: 'math'
+	// 	},
+	// 	'Integrated Math 2 Honors': {
+	// 		type: 'math',
+	// 		credits: 10,
+	// 		homework: '60-90',
+	// 		difficulty: 'hard',
+	// 		academic: true,
+	// 		weighted: false,
+	// 		url: '/app/profiles/integrated_math_2_honors'
+	// 	},
+	// 	'AP Calculus BC': {
+	// 		homework: '60-90',
+	// 		academic: true,
+	// 		credits: 10,
+	// 		url: '/app/profiles/ap_calculus_bc',
+	// 		difficulty: 'hard',
+	// 		weighted: true,
+	// 		type: 'math'
+	// 	},
+	// 	'English 9 Honors': {
+	// 		academic: true,
+	// 		homework: '30-60',
+	// 		type: 'english',
+	// 		url: '/app/profiles/english_9_honors',
+	// 		credits: 10,
+	// 		difficulty: 'hard',
+	// 		weighted: false
+	// 	},
+	// 	'Advanced Math for Decision Making': {
+	// 		credits: 10,
+	// 		academic: true,
+	// 		homework: '0-30',
+	// 		weighted: false,
+	// 		url: '/app/profiles/advanced_math_for_decision_making',
+	// 		difficulty: 'easy',
+	// 		type: 'math'
+	// 	},
+	// 	'Advanced Topics in Math': {
+	// 		credits: 10,
+	// 		academic: true,
+	// 		homework: '0-30',
+	// 		weighted: false,
+	// 		url: '/app/profiles/advanced_topics_in_math',
+	// 		difficulty: 'moderate',
+	// 		type: 'math'
+	// 	},
+	// 	'AP Statistics': {
+	// 		credits: 10,
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		weighted: true,
+	// 		url: '/app/profiles/ap_statistics',
+	// 		difficulty: 'hard',
+	// 		type: 'math'
+	// 	},
+	// 	'Calculus 3': {
+	// 		credits: 5,
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		weighted: false,
+	// 		url: '/app/profiles/calculus_3',
+	// 		difficulty: 'hard',
+	// 		type: 'math'
+	// 	},
+	// 	'Integrated Math 1 Honors': {
+	// 		credits: 10,
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		weighted: false,
+	// 		url: '/app/profiles/integrated_math_1_honors',
+	// 		difficulty: 'hard',
+	// 		type: 'math'
+	// 	},
+	// 	'Integrated Math 1 Readiness': {
+	// 		credits: 10,
+	// 		academic: true,
+	// 		homework: '0-30',
+	// 		weighted: false,
+	// 		url: '/app/profiles/integrated_math_1_readiness',
+	// 		difficulty: 'easy',
+	// 		type: 'math'
+	// 	},
+	// 	'Integrated Math 1': {
+	// 		credits: 10,
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		weighted: false,
+	// 		url: '/app/profiles/integrated_math_1',
+	// 		difficulty: 'moderate',
+	// 		type: 'math'
+	// 	},
+	// 	'Integrated Math 3': {
+	// 		difficulty: 'moderate',
+	// 		credits: 10,
+	// 		url: '/app/profiles/integrated_math_3',
+	// 		weighted: false,
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		type: 'math'
+	// 	},
+	// 	'Integrated Math 1/2 Essentials': {
+	// 		difficulty: 'easy',
+	// 		credits: 10,
+	// 		url: '/app/profiles/integrated_math_1-2_essentials',
+	// 		weighted: false,
+	// 		academic: true,
+	// 		homework: '0-30',
+	// 		type: 'math'
+	// 	},
+	// 	'Intro to Calculus': {
+	// 		difficulty: 'moderate',
+	// 		credits: 10,
+	// 		url: '/app/profiles/intro_to_calculus',
+	// 		weighted: false,
+	// 		academic: true,
+	// 		homework: '30-60',
+	// 		type: 'math'
+	// 	},
+	// 	'Linear Algebra': {
+	// 		difficulty: 'hard',
+	// 		credits: 10,
+	// 		url: '/app/profiles/linear_algebra',
+	// 		weighted: false,
+	// 		academic: true,
+	// 		homework: '60-90',
+	// 		type: 'math'
+	// 	},
+	// 	'Personal Financial Literacy': {
+	// 		difficulty: 'easy',
+	// 		credits: 10,
+	// 		url: '/app/profiles/personal_financial_literacy',
+	// 		weighted: false,
+	// 		academic: true,
+	// 		homework: '0-30',
+	// 		type: 'math'
+	// 	},
+	// 	Statistics: {
+	// 		difficulty: 'moderate',
+	// 		credits: 10,
+	// 		url: '/app/profiles/statistics',
+	// 		weighted: false,
+	// 		academic: true,
+	// 		homework: '30-60',
+	// 		type: 'math'
+	// 	}
+	// });
+	let courses = $state({});
 	let selectionEdit = $state(JSON.stringify(selection, null, 4));
 	let courseEdit = $state(JSON.stringify(courses, null, 4));
-	let isLoading = false;
 	let isSaving = false;
 	let isSaved = false;
 
-	// Load data from Firestore when component mounts
-	onMount(async () => {
-		if ($authStore.currentUser) {
-			await loadData();
-		}
-	});
+	let lastLoadedUserId = null;
+	let hasInitializedSelection = false;
+	let hasInitializedCourses = false;
+	let lastCoursesLoaded = { '': '' };
 
-	// Also load data when user becomes available
 	$effect(() => {
-		if ($authStore.currentUser && !$authStore.isLoading) {
-			loadData();
+		if (!hasInitializedCourses) {
+			loadCourseData().catch((err) => {
+				console.error('error loading course data', err);
+			});
+			hasInitializedCourses = true;
 		}
 	});
 
-	async function loadData() {
-		if (isLoading) return;
-		isLoading = true;
-
-		try {
-			const userRef = doc(db, 'users', $authStore.currentUser.uid);
-			const docSnap = await getDoc(userRef);
-			const courseRef = doc(db, 'courses', 'cca');
-			const courseSnap = await getDoc(courseRef);
-
-			if (docSnap.exists()) {
-				const userData = docSnap.data();
-				if (userData.selection) {
-					selection = userData.selection;
-					selectionEdit = JSON.stringify(selection, null, 4);
-				}
-			}
-			if (courseSnap.exists()) {
-				const courseData = courseSnap.data();
-				courses = courseData;
-				courseEdit = JSON.stringify(courses, null, 4);
-			}
-		} catch (error) {
-			console.error('Error loading data:', error);
-		} finally {
-			isLoading = false;
+	$effect(() => {
+		const data = $courseData;
+		if (data && Object.keys(data).length > 0 && lastCoursesLoaded != data) {
+			courses = structuredClone(data);
+			courseEdit = JSON.stringify(courses, null, 4);
+			lastCoursesLoaded = data;
 		}
-	}
+	});
+	// Single effect to handle all auth and data loading logic
+	$effect(() => {
+		const currentUser = $authStore.currentUser;
+		const isLoading = $authStore.isLoading;
+
+		if (!currentUser && !isLoading) {
+			// User logged out - clear everything
+			if (lastLoadedUserId) {
+				lastLoadedUserId = null;
+				hasInitializedSelection = false;
+			}
+		} else if (currentUser && !isLoading) {
+			if (lastLoadedUserId !== currentUser.uid) {
+				lastLoadedUserId = currentUser.uid;
+				hasInitializedSelection = false;
+				loadUserData().catch((error) => {
+					console.error('Failed to load user data:', error);
+					lastLoadedUserId = null;
+				});
+			}
+		}
+	});
+
+	// Separate effect for updating UI when userData changes
+	$effect(() => {
+		const newUserData = $userData;
+		if (newUserData?.selection && !hasInitializedSelection) {
+			selection = structuredClone(newUserData.selection); // Create a deep copy to avoid proxy issues
+			selectionEdit = JSON.stringify(selection, null, 4);
+			hasInitializedSelection = true;
+		}
+	});
 
 	async function save() {
 		isSaving = true;
@@ -302,7 +316,7 @@
 	<div class="mt-8">
 		<h3 class="mb-4 text-2xl font-semibold">Test List:</h3>
 
-		{#if isLoading}
+		{#if $loadingUserData}
 			<p class="mb-4 text-gray-600">Loading data...</p>
 		{/if}
 
@@ -323,7 +337,7 @@
 				</li>
 			{/each} -->
 		</ul>
-		{#if !isLoading}
+		{#if !$loadingUserData}
 			<textarea class="h-96 w-96" bind:value={selectionEdit}></textarea>
 			<textarea class="h-96 w-112" bind:value={courseEdit}></textarea>
 		{/if}
@@ -362,20 +376,3 @@
 <button class="mt-4 border-2 bg-gray-200 px-4 py-2" onclick={() => auth.signOut()}>
 	Sign Out
 </button>
-
-{#if $authStore.currentUser}
-	{#each Object.entries(selection) as [year, semesters] (year)}
-		<h3 class="text-lg font-black">{year}</h3>
-		<div class="flex flex-row">
-			{#each Object.entries(semesters) as [semester, courses] (semester)}
-				<div class="flex-col">
-					<h2 class="text-md font-semibold">{semester}</h2>
-
-					{#each courses as course (course)}
-						<p>{course}</p>
-					{/each}
-				</div>
-			{/each}
-		</div>
-	{/each}
-{/if}

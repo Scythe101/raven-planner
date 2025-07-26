@@ -1,42 +1,27 @@
 <script>
-	import { db } from '$lib/firebase/firebase.client';
-	import { doc, getDoc } from 'firebase/firestore';
-	import { onMount } from 'svelte';
-	import { authStore } from '$stores/AuthStore';
+	import { loadCourseData, loadingCourseData, courseData } from '$stores/CourseStore';
 
 	let { course } = $props();
 	let profileData = $state({});
-	let isLoading = false;
+	let hasInitializedCourses = false;
+	let lastCoursesLoaded = null;
 
-	onMount(async () => {
-		if ($authStore.currentUser) {
-			await loadData();
+	$effect(() => {
+		if (!hasInitializedCourses) {
+			loadCourseData().catch((err) => {
+				console.error('error loading course data', err);
+			});
+			hasInitializedCourses = true;
 		}
 	});
 
 	$effect(() => {
-		if ($authStore.currentUser && !$authStore.isLoading) {
-			loadData();
+		const data = $courseData;
+		if (data && Object.keys(data).length > 0 && lastCoursesLoaded != data) {
+			profileData = structuredClone(data)[course];
+			lastCoursesLoaded = data;
 		}
 	});
-
-	async function loadData() {
-		if (isLoading) return;
-		isLoading = true;
-		try {
-			const courseRef = doc(db, 'courses', 'cca');
-			const courseSnap = await getDoc(courseRef);
-			if (courseSnap.exists()) {
-				const courseData = courseSnap.data();
-				// TODO: optimize loading... currently it fetches the whole CCA document ;-;
-				profileData = courseData[course];
-			}
-		} catch (error) {
-			console.error('Error loading data:', error);
-		} finally {
-			isLoading = false;
-		}
-	}
 
 	function capitalize(str) {
 		if (typeof str === 'string') {
@@ -53,7 +38,7 @@
 <div class="flex flex-row gap-12">
 	<div class="flex-col">
 		<h1 class="text-lg">Type</h1>
-		{#if !isLoading && profileData.type}
+		{#if !$loadingCourseData && profileData.type}
 			<p class=" -mt-2 text-2xl">{capitalize(profileData.type)}</p>
 		{:else}
 			<div class="flex h-5 items-center">
@@ -63,7 +48,7 @@
 	</div>
 	<div class="flex-col">
 		<h1 class="text-lg">Difficulty</h1>
-		{#if !isLoading && profileData.difficulty}
+		{#if !$loadingCourseData && profileData.difficulty}
 			<p class=" -mt-2 text-2xl">{capitalize(profileData.difficulty)}</p>
 		{:else}
 			<div class="flex h-5 items-center">
@@ -73,7 +58,7 @@
 	</div>
 	<div class="flex-col">
 		<h1 class="text-lg">Homework</h1>
-		{#if !isLoading && profileData.homework}
+		{#if !$loadingCourseData && profileData.homework}
 			<p class=" -mt-2 text-2xl">{profileData.homework} Minutes</p>
 		{:else}
 			<div class="flex h-5 items-center">
@@ -83,7 +68,7 @@
 	</div>
 	<div class="flex-col">
 		<h1 class="text-lg">Credits</h1>
-		{#if !isLoading && profileData.credits}
+		{#if !$loadingCourseData && profileData.credits}
 			<p class=" -mt-2 text-2xl">{profileData.credits} Credits</p>
 		{:else}
 			<div class="flex h-5 items-center">
@@ -93,7 +78,7 @@
 	</div>
 	<div class="flex-col">
 		<h1 class="text-lg italic">Academic?</h1>
-		{#if !isLoading && profileData.academic}
+		{#if !$loadingCourseData && profileData.academic}
 			<p class=" -mt-2 text-2xl">{profileData.academic ? 'Yes' : 'No'}</p>
 		{:else}
 			<div class="flex h-5 items-center">
@@ -103,7 +88,7 @@
 	</div>
 	<div class="flex-col">
 		<h1 class="text-lg">Weighted?</h1>
-		{#if !isLoading && profileData.weighted}
+		{#if !$loadingCourseData && profileData.weighted}
 			<p class=" -mt-2 text-2xl">{profileData.weighted ? 'Yes' : 'No'}</p>
 		{:else}
 			<div class="flex h-5 items-center">
