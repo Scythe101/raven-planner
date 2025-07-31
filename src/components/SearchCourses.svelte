@@ -1,10 +1,17 @@
 <script>
 	import { authStore } from '$stores/AuthStore';
 	import { loadUserData, userData } from '$stores/UserStore';
-	let { courseSelected } = $props();
+	let { courseSelected, isSelected } = $props();
+	import { courseData, loadCourseData, loadingCourseData } from '$stores/CourseStore';
+	import SearchTile from '$components/SearchTile.svelte';
 	let lastLoadedUserId = null;
 	let hasInitializedSelection = false;
 	let currentUserData = $state(null);
+	let hasInitializedCourses = false;
+	let courses = $state({});
+	let lastCoursesLoaded;
+	let sortedCourses = $state({});
+	let courseSelection = $derived($courseSelected);
 
 	$effect(() => {
 		const currentUser = $authStore.currentUser;
@@ -39,66 +46,66 @@
 		}
 	});
 
-	function setNestedValue(obj, path, value) {
-		const keys = path.split('.');
-		let current = obj;
-
-		for (let i = 0; i < keys.length - 1; i++) {
-			const key = keys[i];
-			const arrayMatch = key.match(/^(.+)\[(\d+)\]$/);
-
-			if (arrayMatch) {
-				const [, arrayKey, index] = arrayMatch;
-				if (!current[arrayKey]) current[arrayKey] = [];
-				if (!current[arrayKey][index]) current[arrayKey][index] = {};
-				current = current[arrayKey][index];
-			} else {
-				if (!current[key]) current[key] = {};
-				current = current[key];
-			}
+	$effect(() => {
+		if (!hasInitializedCourses) {
+			loadCourseData().catch((err) => {
+				console.error('error loading course data', err);
+			});
+			hasInitializedCourses = true;
 		}
+	});
 
-		const lastKey = keys[keys.length - 1];
-		const arrayMatch = lastKey.match(/^(.+)\[(\d+)\]$/);
-
-		if (arrayMatch) {
-			const [, arrayKey, index] = arrayMatch;
-			if (!current[arrayKey]) current[arrayKey] = [];
-			current[arrayKey][index] = value;
-		} else {
-			current[lastKey] = value;
+	$effect(() => {
+		const data = $courseData;
+		if (data && Object.keys(data).length > 0 && lastCoursesLoaded != data) {
+			courses = structuredClone(data);
+			sortedCourses = Object.fromEntries(
+				Object.entries(courses).sort(([a], [b]) => a.localeCompare(b))
+			);
+			lastCoursesLoaded = data;
 		}
-	}
+	});
 </script>
 
-{#if courseSelected}
+<div
+	class="shadow-sharp relative mr-4 mb-4 flex h-[calc(100dvh-2rem)] w-72 flex-1 flex-col overflow-x-hidden rounded-3xl bg-amber-50 p-4 ring-2 shadow-slate-900 ring-slate-900"
+>
+	<div class="absolute flex flex-col {courseSelection ? '-translate-x-110' : ''} duration-200">
+		<h1>Select a class to edit!</h1>
+	</div>
 	<div
-		class="shadow-sharp mr-4 mb-4 flex h-[calc(100dvh-2rem)]
-	w-72 flex-1
-    flex-col rounded-3xl bg-amber-50 p-4 ring-2 shadow-slate-900 ring-slate-900"
+		class="absolute flex flex-col {courseSelection
+			? ''
+			: 'translate-x-110'} w-[calc(100%-3rem)] duration-200"
 	>
 		<button
 			class="size-12 cursor-pointer bg-white"
 			onclick={() => {
-				courseSelected = null;
+				courseSelected.set(null);
+				isSelected = false;
 			}}>X</button
 		>
-		<p>{courseSelected}</p>
+
+		<p>{courseSelection}</p>
+		<div class="grid grid-cols-1 gap-2">
+			{#if sortedCourses}
+				{#each Object.entries(sortedCourses) as [courseName, courseDetails] (courseName)}
+					{#if courseDetails}
+						<SearchTile
+							name={courseName}
+							difficulty={courseDetails.difficulty}
+							type={courseDetails.type}
+							homework={courseDetails.homework}
+							url={courseDetails.url}
+							credits={courseDetails.credits}
+							{courseSelected}
+							data={$courseData}
+						/>
+					{/if}
+				{/each}
+			{/if}
+		</div>
 
 		<textarea>{JSON.stringify(currentUserData, null, 2)}</textarea>
-		<button
-			class="size-16 cursor-pointer bg-white"
-			onclick={() => {
-				console.log('courseSelected path:', courseSelected);
-				console.log('Current userData:', $userData);
-
-				const updatedData = structuredClone($userData);
-				setNestedValue(updatedData, courseSelected, 'New Course Value');
-
-				console.log('Updated data:', updatedData);
-				userData.set(updatedData);
-				currentUserData = structuredClone(updatedData.selection);
-			}}>Add test data</button
-		>
 	</div>
-{/if}
+</div>

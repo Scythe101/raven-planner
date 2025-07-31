@@ -3,7 +3,8 @@
 	import SearchCourses from '$components/SearchCourses.svelte';
 	import { authStore } from '$stores/AuthStore';
 	import { loadCourseData, courseData } from '$stores/CourseStore';
-	import { loadUserData, userData } from '$stores/UserStore';
+	import { loadUserData, userData, saveUserData } from '$stores/UserStore';
+	import { writable } from 'svelte/store';
 
 	let selection = $state({
 		freshman: {
@@ -24,7 +25,7 @@
 		}
 	});
 	let courses = $state({});
-	let courseSelected = $state(null);
+	const courseSelected = writable(null);
 
 	let lastLoadedUserId = null;
 	let hasInitializedSelection = false;
@@ -73,9 +74,24 @@
 	// Separate effect for updating UI when userData changes
 	$effect(() => {
 		const newUserData = $userData;
+
 		if (newUserData?.selection) {
+			// console.log('Setting selection from user data:', newUserData.selection);
 			selection = structuredClone(newUserData.selection); // Create a deep copy to avoid proxy issues
 			hasInitializedSelection = true;
+		} else if (newUserData && !newUserData.selection) {
+			console.log('User data exists but no selection found, initializing default selection');
+			// Initialize default selection structure
+			const defaultSelection = {
+				freshman: { fall: [], spring: [] },
+				sophomore: { fall: [], spring: [] },
+				junior: { fall: [], spring: [] },
+				senior: { fall: [], spring: [] }
+			};
+			selection = defaultSelection;
+			hasInitializedSelection = true;
+		} else if (newUserData === null) {
+			console.log('User data is null - user may not exist in database');
 		}
 	});
 </script>
@@ -87,13 +103,13 @@
 			<div class="flex flex-row gap-6">
 				<SelectionTile
 					fall="true"
-					bind:courseSelected
+					{courseSelected}
 					courses={selection.freshman.fall}
 					year="freshman"
 				/>
 				<SelectionTile
 					fall="false"
-					bind:courseSelected
+					{courseSelected}
 					courses={selection.freshman.spring}
 					year="freshman"
 				/>
@@ -104,14 +120,14 @@
 			<div class="flex flex-row gap-6">
 				<SelectionTile
 					fall="true"
+					{courseSelected}
 					courses={selection.sophomore.fall}
 					year="sophomore"
-					bind:courseSelected
 				/>
 				<SelectionTile
 					fall="false"
+					{courseSelected}
 					courses={selection.sophomore.spring}
-					bind:courseSelected
 					year="sophomore"
 				/>
 			</div>
@@ -119,15 +135,10 @@
 		<div>
 			<h1>Junior</h1>
 			<div class="flex flex-row gap-6">
-				<SelectionTile
-					fall="true"
-					bind:courseSelected
-					courses={selection.junior.fall}
-					year="junior"
-				/>
+				<SelectionTile fall="true" {courseSelected} courses={selection.junior.fall} year="junior" />
 				<SelectionTile
 					fall="false"
-					bind:courseSelected
+					{courseSelected}
 					courses={selection.junior.spring}
 					year="junior"
 				/>
@@ -136,15 +147,10 @@
 		<div>
 			<h1>Senior</h1>
 			<div class="flex flex-row gap-6">
-				<SelectionTile
-					fall="true"
-					bind:courseSelected
-					courses={selection.senior.fall}
-					year="senior"
-				/>
+				<SelectionTile fall="true" {courseSelected} courses={selection.senior.fall} year="senior" />
 				<SelectionTile
 					fall="false"
-					bind:courseSelected
+					{courseSelected}
 					courses={selection.senior.spring}
 					year="senior"
 				/>
@@ -153,3 +159,7 @@
 	</div>
 	<SearchCourses {courseSelected} />
 </div>
+<button
+	class="shadow-sharp hover:shadow-sharp-hover fixed bottom-4 h-12 w-16 cursor-pointer rounded-full bg-amber-100 ring-2 shadow-slate-900 ring-slate-900 duration-100"
+	onclick={saveUserData}>Save</button
+>
