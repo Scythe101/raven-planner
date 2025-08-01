@@ -4,6 +4,9 @@
 	let { courseSelected, isSelected } = $props();
 	import { courseData, loadCourseData, loadingCourseData } from '$stores/CourseStore';
 	import SearchTile from '$components/SearchTile.svelte';
+	import { onMount } from 'svelte';
+	import RemoveClass from '$components/RemoveClass.svelte';
+
 	let lastLoadedUserId = null;
 	let hasInitializedSelection = false;
 	let currentUserData = $state(null);
@@ -12,6 +15,7 @@
 	let lastCoursesLoaded;
 	let sortedCourses = $state({});
 	let courseSelection = $derived($courseSelected);
+	let searchQuery = $state('');
 
 	$effect(() => {
 		const currentUser = $authStore.currentUser;
@@ -65,12 +69,34 @@
 			lastCoursesLoaded = data;
 		}
 	});
+
+	let filteredCourses = $derived.by(() => {
+		// this removes trailing and leading spaces
+		let handledSearchQuery = searchQuery;
+		while (handledSearchQuery[0] === ' ') {
+			handledSearchQuery = handledSearchQuery.slice(1, handledSearchQuery.length);
+		}
+
+		while (handledSearchQuery[handledSearchQuery.length - 1] == ' ') {
+			handledSearchQuery = handledSearchQuery.slice(0, handledSearchQuery.length - 2);
+		}
+
+		return Object.fromEntries(
+			Object.entries(sortedCourses).filter(([key]) =>
+				key.toLowerCase().includes(handledSearchQuery.toLowerCase())
+			)
+		);
+	});
 </script>
 
 <div
-	class="shadow-sharp relative mr-4 mb-4 flex h-[calc(100dvh-2rem)] w-72 flex-1 flex-col overflow-x-hidden rounded-3xl bg-amber-50 p-4 ring-2 shadow-slate-900 ring-slate-900"
+	class="shadow-sharp relative mr-4 mb-4 flex h-[calc(100dvh-2rem)] w-72 flex-1 flex-col overflow-x-hidden rounded-3xl bg-amber-50 p-4 ring-2 shadow-slate-900 ring-slate-900 {courseSelection
+		? 'overflow-y-scroll'
+		: 'overflow-y-hidden'}"
 >
-	<div class="absolute flex flex-col {courseSelection ? '-translate-x-110' : ''} duration-200">
+	<div
+		class="sticky flex h-20 flex-col {courseSelection ? '-translate-x-110' : ''} top-0 duration-200"
+	>
 		<h1>Select a class to edit!</h1>
 	</div>
 	<div
@@ -78,18 +104,28 @@
 			? ''
 			: 'translate-x-110'} w-[calc(100%-3rem)] duration-200"
 	>
-		<button
-			class="size-12 cursor-pointer bg-white"
-			onclick={() => {
-				courseSelected.set(null);
-				isSelected = false;
-			}}>X</button
-		>
-
-		<p>{courseSelection}</p>
-		<div class="grid grid-cols-1 gap-2">
-			{#if sortedCourses}
-				{#each Object.entries(sortedCourses) as [courseName, courseDetails] (courseName)}
+		<div class="mb-4 flex w-full flex-row">
+			<button
+				class="shadow-sharp hover:shadow-sharp-hover h-12 w-fit cursor-pointer rounded-full bg-white p-2 ring-2 ring-slate-900 duration-200"
+				onclick={() => {
+					courseSelected.set(null);
+					isSelected = false;
+				}}>Close</button
+			>
+			<div class="ml-auto">
+				<RemoveClass {courseSelected} />
+			</div>
+		</div>
+		<input
+			type="text"
+			bind:value={searchQuery}
+			class="mb-4 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 placeholder:text-slate-400 placeholder:italic"
+			placeholder="Search for a class..."
+		/>
+		<!-- <p>{courseSelection}</p> -->
+		<div class="grid grid-cols-1 gap-3 pb-4">
+			{#if filteredCourses}
+				{#each Object.entries(filteredCourses) as [courseName, courseDetails] (courseName)}
 					{#if courseDetails}
 						<SearchTile
 							name={courseName}
@@ -106,6 +142,6 @@
 			{/if}
 		</div>
 
-		<textarea>{JSON.stringify(currentUserData, null, 2)}</textarea>
+		<!-- <textarea>{JSON.stringify(currentUserData, null, 2)}</textarea> -->
 	</div>
 </div>

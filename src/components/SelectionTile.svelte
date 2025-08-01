@@ -38,9 +38,9 @@
 					onclick={() => {
 						// courseSelected = null;
 						courseSelected.set(`selection.${year}.${semester}[${i}]`);
-						setTimeout(() => {
-							console.log(courseSelection);
-						}, 0);
+						// setTimeout(() => {
+						// 	console.log(courseSelection);
+						// }, 0);
 					}}>{courses[i]}</button
 				>
 			{/each}

@@ -2,14 +2,7 @@
 	import { userData, saveUserData } from '$stores/UserStore';
 	import { get } from 'svelte/store';
 
-	let { name, difficulty, type, courseSelected, data } = $props();
-	function capitalize(str) {
-		if (typeof str === 'string') {
-			return str.replace(/^\w/, (c) => c.toUpperCase());
-		} else {
-			return '';
-		}
-	}
+	let { courseSelected } = $props();
 	function setNestedValue(obj, path, value) {
 		const keys = path.split('.');
 		let current = obj;
@@ -43,7 +36,7 @@
 </script>
 
 <button
-	class="shadow-sharp hover:shadow-sharp-hover ml-1 flex h-30 w-full flex-col rounded-lg border-2 border-slate-900 bg-rose-100 p-3 text-left align-top shadow-slate-900 transition-all duration-200 hover:-translate-0.5 hover:bg-rose-200"
+	class="shadow-sharp hover:shadow-sharp-hover ml-1 flex h-12 w-fit flex-col rounded-full border-2 border-slate-900 bg-rose-100 p-3 text-left align-top shadow-slate-900 transition-all duration-200 hover:-translate-0.5 hover:bg-rose-200"
 	onclick={() => {
 		// console.log('courseSelected path:', courseSelected);
 		// console.log('Current userData:', $userData);
@@ -56,7 +49,7 @@
 
 		const updatedData = structuredClone(currentUserData);
 		// Make sure to update the selection property specifically
-		setNestedValue(updatedData, get(courseSelected), name);
+		setNestedValue(updatedData, get(courseSelected), 'Unscheduled');
 
 		// console.log('Updated data:', updatedData);
 		userData.set(updatedData);
@@ -64,7 +57,5 @@
 		saveUserData();
 	}}
 >
-	<h3 class="text-md font-bold">{name}</h3>
-	<p class="">{capitalize(type)}</p>
-	<p class="">{capitalize(difficulty)}</p>
+	<h3 class="text-md font-bold">Drop Class</h3>
 </button>
