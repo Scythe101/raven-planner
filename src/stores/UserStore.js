@@ -62,11 +62,12 @@ export async function loadUserData() {
 			userData.set(structuredData);
 			return structuredData;
 		} else {
-			userData.set(null);
+			userData.set(defaultUserData);
 			return null;
 		}
 	} catch (error) {
 		console.error('Error loading data:', error);
+
 		throw error;
 	} finally {
 		loadingUserData.set(false);

@@ -48,6 +48,11 @@
 		// console.log('courseSelected path:', courseSelected);
 		// console.log('Current userData:', $userData);
 
+		let selection = name;
+		if (name == 'Calculus 3' || name == 'Linear Algebra') {
+			selection = 'Calculus 3/Linear Algebra';
+		}
+
 		const currentUserData = $userData;
 		if (!currentUserData) {
 			// console.error('No user data available');
@@ -56,7 +61,7 @@
 
 		const updatedData = structuredClone(currentUserData);
 		// Make sure to update the selection property specifically
-		setNestedValue(updatedData, get(courseSelected), name);
+		setNestedValue(updatedData, get(courseSelected), selection);
 
 		// console.log('Updated data:', updatedData);
 		userData.set(updatedData);

@@ -1,5 +1,5 @@
 <script>
-	import ProfileHeader from '../../../../components/ProfileHeader.svelte';
+	import ProfileHeader from '$components/ProfileHeader.svelte';
 </script>
 
 <ProfileHeader course="AP Calculus AB" />

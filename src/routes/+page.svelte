@@ -1,3 +1,1 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-<p class="h-dvh">test</p>
+<h1 class="mt-16 text-center text-6xl">Class planning made easy.</h1>

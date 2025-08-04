@@ -6,6 +6,7 @@
 	import SearchTile from '$components/SearchTile.svelte';
 	import { onMount } from 'svelte';
 	import RemoveClass from '$components/RemoveClass.svelte';
+	import Filters from './Filters.svelte';
 
 	let lastLoadedUserId = null;
 	let hasInitializedSelection = false;
@@ -16,6 +17,12 @@
 	let sortedCourses = $state({});
 	let courseSelection = $derived($courseSelected);
 	let searchQuery = $state('');
+	let typeFilter = $state('');
+	let difficultyFilter = $state('');
+	let homeworkFilter = $state('');
+	let creditsFilter = $state('');
+	let academicFilter = $state('');
+	let weightedFilter = $state('');
 
 	$effect(() => {
 		const currentUser = $authStore.currentUser;
@@ -90,7 +97,7 @@
 </script>
 
 <div
-	class="shadow-sharp relative mr-4 mb-4 flex h-[calc(100dvh-2rem)] w-72 flex-1 flex-col overflow-x-hidden rounded-3xl bg-amber-50 p-4 ring-2 shadow-slate-900 ring-slate-900 {courseSelection
+	class="shadow-sharp sticky top-4 mr-4 mb-4 flex h-[calc(100dvh-2rem)] flex-col overflow-x-hidden rounded-3xl bg-amber-50 p-4 ring-2 shadow-slate-900 ring-slate-900 {courseSelection
 		? 'overflow-y-scroll'
 		: 'overflow-y-hidden'}"
 >
@@ -106,7 +113,7 @@
 	>
 		<div class="mb-4 flex w-full flex-row">
 			<button
-				class="shadow-sharp hover:shadow-sharp-hover h-12 w-fit cursor-pointer rounded-full bg-white p-2 ring-2 ring-slate-900 duration-200"
+				class="shadow-sharp hover:shadow-sharp-hover h-12 w-fit cursor-pointer rounded-full bg-white p-2 ring-2 ring-slate-900 duration-200 hover:-translate-0.5"
 				onclick={() => {
 					courseSelected.set(null);
 					isSelected = false;
@@ -122,6 +129,7 @@
 			class="mb-4 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 placeholder:text-slate-400 placeholder:italic"
 			placeholder="Search for a class..."
 		/>
+		<Filters />
 		<!-- <p>{courseSelection}</p> -->
 		<div class="grid grid-cols-1 gap-3 pb-4">
 			{#if filteredCourses}

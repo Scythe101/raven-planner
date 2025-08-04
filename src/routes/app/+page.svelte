@@ -10,22 +10,18 @@
 		savingUserData,
 		saveUserData
 	} from '$stores/UserStore';
-	import { courseData, loadCourseData, loadingCourseData } from '$stores/CourseStore';
+	import {
+		courseData,
+		loadCourseData,
+		loadingCourseData,
+		saveCourseData
+	} from '$stores/CourseStore';
 
-	let selection = $state({
-		freshman: {
-			fall: [],
-			spring: []
-		},
-		sophomore: {
-			fall: [],
-			spring: []
-		}
-	});
+	let selection = $state(null);
 
 	let courses = $state({});
-	let selectionEdit = $state(JSON.stringify(selection, null, 4));
-	let courseEdit = $state(JSON.stringify(courses, null, 4));
+	let selectionEdit = $derived(JSON.stringify(selection, null, 4));
+	let courseEdit = $derived(JSON.stringify(courses, null, 4));
 	let isSaving = false;
 	let isSaved = false;
 
@@ -51,6 +47,7 @@
 			lastCoursesLoaded = data;
 		}
 	});
+
 	// Single effect to handle all auth and data loading logic
 	$effect(() => {
 		const currentUser = $authStore.currentUser;
@@ -99,7 +96,8 @@
 
 	function parseCourses() {
 		try {
-			courses = JSON.parse(courseEdit);
+			const parsedCourses = JSON.parse(courseEdit);
+			courseData.update(() => parsedCourses);
 		} catch (error) {
 			courses = 'ERROR';
 		}
@@ -153,7 +151,15 @@
 			<textarea class="h-96 w-96" bind:value={selectionEdit}></textarea>
 			<textarea class="h-96 w-112" bind:value={courseEdit}></textarea>
 		{/if}
-		<button class="border-2 bg-blue-200 px-4 py-2" onclick={saveUserData}> Save </button>
+		<button
+			class="border-2 bg-blue-200 px-4 py-2"
+			onclick={() => {
+				saveUserData();
+				saveCourseData();
+			}}
+		>
+			Save
+		</button>
 		<button class="border-2 bg-green-200 px-4 py-2" onclick={parseSelection}>
 			Parse Selection
 		</button>

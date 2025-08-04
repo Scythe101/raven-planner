@@ -36,7 +36,7 @@
 </script>
 
 <button
-	class="shadow-sharp hover:shadow-sharp-hover ml-1 flex h-12 w-fit flex-col rounded-full border-2 border-slate-900 bg-rose-100 p-3 text-left align-top shadow-slate-900 transition-all duration-200 hover:-translate-0.5 hover:bg-rose-200"
+	class="shadow-sharp hover:shadow-sharp-hover ml-1 flex h-12 w-fit flex-col rounded-full border-2 border-slate-900 bg-white p-3 text-left align-top shadow-slate-900 transition-all duration-200 hover:-translate-0.5 hover:bg-red-200"
 	onclick={() => {
 		// console.log('courseSelected path:', courseSelected);
 		// console.log('Current userData:', $userData);
@@ -57,5 +57,5 @@
 		saveUserData();
 	}}
 >
-	<h3 class="text-md font-bold">Drop Class</h3>
+	<h3 class="text-md duration-100 hover:font-bold">Drop Class</h3>
 </button>
