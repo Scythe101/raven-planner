@@ -21,7 +21,180 @@
 
 	let courses = $state({});
 	let selectionEdit = $derived(JSON.stringify(selection, null, 4));
-	let courseEdit = $derived(JSON.stringify(courses, null, 4));
+	// let courseEdit = $derived(JSON.stringify(courses, null, 4));
+	let courseEdit = $state({
+		'Linear Algebra': {
+			homework: '60-90',
+			type: 'math',
+			difficulty: 'hard',
+			credits: 10,
+			url: '/app/profiles/cca/linear_algebra',
+			weighted: false,
+			academic: true
+		},
+		'Integrated Math 2': {
+			type: 'math',
+			credits: 10,
+			homework: '60-90',
+			url: '/app/profiles/cca/integrated_math_2',
+			difficulty: 'moderate',
+			weighted: false,
+			academic: true
+		},
+		'Calculus 3': {
+			credits: 5,
+			academic: true,
+			url: '/app/profiles/cca/calculus_3',
+			type: 'math',
+			weighted: false,
+			difficulty: 'hard',
+			homework: '60-90'
+		},
+		'English 9 Honors': {
+			difficulty: 'hard',
+			weighted: false,
+			credits: 10,
+			url: '/app/profiles/cca/english_9_honors',
+			homework: '30-60',
+			academic: true,
+			type: 'english'
+		},
+		'Advanced Topics in Math': {
+			credits: 10,
+			difficulty: 'moderate',
+			homework: '0-30',
+			weighted: false,
+			academic: true,
+			url: '/app/profiles/cca/advanced_topics_in_math',
+			type: 'math'
+		},
+		'Integrated Math 1/2 Essentials': {
+			url: '/app/profiles/cca/integrated_math_1-2_essentials',
+			weighted: false,
+			homework: '0-30',
+			credits: 10,
+			difficulty: 'easy',
+			type: 'math',
+			academic: true
+		},
+		'AP Calculus BC': {
+			academic: true,
+			weighted: true,
+			homework: '60-90',
+			credits: 10,
+			url: '/app/profiles/cca/ap_calculus_bc',
+			type: 'math',
+			difficulty: 'hard'
+		},
+		'Integrated Math 3 Honors': {
+			url: '/app/profiles/cca/integrated_math_3_honors',
+			credits: 10,
+			difficulty: 'hard',
+			homework: '60-90',
+			weighted: true,
+			academic: true,
+			type: 'math'
+		},
+		'Integrated Math 1': {
+			weighted: false,
+			academic: true,
+			credits: 10,
+			difficulty: 'moderate',
+			type: 'math',
+			url: '/app/profiles/cca/integrated_math_1',
+			homework: '60-90'
+		},
+		'Integrated Math 1 Honors': {
+			difficulty: 'hard',
+			homework: '60-90',
+			weighted: false,
+			type: 'math',
+			academic: true,
+			credits: 10,
+			url: '/app/profiles/cca/integrated_math_1_honors'
+		},
+		Statistics: {
+			difficulty: 'moderate',
+			academic: true,
+			type: 'math',
+			url: '/app/profiles/cca/statistics',
+			homework: '30-60',
+			weighted: false,
+			credits: 10
+		},
+		'Integrated Math 2 Honors': {
+			homework: '60-90',
+			difficulty: 'hard',
+			weighted: false,
+			credits: 10,
+			type: 'math',
+			academic: true,
+			url: '/app/profiles/cca/integrated_math_2_honors'
+		},
+		'Intro to Calculus': {
+			academic: true,
+			type: 'math',
+			credits: 10,
+			weighted: false,
+			url: '/app/profiles/cca/intro_to_calculus',
+			difficulty: 'moderate',
+			homework: '30-60'
+		},
+		'AP Calculus AB': {
+			homework: '60-90',
+			type: 'math',
+			weighted: true,
+			url: '/app/profiles/cca/ap_calculus_ab',
+			academic: true,
+			difficulty: 'hard',
+			credits: 10
+		},
+		'Integrated Math 3': {
+			url: '/app/profiles/cca/integrated_math_3',
+			credits: 10,
+			difficulty: 'moderate',
+			homework: '60-90',
+			weighted: false,
+			type: 'math',
+			academic: true
+		},
+		'Advanced Math for Decision Making': {
+			url: '/app/profiles/cca/advanced_math_for_decision_making',
+			difficulty: 'easy',
+			weighted: false,
+			homework: '0-30',
+			type: 'math',
+			academic: true,
+			credits: 10
+		},
+		'Personal Financial Literacy': {
+			type: 'math',
+			credits: 10,
+			weighted: false,
+			academic: true,
+			difficulty: 'easy',
+			url: '/app/profiles/cca/personal_financial_literacy',
+			homework: '0-30'
+		},
+		'Integrated Math 1 Readiness': {
+			academic: true,
+			difficulty: 'easy',
+			type: 'math',
+			url: '/app/profiles/cca/integrated_math_1_readiness',
+			homework: '0-30',
+			credits: 10,
+			weighted: false
+		},
+		'AP Statistics': {
+			url: '/app/profiles/cca/ap_statistics',
+			difficulty: 'hard',
+			type: 'math',
+			academic: true,
+			weighted: true,
+			credits: 10,
+			homework: '60-90'
+		}
+	});
 	let isSaving = false;
 	let isSaved = false;
 
@@ -98,24 +271,10 @@
 		try {
 			const parsedCourses = JSON.parse(courseEdit);
 			courseData.update(() => parsedCourses);
-		} catch (error) {
+		} catch {
 			courses = 'ERROR';
 		}
 	}
-	// auto-save
-	// let debounceTimeout;
-
-	// function debounceSave() {
-	//     clearTimeout(debounceTimeout);
-	//     debounceTimeout = setTimeout(() => {
-	//         save();
-	//     }, 1000); // 1000ms debounce
-	// }
-
-	// // Autosave when testList changes (but not on initial load)
-	// $: if ($authStore.currentUser && !isLoading && testList.length >= 0) {
-	//     debounceSave();
-	// }
 </script>
 
 <h1 class="mt-4">Home</h1>
@@ -129,24 +288,6 @@
 		{#if $loadingUserData}
 			<p class="mb-4 text-gray-600">Loading data...</p>
 		{/if}
-
-		<ul class="mb-4 list-disc pl-6">
-			<!-- {#each testList as item, index}
-				<li class="mb-2">
-					<input
-						bind:value={testList[index]}
-						class="border-2 px-2 py-1 mr-2"
-						placeholder="Enter item"
-					/>
-					<button
-						class="border-2 px-2 py-1 bg-red-200"
-						on:click={() => (testList = testList.filter((_, i) => i !== index))}
-					>
-						Delete
-					</button>
-				</li>
-			{/each} -->
-		</ul>
 		{#if !$loadingUserData}
 			<textarea class="h-96 w-96" bind:value={selectionEdit}></textarea>
 			<textarea class="h-96 w-112" bind:value={courseEdit}></textarea>

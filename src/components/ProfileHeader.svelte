@@ -78,7 +78,7 @@
 	</div>
 	<div class="flex-col">
 		<h1 class="text-lg italic">Academic?</h1>
-		{#if !$loadingCourseData && profileData.academic}
+		{#if !$loadingCourseData && profileData.academic !== null}
 			<p class=" -mt-2 text-2xl">{profileData.academic ? 'Yes' : 'No'}</p>
 		{:else}
 			<div class="flex h-5 items-center">
@@ -88,7 +88,7 @@
 	</div>
 	<div class="flex-col">
 		<h1 class="text-lg">Weighted?</h1>
-		{#if !$loadingCourseData && profileData.weighted}
+		{#if !$loadingCourseData && profileData.weighted !== null}
 			<p class=" -mt-2 text-2xl">{profileData.weighted ? 'Yes' : 'No'}</p>
 		{:else}
 			<div class="flex h-5 items-center">

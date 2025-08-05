@@ -2,6 +2,7 @@
 @source inline('bg-red-200');
 @source inline('bg-orange-200');
 @source inline('bg-yellow-200');
+@source inline('bg-lime-200');
 @source inline('bg-green-200');
 @source inline('bg-sky-200');
 @source inline('bg-purple-200');
@@ -34,6 +35,7 @@
 		font-family: var(--font-dm-serif-display);
 		font-style: italic;
 	}
+
 	p {
 		font-family: var(--font-noto-serif);
 	}
