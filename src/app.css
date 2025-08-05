@@ -1,7 +1,16 @@
 @import 'tailwindcss';
-@source inline('bg-sky-200');
+@source inline('bg-red-200');
+@source inline('bg-orange-200');
 @source inline('bg-yellow-200');
+@source inline('bg-green-200');
+@source inline('bg-sky-200');
 @source inline('bg-purple-200');
+@source inline('bg-red-300');
+@source inline('bg-orange-300');
+@source inline('bg-yellow-300');
+@source inline('bg-green-300');
+@source inline('bg-sky-300');
+@source inline('bg-purple-300');
 
 @custom-variant hover (&:hover);
 

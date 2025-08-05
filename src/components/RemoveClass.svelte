@@ -57,5 +57,5 @@
 		saveUserData();
 	}}
 >
-	<h3 class="text-md duration-100 hover:font-bold">Drop Class</h3>
+	<h3 class="text-md font-noto-serif">Drop Class</h3>
 </button>

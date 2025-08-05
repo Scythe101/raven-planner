@@ -147,7 +147,7 @@
 	>
 		<div class="mb-4 flex w-full flex-row">
 			<button
-				class="shadow-sharp hover:shadow-sharp-hover h-12 w-fit cursor-pointer rounded-full bg-white p-2 ring-2 ring-slate-900 duration-200 hover:-translate-0.5"
+				class="font-noto-serif shadow-sharp hover:shadow-sharp-hover h-12 w-fit cursor-pointer rounded-full bg-white p-2 ring-2 ring-slate-900 duration-200 hover:-translate-0.5"
 				onclick={() => {
 					courseSelected.set(null);
 					isSelected = false;
