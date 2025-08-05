@@ -6,6 +6,8 @@
 	import SearchTile from '$components/SearchTile.svelte';
 	import { onMount } from 'svelte';
 	import RemoveClass from '$components/RemoveClass.svelte';
+	import Filter from '$components/Filter.svelte';
+	import { writable } from 'svelte/store';
 	import Filters from './Filters.svelte';
 
 	let lastLoadedUserId = null;
@@ -17,12 +19,13 @@
 	let sortedCourses = $state({});
 	let courseSelection = $derived($courseSelected);
 	let searchQuery = $state('');
-	let typeFilter = $state('');
-	let difficultyFilter = $state('');
-	let homeworkFilter = $state('');
-	let creditsFilter = $state('');
-	let academicFilter = $state('');
-	let weightedFilter = $state('');
+	let typeFilter = writable('');
+	let difficultyFilter = writable('');
+	let homeworkFilter = writable('');
+	let creditsFilter = writable('');
+	let academicFilter = writable('');
+	let weightedFilter = writable('');
+	let openFilter = writable(null);
 
 	$effect(() => {
 		const currentUser = $authStore.currentUser;
@@ -79,19 +82,50 @@
 
 	let filteredCourses = $derived.by(() => {
 		// this removes trailing and leading spaces
-		let handledSearchQuery = searchQuery;
-		while (handledSearchQuery[0] === ' ') {
-			handledSearchQuery = handledSearchQuery.slice(1, handledSearchQuery.length);
-		}
-
-		while (handledSearchQuery[handledSearchQuery.length - 1] == ' ') {
-			handledSearchQuery = handledSearchQuery.slice(0, handledSearchQuery.length - 2);
-		}
+		let handledSearchQuery = searchQuery.trim();
+		const currentTypeFilter = $typeFilter;
+		const currentDifficultyFilter = $difficultyFilter;
+		const currentHomeworkFilter = $homeworkFilter;
+		const currentCreditsFilter = $creditsFilter;
+		const currentAcademicFilter = $academicFilter;
+		const currentWeightedFilter = $weightedFilter;
 
 		return Object.fromEntries(
-			Object.entries(sortedCourses).filter(([key]) =>
-				key.toLowerCase().includes(handledSearchQuery.toLowerCase())
-			)
+			Object.entries(sortedCourses).filter(([key, details]) => {
+				const matchesSearch = key.toLowerCase().includes(handledSearchQuery.toLowerCase());
+
+				// if no type is selected (empty string) then ignore the type filter,
+				// otherwise perform the check against the selected type
+				const matchesType =
+					currentTypeFilter == '' || details.type.toLowerCase() === currentTypeFilter.toLowerCase();
+
+				const matchesDifficulty =
+					currentDifficultyFilter == '' ||
+					details.difficulty.toLowerCase() === currentDifficultyFilter.toLowerCase();
+
+				const matchesHomework =
+					currentHomeworkFilter == '' ||
+					details.homework.toLowerCase() === currentHomeworkFilter.toLowerCase();
+
+				const matchesCredits =
+					currentCreditsFilter == '' || details.credits == parseInt(currentCreditsFilter);
+				const matchesAcademic =
+					currentAcademicFilter === '' ||
+					details.academic === (currentAcademicFilter == 'yes' ? true : false);
+				const matchesWeighted =
+					currentWeightedFilter === '' ||
+					details.weighted === (currentWeightedFilter == 'yes' ? true : false);
+
+				return (
+					matchesSearch &&
+					matchesType &&
+					matchesDifficulty &&
+					matchesHomework &&
+					matchesCredits &&
+					matchesAcademic &&
+					matchesWeighted
+				);
+			})
 		);
 	});
 </script>
@@ -126,12 +160,20 @@
 		<input
 			type="text"
 			bind:value={searchQuery}
-			class="mb-4 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 placeholder:text-slate-400 placeholder:italic"
+			class="mb-2 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 placeholder:text-slate-400 placeholder:italic"
 			placeholder="Search for a class..."
 		/>
-		<Filters />
+		<Filters
+			{typeFilter}
+			{openFilter}
+			{difficultyFilter}
+			{creditsFilter}
+			{homeworkFilter}
+			{academicFilter}
+			{weightedFilter}
+		/>
 		<!-- <p>{courseSelection}</p> -->
-		<div class="grid grid-cols-1 gap-3 pb-4">
+		<div class="mt-2 grid grid-cols-1 gap-3 pb-4">
 			{#if filteredCourses}
 				{#each Object.entries(filteredCourses) as [courseName, courseDetails] (courseName)}
 					{#if courseDetails}
