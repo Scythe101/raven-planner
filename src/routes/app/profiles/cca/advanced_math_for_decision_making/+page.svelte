@@ -8,7 +8,7 @@
 <p class=" text-xl">C test average in Integrated Math 3 or Integrated Math 3 Honors</p>
 
 <h2 class="mt-8">Course Description</h2>
-<p class=" w-3/4 text-xl">
+<p class="mr-4 text-xl 2xl:w-3/4">
 	The field of operations research involves the development of mathematical models to improve
 	decision making at both the strategic and operational levels. The course teaches practices of
 	operations research. It has broad applicability in industry and government and can also assist in
@@ -21,7 +21,7 @@
 </p>
 
 <h3 class="font-dm-serif-display mt-4 text-2xl italic">Student Background</h3>
-<p class="w-3/4 text-xl">
+<p class="mr-4 text-xl 2xl:w-3/4">
 	Students entering Advanced Math for Decision Making should have a good understanding of the
 	following concepts:
 </p>
@@ -33,8 +33,8 @@
 	<li>Solving real-world problems using mathematical models and interpreting the results.</li>
 </ul>
 <h3 class="font-dm-serif-display mt-4 text-2xl italic">Course Content and Expectations</h3>
-<p class="w-3/4 text-xl">
-	Multi-Criteria Decision Making Some decisions involve comparing alternatives that have strengths
+<p class="mr-4 text-xl 2xl:w-3/4">
+	Multi-Criteria Decision Making: Some decisions involve comparing alternatives that have strengths
 	or weaknesses with regard to multiple objectives of interest to the decision maker. For example,
 	your objectives in buying health insurance might be to minimize cost and maximize protection.
 	Sometimes multiple objectives like these get in each other’s way. Multi- criteria decision making
@@ -67,17 +67,15 @@
 	Conditional Probability: People have notoriously poor intuition about conditional probability (i.e.,
 	the probability that an event will occur given that a different event also occurs). We will develop
 	concepts related to conditional probability through analyzing data, problem contexts, and partitions
-	of sets. This will eventually lead to a more
-	<br />
-	<br />
-	formal definition of conditional probability and related formulas. Decision Trees: Decision trees provide
-	a structure for determining the alternative that optimizes the expected value. The decision tree also
-	provides the probability distribution for each of the alternatives. Binomial and Geometric Distributions:
-	The concept of a probability distribution function is introduced. When repeated random events follow
-	the same assumptions, there may be a formula that summarizes the probabilistic pattern. This formula
-	will have parameters whose values vary from context to context. The binomial probability distribution
-	calculates the probability of a certain number of successes in a given number of trials. The geometric
-	distribution tracks the number of repetitions until the first success.
+	of sets. This will eventually lead to a more formal definition of conditional probability and related
+	formulas. Decision Trees: Decision trees provide a structure for determining the alternative that optimizes
+	the expected value. The decision tree also provides the probability distribution for each of the alternatives.
+	Binomial and Geometric Distributions: The concept of a probability distribution function is introduced.
+	When repeated random events follow the same assumptions, there may be a formula that summarizes the
+	probabilistic pattern. This formula will have parameters whose values vary from context to context.
+	The binomial probability distribution calculates the probability of a certain number of successes in
+	a given number of trials. The geometric distribution tracks the number of repetitions until the first
+	success.
 	<br />
 	<br />
 	Poisson Distribution: The Poisson distribution is used to characterize a probabilistic environment
@@ -92,4 +90,4 @@
 </p>
 
 <h2 class="mt-8">Grading</h2>
-<p class=" text-xl">There will be regularly scheduled homework assignments, quizzes, and exams.</p>
+<p class="text-xl">There will be regularly scheduled homework assignments, quizzes, and exams.</p>
