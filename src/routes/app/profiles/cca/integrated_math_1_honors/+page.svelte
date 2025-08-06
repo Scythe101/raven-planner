@@ -10,7 +10,7 @@
 	graduation requirement for mathematics
 </p>
 
-<p class=" mr-4 text-xl 2xl:w-3/4">
+<p class="mt-4 mr-4 text-xl 2xl:w-3/4">
 	Below are some guidelines for choosing the best course for an individual student. This is not a
 	placement test and it should not be used as the only criteria for making placement decisions.
 </p>

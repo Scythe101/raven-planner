@@ -62,6 +62,20 @@
 	<Filter id="credits" {openFilter} filter={creditsFilter} color="green" />
 	<Filter id="academic" {openFilter} filter={academicFilter} color="sky" />
 	<Filter id="weighted" {openFilter} filter={weightedFilter} color="purple" />
+	<button
+		class="cursor-pointer -my-1 py-1 -mx-2 px-2 rounded-full ring-slate-900 font-noto-serif duration-100 bg-gray-200 hover:bg-gray-300 hover:ring-1"
+		onclick={() => {
+			openFilter.set(null);
+			typeFilter.set('');
+			difficultyFilter.set('');
+			homeworkFilter.set('');
+			creditsFilter.set('');
+			academicFilter.set('');
+			weightedFilter.set('');
+		}}
+	>
+		Clear
+	</button>
 </div>
 {#if isOpen}
 	<hr class="border-gray-300 my-1">

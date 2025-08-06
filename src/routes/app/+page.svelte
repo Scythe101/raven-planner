@@ -22,7 +22,7 @@
 	let courses = $state({});
 	let selectionEdit = $derived(JSON.stringify(selection, null, 4));
 	// let courseEdit = $derived(JSON.stringify(courses, null, 4));
-	let courseEdit = $state({
+	let courseEdit = $derived(JSON.stringify({
 		'Linear Algebra': {
 			homework: '60-90',
 			type: 'math',
@@ -193,8 +193,125 @@
 			weighted: true,
 			credits: 10,
 			homework: '60-90'
-		}
-	});
+		},
+		'Advanced Journalism': {
+			url: '/app/profiles/cca/advanced_journalism',
+			difficulty: 'moderate',
+			type: 'practical arts',
+			academic: false,
+			weighted: false,
+			credits: 10,
+			homework: '0-30'
+		},
+		'AP English Language': {
+			url: '/app/profiles/cca/ap_english_language',
+			difficulty: 'hard',
+			type: 'english',
+			academic: true,
+			weighted: true,
+			credits: 10,
+			homework: '30-60'
+		},
+		'AP English Literature': {
+			url: '/app/profiles/cca/ap_english_literature',
+			difficulty: 'hard',
+			type: 'english',
+			academic: true,
+			weighted: true,
+			credits: 10,
+			homework: '60-90'
+		},
+		'College Application Seminar': {
+			url: '/app/profiles/cca/college_application_seminar',
+			difficulty: 'easy',
+			type: 'elective',
+			academic: false,
+			weighted: false,
+			credits: 10,
+			homework: '0-30'
+		},
+		'Creative Writing': {
+			url: '/app/profiles/cca/creative_writing',
+			difficulty: 'easy',
+			type: 'elective',
+			academic: false,
+			weighted: false,
+			credits: 10,
+			homework: '0-30'
+		},
+		'English 10 Honors': {
+			url: '/app/profiles/cca/english_10_honors',
+			difficulty: 'hard',
+			type: 'english',
+			academic: true,
+			weighted: false,
+			credits: 10,
+			homework: '60-90'
+		},
+		'English 10': {
+			url: '/app/profiles/cca/english_10',
+			difficulty: 'easy',
+			type: 'english',
+			academic: true,
+			weighted: false,
+			credits: 10,
+			homework: '30-60'
+		},
+		'English 11': {
+			url: '/app/profiles/cca/english_11',
+			difficulty: 'easy',
+			type: 'english',
+			academic: true,
+			weighted: false,
+			credits: 10,
+			homework: '30-60'
+		},
+		'English 12': {
+			url: '/app/profiles/cca/english_12',
+			difficulty: 'easy',
+			type: 'english',
+			academic: true,
+			weighted: false,
+			credits: 10,
+			homework: '30-60'
+		},
+		'English 9': {
+			url: '/app/profiles/cca/english_9',
+			difficulty: 'easy',
+			type: 'english',
+			academic: true,
+			weighted: false,
+			credits: 10,
+			homework: '30-60'
+		},
+		'Journalism': {
+			url: '/app/profiles/cca/journalism',
+			difficulty: 'moderate',
+			type: 'practical arts',
+			academic: false,
+			weighted: false,
+			credits: 10,
+			homework: '0-30'
+		},
+		'Modern Epic':{
+			url: '/app/profiles/cca/modern_epic',
+			difficulty: 'moderate',
+			type: 'english',
+			academic: true,
+			weighted: false,
+			credits: 10,
+			homework: '60-90'
+		},
+		'Speech & Debate': {
+			url: '/app/profiles/cca/speech_and_debate',
+			difficulty: 'easy',
+			type: 'practical arts',
+			academic: false,
+			weighted: false,
+			credits: 10,
+			homework: '0-30'
+		},
+	}, null, 4));
 	let isSaving = false;
 	let isSaved = false;
 
@@ -216,7 +333,7 @@
 		const data = $courseData;
 		if (data && Object.keys(data).length > 0 && lastCoursesLoaded != data) {
 			courses = structuredClone(data);
-			courseEdit = JSON.stringify(courses, null, 4);
+			// courseEdit = JSON.stringify(courses, null, 4);
 			lastCoursesLoaded = data;
 		}
 	});

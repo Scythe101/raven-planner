@@ -11,7 +11,7 @@
     box-content flex w-72 flex-col rounded-3xl bg-orange-50 p-6 ring-2 shadow-slate-900 ring-slate-900"
 >
 	<h1 class="">Raven Planner</h1>
-	<div class="font-noto-serif mt-24 flex flex-col gap-8 text-2xl font-medium">
+	<div class="font-noto-serif mt-4 2xl:mt-24 flex flex-col gap-8 text-2xl font-medium">
 		<a
 			href="/app"
 			class={currentPage === '/app'
