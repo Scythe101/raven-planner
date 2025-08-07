@@ -11,8 +11,7 @@
     box-content flex w-72 flex-col rounded-3xl bg-orange-50 p-6 ring-2 shadow-slate-900 ring-slate-900"
 >
 	<h1 class="">Raven Planner</h1>
-	<div class="flex-1/3"></div>
-	<div class="font-noto-serif flex flex-col gap-8 text-2xl font-medium">
+	<div class="font-noto-serif mt-12 flex flex-col gap-8 text-2xl font-medium">
 		<a
 			href="/app"
 			class={currentPage === '/app'
@@ -40,7 +39,6 @@
 			>Graduation Reqs</a
 		>
 	</div>
-	<div class="flex-2/3"></div>
 	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium">
 		<a
 			class={currentPage === '/app/info'

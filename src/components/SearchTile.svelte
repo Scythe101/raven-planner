@@ -1,15 +1,9 @@
 <script>
 	import { userData, saveUserData } from '$stores/UserStore';
 	import { get } from 'svelte/store';
+	import { capitalize } from '$lib';
 
 	let { name, difficulty, type, courseSelected, data } = $props();
-	function capitalize(str) {
-		if (typeof str === 'string') {
-			return str.replace(/^\w/, (c) => c.toUpperCase());
-		} else {
-			return '';
-		}
-	}
 	function setNestedValue(obj, path, value) {
 		const keys = path.split('.');
 		let current = obj;
@@ -69,7 +63,7 @@
 		saveUserData();
 	}}
 >
-	<h3 class="text-md font-bold">{name}</h3>
+	<h3 class="text-md font-noto-serif font-bold not-italic">{name}</h3>
 	<p class="">{capitalize(type)}</p>
 	<p class="">{capitalize(difficulty)}</p>
 </button>

@@ -2,7 +2,7 @@
 	import ProgressBar from '$components/ProgressBar.svelte';
 	import { courseData } from '$stores/CourseStore';
 	import { userData } from '$stores/UserStore';
-	const englishCredits = $derived.by(() => {});
+	// const englishCredits = $derived.by(() => {});
 </script>
 
 <h1 class="mt-4">SDUHSD</h1>

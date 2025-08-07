@@ -29,10 +29,18 @@
 </script>
 
 {#if $authStore.currentUser && !isLoading && Object.keys(courses).length > 0}
-	<ProfilesCategory {courses} type="math" />
+	<ProfilesCategory {courses} type="social science" />
 	<ProfilesCategory {courses} type="english" />
+	<ProfilesCategory {courses} type="math" />
+	<ProfilesCategory {courses} type="physical science" />
+	<ProfilesCategory {courses} type="life science" />
+	<ProfilesCategory {courses} type="world language" />
+	<ProfilesCategory {courses} type="physical education" />
+	<ProfilesCategory {courses} type="visual arts" />
+	<ProfilesCategory {courses} type="practical arts" />
+	<ProfilesCategory {courses} type="electives" />
 {:else}
-	<h1 class="mb-4">Math</h1>
+	<h1 class="mb-4">History</h1>
 	<div class="mr-8 mb-8 grid grid-cols-4 gap-3 2xl:grid-cols-6">
 		<CourseTileSkeleton />
 		<CourseTileSkeleton />

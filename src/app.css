@@ -35,9 +35,19 @@
 		font-family: var(--font-dm-serif-display);
 		font-style: italic;
 	}
+	h3 {
+		font-family: var(--font-dm-serif-display);
+		font-style: italic;
+	}
 
 	p {
 		font-family: var(--font-noto-serif);
+	}
+	ul {
+		font-family: var(--font-noto-serif);
+		list-style-position: outside;
+		list-style-type: disc;
+		font-size: var(--font-xl);
 	}
 }
 

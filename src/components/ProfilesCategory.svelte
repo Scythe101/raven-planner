@@ -1,13 +1,7 @@
 <script>
 	let { courses, type } = $props();
 	import CourseTile from '../components/CourseTile.svelte';
-	function capitalize(str) {
-		if (typeof str === 'string') {
-			return str.replace(/^\w/, (c) => c.toUpperCase());
-		} else {
-			return '';
-		}
-	}
+	import { capitalize } from '$lib';
 	const sortedCourses = Object.fromEntries(
 		Object.entries(courses).sort(([a], [b]) => a.localeCompare(b))
 	);
