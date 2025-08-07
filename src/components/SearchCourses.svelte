@@ -69,6 +69,8 @@
 		}
 	});
 
+	
+
 	$effect(() => {
 		const data = $courseData;
 		if (data && Object.keys(data).length > 0 && lastCoursesLoaded != data) {
