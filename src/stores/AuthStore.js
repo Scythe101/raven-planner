@@ -9,7 +9,8 @@ import {
 	signInWithEmailAndPassword,
 	sendEmailVerification,
 	GoogleAuthProvider,
-	signInWithPopup
+	signInWithPopup,
+	GithubAuthProvider
 } from 'firebase/auth';
 
 export const authStore = writable({
@@ -33,6 +34,15 @@ export const authHandlers = {
 			const user = result.user;
 		} catch (err) {
 			console.error(err);
+		}
+	},
+	githubSignIn: async () => {
+		try {
+			const provider = new GithubAuthProvider();
+			const result = await signInWithPopup(auth, provider);
+			const user = result.user;
+		} catch (error) {
+			console.error(error);
 		}
 	}
 };

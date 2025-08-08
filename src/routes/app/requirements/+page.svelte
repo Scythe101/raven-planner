@@ -5,11 +5,10 @@
 	// const englishCredits = $derived.by(() => {});
 </script>
 
-<h1 class="mt-4">SDUHSD</h1>
 <p class="mb-2">
-	These are the requirements to graduate from high school. Assuming you follow through with your
-	course selection and pass all classes, this is what your graduation status will look like at the
-	end of high school.
+	<strong>NOTE:</strong> These requirements are a combination of the high school graduation requirements
+	and the college A-G requirements, and take the hardest parts from each to ensure that you are prepared
+	for college.
 </p>
 
 <div class="grid w-3/4 grid-cols-2 gap-y-4">
@@ -43,7 +42,7 @@
 		<ProgressBar lower={10} upper={10} />
 	</div>
 	<div class="">
-		<h2>Social Science</h2>
+		<h2>Social Studies</h2>
 		<p>World History, US History, Government, and Economy are required.</p>
 		<ProgressBar lower={0} upper={30} />
 	</div>
@@ -52,5 +51,3 @@
 		<ProgressBar lower={20} upper={70} />
 	</div>
 </div>
-
-<h1>A-G Requirements</h1>

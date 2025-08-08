@@ -1,6 +1,7 @@
 <script>
-	import { authHandlers } from '../stores/AuthStore';
-	import GoogleLogo from './GoogleLogo.svelte';
+	import { authHandlers } from '$stores/AuthStore';
+	import GitHubLogo from '$components/GitHubLogo.svelte';
+	import GoogleLogo from '$components/GoogleLogo.svelte';
 </script>
 
 <div class="flex flex-col items-center justify-center">
@@ -8,13 +9,20 @@
 		Choose an Auth Provider
 	</h1>
 	<p class=" mt-2 text-lg">Make sure to sign in with the one you made the account with!</p>
-	<div class="mt-24 flex flex-col">
+	<div class="mt-24 flex flex-col gap-y-4">
 		<button
 			class="font-noto-serif shadow-sharp hover:shadow-sharp-hover flex h-16 w-72 cursor-pointer flex-row items-center justify-center gap-3 rounded-full bg-white px-4 py-2 text-lg font-semibold ring-2 shadow-slate-900 ring-slate-900 transition-all duration-200 hover:-translate-0.5"
 			on:click={authHandlers.googleSignIn}
 		>
 			<GoogleLogo />
 			Continue with Google
+		</button>
+		<button
+			class="font-noto-serif shadow-sharp hover:shadow-sharp-hover flex h-16 w-72 cursor-pointer flex-row items-center justify-center gap-3 rounded-full bg-white px-4 py-2 text-lg font-semibold ring-2 shadow-slate-900 ring-slate-900 transition-all duration-200 hover:-translate-0.5"
+			on:click={authHandlers.githubSignIn}
+		>
+			<GitHubLogo />
+			Continue with GitHub
 		</button>
 	</div>
 </div>

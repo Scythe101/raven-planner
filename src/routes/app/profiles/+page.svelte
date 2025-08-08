@@ -1,10 +1,11 @@
 <script>
-	import CourseTileSkeleton from '../../../components/CourseTileSkeleton.svelte';
+	import CourseTileSkeleton from '$components/CourseTileSkeleton.svelte';
 	import { authStore } from '$stores/AuthStore';
 	import { onMount } from 'svelte';
-	import ProfilesCategory from '../../../components/ProfilesCategory.svelte';
+	import ProfilesCategory from '$components/ProfilesCategory.svelte';
 	import { loadCourseData, courseData } from '$stores/CourseStore';
 	import { writable } from 'svelte/store';
+	import Filters from '$components/Filters.svelte';
 
 	let courses = $state({});
 	let isLoading = false;
@@ -19,7 +20,6 @@
 	let weightedFilter = writable('');
 	let openFilter = writable(null);
 	let sortedCourses = $state({});
-
 
 	$effect(() => {
 		if (!hasInitializedCourses) {
@@ -90,14 +90,26 @@
 		);
 	});
 </script>
-<input
-	type="text"
-	bind:value={searchQuery}
-	class="mb-2 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 shadow-sharp hover:shadow-sharp-hover duration-100 focus:shadow-sharp focus:translate-0 hover:-translate-0.5 placeholder:text-slate-400 placeholder:italic"
-	placeholder="Search for a class..."
-/>
+
+<div class="mr-4 flex max-w-192 flex-col">
+	<input
+		type="text"
+		bind:value={searchQuery}
+		class="shadow-sharp hover:shadow-sharp-hover focus:shadow-sharp mb-2 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 duration-100 placeholder:text-slate-400 placeholder:italic hover:-translate-0.5 focus:translate-0"
+		placeholder="Search for a class..."
+	/>
+	<Filters
+		{typeFilter}
+		{openFilter}
+		{difficultyFilter}
+		{homeworkFilter}
+		{creditsFilter}
+		{academicFilter}
+		{weightedFilter}
+	/>
+</div>
 {#if $authStore.currentUser && !isLoading && Object.keys(courses).length > 0}
-	<ProfilesCategory courses={filteredCourses} type="social science" />
+	<ProfilesCategory courses={filteredCourses} type="social studies" />
 	<ProfilesCategory courses={filteredCourses} type="english" />
 	<ProfilesCategory courses={filteredCourses} type="math" />
 	<ProfilesCategory courses={filteredCourses} type="physical science" />

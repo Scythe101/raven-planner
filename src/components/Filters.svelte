@@ -28,7 +28,17 @@
 
 	$effect(() => {
 		if ($openFilter == 'type') {
-			options = ['English', 'Math', 'Practical Arts'];
+			options = [
+				'Social Studies',
+				'English',
+				'Math',
+				'Physical Science',
+				'Life Science',
+				'World Language',
+				'Visual Arts',
+				'Practical Arts',
+				'Electives'
+			];
 			filter = typeFilter;
 			color = 'red';
 		} else if ($openFilter == 'difficulty') {
@@ -55,7 +65,7 @@
 	});
 </script>
 
-<div class="flex flex-row flex-wrap gap-x-6 mx-4 gap-y-4 mt-2 mb-2">
+<div class="mx-4 mt-2 mb-2 flex flex-row flex-wrap gap-x-6 gap-y-4">
 	<Filter id="type" {openFilter} filter={typeFilter} color="red" />
 	<Filter id="difficulty" {openFilter} filter={difficultyFilter} color="orange" />
 	<Filter id="homework" {openFilter} filter={homeworkFilter} color="yellow" />
@@ -63,7 +73,7 @@
 	<Filter id="academic" {openFilter} filter={academicFilter} color="sky" />
 	<Filter id="weighted" {openFilter} filter={weightedFilter} color="purple" />
 	<button
-		class="cursor-pointer -my-1 py-1 -mx-2 px-2 rounded-full ring-slate-900 font-noto-serif duration-100 bg-gray-200 hover:bg-gray-300 hover:ring-1"
+		class="font-noto-serif -mx-2 -my-1 h-fit cursor-pointer rounded-full bg-gray-200 px-2 py-1 ring-slate-900 duration-100 hover:bg-gray-300 hover:ring-1"
 		onclick={() => {
 			openFilter.set(null);
 			typeFilter.set('');
@@ -78,14 +88,16 @@
 	</button>
 </div>
 {#if isOpen}
-	<hr class="border-gray-300 my-1">
-	<div class="font-noto-serif flex flex-row gap-6 mt-2 ml-4 mb-2">
+	<hr class="my-1 border-gray-300" />
+	<div class="font-noto-serif mx-4 mt-2 mb-2 flex flex-row flex-wrap gap-x-6 gap-y-4">
 		<!-- <button class="cursor-pointer" onclick={() => filter.set('english')}>English</button>
 
 			<button class="cursor-pointer" onclick={() => filter.set('math')}>Math</button> -->
 		{#each options as option, i (i)}
 			<button
-				class="cursor-pointer -my-1 py-1 -mx-2 px-2 rounded-full ring-slate-900 duration-100 {getColorClasses(color)} {$filter == option.toLowerCase() ? 'ring-2' : 'hover:ring-1'}"
+				class="-mx-2 -my-1 cursor-pointer rounded-full px-2 py-1 ring-slate-900 duration-100 {getColorClasses(
+					color
+				)} {$filter == option.toLowerCase() ? 'ring-2' : 'hover:ring-1'}"
 				onclick={() => {
 					if ($filter === option.toLowerCase()) {
 						filter.set('');

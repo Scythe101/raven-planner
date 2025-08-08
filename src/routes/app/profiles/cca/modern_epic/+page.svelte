@@ -10,7 +10,7 @@
 <h2 class="mt-8">Course Description</h2>
 <p class="mr-4 text-xl 2xl:w-3/4">
 	The purpose of this course is to reinforce the analytical skills students are learning in their
-	English and Social Science classes. Such ideas as characterization, structure, world-building, and
+	English and social studies classes. Such ideas as characterization, structure, world-building, and
 	the individual within society will be explored. Students will produce work citing materials in
 	film and text analyzing, comparing, and contrasting Tolkien's and Martin's views of the
 	individual's role within a larger world as well as examining how each writer's work reflects the

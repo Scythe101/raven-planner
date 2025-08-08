@@ -300,7 +300,7 @@ courses = {
     'AP Economics': {
         url: '/app/profiles/cca/ap_economics',
         difficulty: 'hard',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: true,
         credits: 10,
@@ -309,7 +309,7 @@ courses = {
     'AP European History': {
         url: '/app/profiles/cca/ap_european_history',
         difficulty: 'hard',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: true,
         credits: 10,
@@ -318,7 +318,7 @@ courses = {
     'AP Psychology': {
         url: '/app/profiles/cca/ap_psychology',
         difficulty: 'moderate',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: true,
         credits: 10,
@@ -327,7 +327,7 @@ courses = {
     'AP Government': {
         url: '/app/profiles/cca/ap_government',
         difficulty: 'hard',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: true,
         credits: 10,
@@ -336,7 +336,7 @@ courses = {
     'AP World History': {
         url: '/app/profiles/cca/ap_world_history',
         difficulty: 'hard',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: true,
         credits: 10,
@@ -345,7 +345,7 @@ courses = {
     'AP US History': {
         url: '/app/profiles/cca/ap_us_history',
         difficulty: 'hard',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: true,
         credits: 10,
@@ -354,7 +354,7 @@ courses = {
     Economics: {
         url: '/app/profiles/cca/economics',
         difficulty: 'moderate',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: false,
         credits: 10,
@@ -372,7 +372,7 @@ courses = {
     Government: {
         url: '/app/profiles/cca/government',
         difficulty: 'easy',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: false,
         credits: 10,
@@ -381,7 +381,7 @@ courses = {
     'Non-Western World History': {
         url: '/app/profiles/cca/non-western_world_history',
         difficulty: 'easy',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: false,
         credits: 10,
@@ -399,7 +399,7 @@ courses = {
     Psychology: {
         url: '/app/profiles/cca/psychology',
         difficulty: 'easy',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: false,
         credits: 10,
@@ -408,7 +408,7 @@ courses = {
     Sociology: {
         url: '/app/profiles/cca/sociology',
         difficulty: 'easy',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: false,
         credits: 10,
@@ -417,7 +417,7 @@ courses = {
     'US History': {
         url: '/app/profiles/cca/us_history',
         difficulty: 'easy',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: false,
         credits: 10,
@@ -426,7 +426,7 @@ courses = {
     'World History': {
         url: '/app/profiles/cca/world_history',
         difficulty: 'easy',
-        type: 'social science',
+        type: 'social studies',
         academic: true,
         weighted: false,
         credits: 10,
