@@ -17,10 +17,10 @@
 		saveCourseData
 	} from '$stores/CourseStore';
 
-	let selection = $state(null);
+	let info = $state(null);
 
 	let courses = $state({});
-	let selectionEdit = $derived(JSON.stringify(selection, null, 4));
+	let infoEdit = $derived(JSON.stringify(info, null, 4));
 	let courseEdit = $derived(JSON.stringify(courses, null, 4));
 	
 	let isSaving = false;
@@ -75,23 +75,20 @@
 	// Separate effect for updating UI when userData changes
 	$effect(() => {
 		const newUserData = $userData;
-		if (newUserData?.selection && !hasInitializedSelection) {
-			selection = structuredClone(newUserData.selection); // Create a deep copy to avoid proxy issues
-			selectionEdit = JSON.stringify(selection, null, 4);
+		if (newUserData && !hasInitializedSelection) {
+			info = structuredClone(newUserData); // Create a deep copy to avoid proxy issues
+			infoEdit = JSON.stringify(info, null, 4);
 			hasInitializedSelection = true;
 		}
 	});
 
 	function parseSelection() {
 		try {
-			const parsedSelection = JSON.parse(selectionEdit);
-			selection = parsedSelection;
-			userData.update((data) => ({
-				...data,
-				selection: selection
-			}));
+			const parsedInfo = JSON.parse(infoEdit);
+			info = parsedInfo;
+			userData.set(parsedInfo);
 		} catch (error) {
-			selection = 'error parsing' + error;
+			info = 'error parsing' + error;
 		}
 	}
 
@@ -108,8 +105,11 @@
 <h1 class="mt-4">Home</h1>
 
 {#if $authStore.currentUser}
-	<h2 class="text-3xl">Current User: {$authStore.currentUser.email}</h2>
 
+	<h2 class="text-3xl">Current User: {$authStore.currentUser.email}</h2>
+	{#if !$loadingUserData && $userData.settings.newUser}
+		<h1>Go to Info to learn more</h1>
+	{/if}
 	<div class="mt-8">
 		<h3 class="mb-4 text-2xl font-semibold">Test List:</h3>
 
@@ -117,8 +117,9 @@
 			<p class="mb-4 text-gray-600">Loading data...</p>
 		{/if}
 		{#if !$loadingUserData}
-			<textarea class="h-96 w-96" bind:value={selectionEdit}></textarea>
+			<textarea class="h-96 w-96" bind:value={infoEdit}></textarea>
 			<textarea class="h-96 w-112" bind:value={courseEdit}></textarea>
+			
 		{/if}
 		<button
 			class="border-2 bg-blue-200 px-4 py-2"
@@ -134,7 +135,7 @@
 		</button>
 		<button class="border-2 bg-green-200 px-4 py-2" onclick={parseCourses}> Parse Courses </button>
 		<p class="mt-4 text-sm text-gray-600">
-			Selection data: {JSON.stringify(selection)}
+			Selection data: {JSON.stringify(info)}
 		</p>
 		<p class="mt-4 text-sm text-gray-600">
 			Course data: {JSON.stringify(courses)}

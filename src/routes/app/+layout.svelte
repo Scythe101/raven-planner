@@ -1,5 +1,6 @@
 <script>
-	import Sidebar from '../../components/Sidebar.svelte';
+	import Sidebar from '$components/Sidebar.svelte';
+
 	let { children } = $props();
 </script>
 

@@ -22,8 +22,10 @@ const defaultUserData = {
 		}
 	},
 	settings: {
-		theme: 'light'
-	}
+		theme: 'light',
+		newUser: true
+	},
+
 };
 export const userData = writable(null);
 export const loadingUserData = writable(false);
@@ -56,7 +58,8 @@ export async function loadUserData() {
 			const data = userSnap.data();
 			const structuredData = {
 				selection: data.selection || defaultUserData.selection,
-				settings: data.settings || defaultUserData.settings
+				settings: data.settings || defaultUserData.settings,
+				email: data.email || currentUser.email,
 			};
 
 			userData.set(structuredData);

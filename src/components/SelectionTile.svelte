@@ -1,8 +1,15 @@
 <script>
-	import { userData } from '$stores/UserStore';
+	import { userData, saveUserData } from '$stores/UserStore';
 	let { fall, courses, year, courseSelected } = $props();
 
 	const semester = fall === 'true' ? 'fall' : 'spring';
+
+	const length = $derived.by(() => {
+		if (!$userData) {
+			return 0;
+		}
+		return $userData.selection[year][semester].length;
+	});
 
 	function isButtonSelected(index) {
 		if (!$courseSelected) {
@@ -13,7 +20,33 @@
 		return $courseSelected === expectedPath;
 	}
 
-	function addCourse() {}
+	function addCourse() {
+		if(!$userData) {
+			return;
+		}
+		const currentUserData = $userData;
+		
+		if (length > 5) {
+			return;
+		}
+		currentUserData.selection[year][semester].push('Unscheduled');
+		userData.set(currentUserData);
+		saveUserData();
+	}
+
+	function removeCourse() {
+		if(!$userData) {
+			return;
+		}
+		const currentUserData = $userData;
+		
+		if (length < 5) {
+			return;
+		}
+		currentUserData.selection[year][semester].splice(length - 1, 1);
+		userData.set(currentUserData);
+		saveUserData();
+	}
 </script>
 
 <div
@@ -28,8 +61,10 @@
 			{fall === 'true' ? 'Fall' : 'Spring'}
 		</h3>
 		<div class="mt-2 mr-2 ml-auto flex flex-row gap-x-2">
+			{#if length < 6}
 			<button
 				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900"
+				onclick={addCourse}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +77,11 @@
 					<rect x="1" y="4" width="8" height="2" rx="2" />
 				</svg>
 			</button>
+			{/if}
+			{#if length > 4}
 			<button
 				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900"
+				onclick={removeCourse}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +93,7 @@
 					<rect x="1" y="4" width="8" height="2" rx="2" />
 				</svg>
 			</button>
+			{/if}
 		</div>
 	</div>
 	{#if courses}
