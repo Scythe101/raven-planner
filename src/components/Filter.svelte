@@ -1,7 +1,7 @@
 <script>
 	import { capitalize } from '$lib';
 	let { id, openFilter, color, filter } = $props();
-	let isOpen = $derived($openFilter == id);
+	let isOpen = $derived($openFilter === id);
 	function getColorClasses(color) {
 		const colorMap = {
 			red: 'bg-red-200 hover:bg-red-300',
@@ -22,7 +22,7 @@
 			? 'ring-2'
 			: 'hover:ring-1'} {getColorClasses(color)}"
 		onclick={() => {
-			if ($openFilter == id) {
+			if ($openFilter === id) {
 				openFilter.set(null);
 			} else {
 				openFilter.set(id);

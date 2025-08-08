@@ -2,7 +2,7 @@
 	let { lower, upper } = $props();
 	let percentage = (lower / upper) * 100;
 	function bgColor() {
-		if (percentage == 100) {
+		if (percentage === 100) {
 			return '#86efac'; // green-300
 		} else if (percentage > 50 && percentage < 100) {
 			return '#bef264'; // lime-300

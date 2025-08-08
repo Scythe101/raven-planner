@@ -69,8 +69,6 @@
 		}
 	});
 
-	
-
 	$effect(() => {
 		const data = $courseData;
 		if (data && Object.keys(data).length > 0 && lastCoursesLoaded != data) {
@@ -99,10 +97,11 @@
 				// if no type is selected (empty string) then ignore the type filter,
 				// otherwise perform the check against the selected type
 				const matchesType =
-					currentTypeFilter == '' || details.type.toLowerCase() === currentTypeFilter.toLowerCase();
+					currentTypeFilter === '' ||
+					details.type.toLowerCase() === currentTypeFilter.toLowerCase();
 
 				const matchesDifficulty =
-					currentDifficultyFilter == '' ||
+					currentDifficultyFilter === '' ||
 					details.difficulty.toLowerCase() === currentDifficultyFilter.toLowerCase();
 
 				const matchesHomework =
@@ -110,13 +109,13 @@
 					details.homework.toLowerCase() === currentHomeworkFilter.toLowerCase();
 
 				const matchesCredits =
-					currentCreditsFilter == '' || details.credits == parseInt(currentCreditsFilter);
+					currentCreditsFilter === '' || details.credits === parseInt(currentCreditsFilter);
 				const matchesAcademic =
 					currentAcademicFilter === '' ||
-					details.academic === (currentAcademicFilter == 'yes' ? true : false);
+					details.academic === (currentAcademicFilter === 'yes' ? true : false);
 				const matchesWeighted =
 					currentWeightedFilter === '' ||
-					details.weighted === (currentWeightedFilter == 'yes' ? true : false);
+					details.weighted === (currentWeightedFilter === 'yes' ? true : false);
 
 				return (
 					matchesSearch &&

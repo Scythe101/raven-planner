@@ -1,5 +1,5 @@
 <script>
-	import { get } from 'svelte/store';
+	import { userData } from '$stores/UserStore';
 	let { fall, courses, year, courseSelected } = $props();
 
 	const semester = fall === 'true' ? 'fall' : 'spring';
@@ -13,7 +13,7 @@
 		return $courseSelected === expectedPath;
 	}
 
-	let courseSelection = $derived($courseSelected);
+	function addCourse() {}
 </script>
 
 <div
@@ -21,11 +21,42 @@
 		? 'bg-orange-300'
 		: 'bg-fuchsia-300'}"
 >
-	<h3
-		class="font-dm-serif-display m-2 mb-4 flex h-8 w-16 items-center justify-center rounded-full bg-white italic ring-2 ring-slate-900"
-	>
-		{fall === 'true' ? 'Fall' : 'Spring'}
-	</h3>
+	<div class="flex items-start">
+		<h3
+			class="font-dm-serif-display m-2 mb-4 flex h-8 w-16 items-center justify-center rounded-full bg-white italic ring-2 ring-slate-900"
+		>
+			{fall === 'true' ? 'Fall' : 'Spring'}
+		</h3>
+		<div class="mt-2 mr-2 ml-auto flex flex-row gap-x-2">
+			<button
+				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="10"
+					height="10"
+					viewBox="0 0 10 10"
+					fill="currentColor"
+				>
+					<rect x="4" y="1" width="2" height="8" rx="2" />
+					<rect x="1" y="4" width="8" height="2" rx="2" />
+				</svg>
+			</button>
+			<button
+				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="10"
+					height="10"
+					viewBox="0 0 10 10"
+					fill="currentColor"
+				>
+					<rect x="1" y="4" width="8" height="2" rx="2" />
+				</svg>
+			</button>
+		</div>
+	</div>
 	{#if courses}
 		<div class="mx-4 flex flex-col gap-6">
 			{#each courses as _, i (i)}

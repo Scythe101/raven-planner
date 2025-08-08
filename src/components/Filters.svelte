@@ -27,7 +27,7 @@
 	}
 
 	$effect(() => {
-		if ($openFilter == 'type') {
+		if ($openFilter === 'type') {
 			options = [
 				'Social Studies',
 				'English',
@@ -41,23 +41,23 @@
 			];
 			filter = typeFilter;
 			color = 'red';
-		} else if ($openFilter == 'difficulty') {
+		} else if ($openFilter === 'difficulty') {
 			options = ['Easy', 'Moderate', 'Hard'];
 			filter = difficultyFilter;
 			color = 'orange';
-		} else if ($openFilter == 'homework') {
+		} else if ($openFilter === 'homework') {
 			options = ['0-30', '30-60', '60-90'];
 			filter = homeworkFilter;
 			color = 'yellow';
-		} else if ($openFilter == 'credits') {
+		} else if ($openFilter === 'credits') {
 			options = ['5', '10'];
 			filter = creditsFilter;
 			color = 'green';
-		} else if ($openFilter == 'academic') {
+		} else if ($openFilter === 'academic') {
 			options = ['Yes', 'No'];
 			filter = academicFilter;
 			color = 'sky';
-		} else if ($openFilter == 'weighted') {
+		} else if ($openFilter === 'weighted') {
 			options = ['Yes', 'No'];
 			filter = weightedFilter;
 			color = 'purple';
@@ -97,7 +97,7 @@
 			<button
 				class="-mx-2 -my-1 cursor-pointer rounded-full px-2 py-1 ring-slate-900 duration-100 {getColorClasses(
 					color
-				)} {$filter == option.toLowerCase() ? 'ring-2' : 'hover:ring-1'}"
+				)} {$filter === option.toLowerCase() ? 'ring-2' : 'hover:ring-1'}"
 				onclick={() => {
 					if ($filter === option.toLowerCase()) {
 						filter.set('');

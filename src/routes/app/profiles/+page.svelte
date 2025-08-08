@@ -58,18 +58,19 @@
 				// if no type is selected (empty string) then ignore the type filter,
 				// otherwise perform the check against the selected type
 				const matchesType =
-					currentTypeFilter == '' || details.type.toLowerCase() === currentTypeFilter.toLowerCase();
+					currentTypeFilter === '' ||
+					details.type.toLowerCase() === currentTypeFilter.toLowerCase();
 
 				const matchesDifficulty =
-					currentDifficultyFilter == '' ||
+					currentDifficultyFilter === '' ||
 					details.difficulty.toLowerCase() === currentDifficultyFilter.toLowerCase();
 
 				const matchesHomework =
-					currentHomeworkFilter == '' ||
+					currentHomeworkFilter === '' ||
 					details.homework.toLowerCase() === currentHomeworkFilter.toLowerCase();
 
 				const matchesCredits =
-					currentCreditsFilter == '' || details.credits == parseInt(currentCreditsFilter);
+					currentCreditsFilter === '' || details.credits == parseInt(currentCreditsFilter);
 				const matchesAcademic =
 					currentAcademicFilter === '' ||
 					details.academic === (currentAcademicFilter == 'yes' ? true : false);

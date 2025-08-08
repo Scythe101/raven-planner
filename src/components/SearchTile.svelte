@@ -43,7 +43,7 @@
 		// console.log('Current userData:', $userData);
 
 		let selection = name;
-		if (name == 'Calculus 3' || name == 'Linear Algebra') {
+		if (name === 'Calculus 3' || name === 'Linear Algebra') {
 			selection = 'Calculus 3/Linear Algebra';
 		}
 
