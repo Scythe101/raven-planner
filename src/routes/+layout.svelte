@@ -2,8 +2,12 @@
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import { auth } from '$lib/firebase/firebase.client';
 	import { authStore } from '$stores/AuthStore';
+
+	const user = $derived($authStore.currentUser);
 
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -19,27 +23,22 @@
 					currentUser: user
 				};
 			});
-
-			if (
-				browser &&
-				!user &&
-				!$authStore.isLoading &&
-				window.location.pathname.startsWith('/app')
-			) {
-				window.location.href = '/auth';
-				return;
-			}
-
-			if (user && window.location.pathname === '/auth') {
-				window.location.href = '/app';
-				return;
-			}
 		});
 
 		return unsubscribe;
 	});
 
-	
+	$effect(() => {
+		if (browser && !user && !$authStore.isLoading && $page.url.pathname.startsWith('/app')) {
+			goto('/auth');
+		}
+	});
+
+	$effect(() => {
+		if (browser && user && !$authStore.isLoading && $page.url.pathname === '/auth') {
+			goto('/app');
+		}
+	});
 
 	let { children } = $props();
 </script>

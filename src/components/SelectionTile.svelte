@@ -21,11 +21,11 @@
 	}
 
 	function addCourse() {
-		if(!$userData) {
+		if (!$userData) {
 			return;
 		}
 		const currentUserData = $userData;
-		
+
 		if (length > 5) {
 			return;
 		}
@@ -35,11 +35,11 @@
 	}
 
 	function removeCourse() {
-		if(!$userData) {
+		if (!$userData) {
 			return;
 		}
 		const currentUserData = $userData;
-		
+
 		if (length < 5) {
 			return;
 		}
@@ -61,9 +61,11 @@
 			{fall === 'true' ? 'Fall' : 'Spring'}
 		</h3>
 		<div class="mt-2 mr-2 ml-auto flex flex-row gap-x-2">
-			{#if length < 6}
 			<button
-				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900"
+				class="flex size-4 items-center justify-center rounded-full bg-white ring-2 ring-slate-900 {length >
+				5
+					? 'cursor-not-allowed opacity-50'
+					: 'cursor-pointer'}"
 				onclick={addCourse}
 			>
 				<svg
@@ -77,10 +79,9 @@
 					<rect x="1" y="4" width="8" height="2" rx="2" />
 				</svg>
 			</button>
-			{/if}
-			{#if length > 4}
 			<button
-				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900"
+				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900
+				{length < 5 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}"
 				onclick={removeCourse}
 			>
 				<svg
@@ -93,7 +94,6 @@
 					<rect x="1" y="4" width="8" height="2" rx="2" />
 				</svg>
 			</button>
-			{/if}
 		</div>
 	</div>
 	{#if courses}

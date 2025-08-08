@@ -51,6 +51,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>{course} - Course Profiles</title>
+</svelte:head>
+
 <h1 class="mb-8">{course}</h1>
 
 <h2 class="mb-2">Quick Info</h2>

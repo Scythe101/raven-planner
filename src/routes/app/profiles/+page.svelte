@@ -92,6 +92,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Course Profiles</title>
+</svelte:head>
+
 <div class="mr-4 flex max-w-192 flex-col">
 	<input
 		type="text"

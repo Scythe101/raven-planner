@@ -96,6 +96,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Course Selection</title>
+</svelte:head>
+
 <div class="flex flex-row gap-8">
 	<div class="grid h-fit flex-1 grid-cols-1 gap-x-12 gap-y-32 p-2 2xl:grid-cols-2">
 		<div>
@@ -159,7 +163,7 @@
 	</div>
 	<SearchCourses class="sticky top-0 w-72" {courseSelected} />
 </div>
-<button
+<!-- <button
 	class="shadow-sharp hover:shadow-sharp-hover fixed bottom-4 h-12 w-16 cursor-pointer rounded-full bg-amber-100 ring-2 shadow-slate-900 ring-slate-900 duration-100 hover:-translate-0.5"
 	onclick={saveUserData}>Save</button
->
+> -->

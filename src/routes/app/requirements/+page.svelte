@@ -5,6 +5,10 @@
 	// const englishCredits = $derived.by(() => {});
 </script>
 
+<svelte:head>
+	<title>Graduation Requirements</title>
+</svelte:head>
+
 <p class="mb-2">
 	<strong>NOTE:</strong> These requirements are a combination of the high school graduation requirements
 	and the college A-G requirements, and take the hardest parts from each to ensure that you are prepared

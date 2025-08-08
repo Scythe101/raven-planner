@@ -49,6 +49,12 @@
 		list-style-type: disc;
 		font-size: var(--font-xl);
 	}
+	ol {
+		font-family: var(--font-noto-serif);
+		list-style-position: outside;
+		list-style-type: decimal;
+		font-size: var(--font-xl);
+	}
 }
 
 @layer utilities {

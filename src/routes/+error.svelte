@@ -2,9 +2,11 @@
 	import { page } from '$app/state';
 	import { authStore } from '$stores/AuthStore';
 	let url = $state('/');
-	if($authStore.currentUser) {
-		url = '/app'
-	}
+	$effect(() => {
+		if ($authStore.currentUser) {
+			url = '/app';
+		}
+	});
 </script>
 
 <div class="flex min-h-screen flex-col items-center justify-center">

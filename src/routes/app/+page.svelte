@@ -22,7 +22,7 @@
 	let courses = $state({});
 	let infoEdit = $derived(JSON.stringify(info, null, 4));
 	let courseEdit = $derived(JSON.stringify(courses, null, 4));
-	
+
 	let isSaving = false;
 	let isSaved = false;
 
@@ -102,12 +102,14 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Raven Planner</title>
+</svelte:head>
 <h1 class="mt-4">Home</h1>
 
 {#if $authStore.currentUser}
-
 	<h2 class="text-3xl">Current User: {$authStore.currentUser.email}</h2>
-	{#if !$loadingUserData && $userData.settings.newUser}
+	{#if !$loadingUserData && $userData?.settings?.newUser}
 		<h1>Go to Info to learn more</h1>
 	{/if}
 	<div class="mt-8">
@@ -119,7 +121,6 @@
 		{#if !$loadingUserData}
 			<textarea class="h-96 w-96" bind:value={infoEdit}></textarea>
 			<textarea class="h-96 w-112" bind:value={courseEdit}></textarea>
-			
 		{/if}
 		<button
 			class="border-2 bg-blue-200 px-4 py-2"
