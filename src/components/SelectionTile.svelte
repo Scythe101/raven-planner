@@ -70,13 +70,13 @@
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					width="10"
-					height="10"
-					viewBox="0 0 10 10"
+					viewBox="0 0 16 16"
 					fill="currentColor"
+					class="size-4"
 				>
-					<rect x="4" y="1" width="2" height="8" rx="2" />
-					<rect x="1" y="4" width="8" height="2" rx="2" />
+					<path
+						d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z"
+					/>
 				</svg>
 			</button>
 			<button
@@ -86,12 +86,11 @@
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					width="10"
-					height="10"
-					viewBox="0 0 10 10"
+					viewBox="0 0 16 16"
 					fill="currentColor"
+					class="size-4"
 				>
-					<rect x="1" y="4" width="8" height="2" rx="2" />
+					<path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
 				</svg>
 			</button>
 		</div>

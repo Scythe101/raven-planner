@@ -57,14 +57,28 @@
 		<h2>Practical Art</h2>
 		<ProgressBar lower={10} upper={10} />
 	</div>
-
+	<div class="">
+		<h2>World Language</h2>
+		<ProgressBar lower={30} upper={30} />
+	</div>
 	<div class="">
 		<h2>Electives</h2>
 		<ProgressBar lower={20} upper={70} />
 	</div>
 </div>
 <div class="mt-8">
+	<h2>Individual Course Requirements</h2>
 	<!-- TODO: add rest of required courses here -->
-	<Checkbox checked={false} text="Integrated Math 1" />
+	<Checkbox checked={true} text="Integrated Math 1" />
 	<Checkbox checked={false} text="9th Grade PE with Health" />
+	<Checkbox checked={false} text="10th Grade PE" />
+	<Checkbox checked={false} text="World History" />
+	<Checkbox checked={false} text="US History" />
+	<Checkbox checked={false} text="Economy" />
+	<Checkbox checked={false} text="Biology" />
+	<Checkbox checked={false} text="Chemistry" />
+	<Checkbox checked={false} text="English 9" />
+	<Checkbox checked={false} text="English 10" />
+	<Checkbox checked={false} text="English 11" />
+	<Checkbox checked={false} text="English 12" />
 </div>
