@@ -1,1443 +1,1433 @@
-
-courses = {
-    'Linear Algebra': {
-        homework: '60-90',
-        type: 'math',
-        difficulty: 'hard',
-        credits: 10,
-        url: '/app/profiles/cca/linear_algebra',
-        weighted: false,
-        academic: true
-    },
-    'Integrated Math 2': {
-        type: 'math',
-        credits: 10,
-        homework: '60-90',
-        url: '/app/profiles/cca/integrated_math_2',
-        difficulty: 'moderate',
-        weighted: false,
-        academic: true
-    },
-    'Calculus 3': {
-        credits: 5,
-        academic: true,
-        url: '/app/profiles/cca/calculus_3',
-        type: 'math',
-        weighted: false,
-        difficulty: 'hard',
-        homework: '60-90'
-    },
-    'English 9 Honors': {
-        difficulty: 'hard',
-        weighted: false,
-        credits: 10,
-        url: '/app/profiles/cca/english_9_honors',
-        homework: '30-60',
-        academic: true,
-        type: 'english'
-    },
-    'Advanced Topics in Math': {
-        credits: 10,
-        difficulty: 'moderate',
-        homework: '0-30',
-        weighted: false,
-        academic: true,
-        url: '/app/profiles/cca/advanced_topics_in_math',
-        type: 'math'
-    },
-    'Integrated Math 1/2 Essentials': {
-        url: '/app/profiles/cca/integrated_math_1-2_essentials',
-        weighted: false,
-        homework: '0-30',
-        credits: 10,
-        difficulty: 'easy',
-        type: 'math',
-        academic: true
-    },
-    'AP Calculus BC': {
-        academic: true,
-        weighted: true,
-        homework: '60-90',
-        credits: 10,
-        url: '/app/profiles/cca/ap_calculus_bc',
-        type: 'math',
-        difficulty: 'hard'
-    },
-    'Integrated Math 3 Honors': {
-        url: '/app/profiles/cca/integrated_math_3_honors',
-        credits: 10,
-        difficulty: 'hard',
-        homework: '60-90',
-        weighted: true,
-        academic: true,
-        type: 'math'
-    },
-    'Integrated Math 1': {
-        weighted: false,
-        academic: true,
-        credits: 10,
-        difficulty: 'moderate',
-        type: 'math',
-        url: '/app/profiles/cca/integrated_math_1',
-        homework: '60-90'
-    },
-    'Integrated Math 1 Honors': {
-        difficulty: 'hard',
-        homework: '60-90',
-        weighted: false,
-        type: 'math',
-        academic: true,
-        credits: 10,
-        url: '/app/profiles/cca/integrated_math_1_honors'
-    },
-    Statistics: {
-        difficulty: 'moderate',
-        academic: true,
-        type: 'math',
-        url: '/app/profiles/cca/statistics',
-        homework: '30-60',
-        weighted: false,
-        credits: 10
-    },
-    'Integrated Math 2 Honors': {
-        homework: '60-90',
-        difficulty: 'hard',
-        weighted: false,
-        credits: 10,
-        type: 'math',
-        academic: true,
-        url: '/app/profiles/cca/integrated_math_2_honors'
-    },
-    'Intro to Calculus': {
-        academic: true,
-        type: 'math',
-        credits: 10,
-        weighted: false,
-        url: '/app/profiles/cca/intro_to_calculus',
-        difficulty: 'moderate',
-        homework: '30-60'
-    },
-    'AP Calculus AB': {
-        homework: '60-90',
-        type: 'math',
-        weighted: true,
-        url: '/app/profiles/cca/ap_calculus_ab',
-        academic: true,
-        difficulty: 'hard',
-        credits: 10
-    },
-    'Integrated Math 3': {
-        url: '/app/profiles/cca/integrated_math_3',
-        credits: 10,
-        difficulty: 'moderate',
-        homework: '60-90',
-        weighted: false,
-        type: 'math',
-        academic: true
-    },
-    'Advanced Math for Decision Making': {
-        url: '/app/profiles/cca/advanced_math_for_decision_making',
-        difficulty: 'easy',
-        weighted: false,
-        homework: '0-30',
-        type: 'math',
-        academic: true,
-        credits: 10
-    },
-    'Personal Financial Literacy': {
-        type: 'electives',
-        credits: 10,
-        weighted: false,
-        academic: true,
-        difficulty: 'easy',
-        url: '/app/profiles/cca/personal_financial_literacy',
-        homework: '0-30'
-    },
-    'Integrated Math 1 Readiness': {
-        academic: true,
-        difficulty: 'easy',
-        type: 'math',
-        url: '/app/profiles/cca/integrated_math_1_readiness',
-        homework: '0-30',
-        credits: 10,
-        weighted: false
-    },
-    'AP Statistics': {
-        url: '/app/profiles/cca/ap_statistics',
-        difficulty: 'hard',
-        type: 'math',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'Advanced Journalism': {
-        url: '/app/profiles/cca/advanced_journalism',
-        difficulty: 'moderate',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'AP English Language': {
-        url: '/app/profiles/cca/ap_english_language',
-        difficulty: 'hard',
-        type: 'english',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP English Literature': {
-        url: '/app/profiles/cca/ap_english_literature',
-        difficulty: 'hard',
-        type: 'english',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'College Application Seminar': {
-        url: '/app/profiles/cca/college_application_seminar',
-        difficulty: 'easy',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Creative Writing': {
-        url: '/app/profiles/cca/creative_writing',
-        difficulty: 'easy',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'English 10 Honors': {
-        url: '/app/profiles/cca/english_10_honors',
-        difficulty: 'hard',
-        type: 'english',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '60-90'
-    },
-    'English 10': {
-        url: '/app/profiles/cca/english_10',
-        difficulty: 'easy',
-        type: 'english',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'English 11': {
-        url: '/app/profiles/cca/english_11',
-        difficulty: 'easy',
-        type: 'english',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'English 12': {
-        url: '/app/profiles/cca/english_12',
-        difficulty: 'easy',
-        type: 'english',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'English 9': {
-        url: '/app/profiles/cca/english_9',
-        difficulty: 'easy',
-        type: 'english',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    Journalism: {
-        url: '/app/profiles/cca/journalism',
-        difficulty: 'moderate',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Modern Epic': {
-        url: '/app/profiles/cca/modern_epic',
-        difficulty: 'moderate',
-        type: 'english',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '60-90'
-    },
-    'Speech & Debate': {
-        url: '/app/profiles/cca/speech_and_debate',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'AP Art History': {
-        url: '/app/profiles/cca/ap_art_history',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Economics': {
-        url: '/app/profiles/cca/ap_economics',
-        difficulty: 'hard',
-        type: 'social studies',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP European History': {
-        url: '/app/profiles/cca/ap_european_history',
-        difficulty: 'hard',
-        type: 'social studies',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Psychology': {
-        url: '/app/profiles/cca/ap_psychology',
-        difficulty: 'moderate',
-        type: 'social studies',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP Government': {
-        url: '/app/profiles/cca/ap_government',
-        difficulty: 'hard',
-        type: 'social studies',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP World History': {
-        url: '/app/profiles/cca/ap_world_history',
-        difficulty: 'hard',
-        type: 'social studies',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP US History': {
-        url: '/app/profiles/cca/ap_us_history',
-        difficulty: 'hard',
-        type: 'social studies',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    }
-    Economics: {
-        url: '/app/profiles/cca/economics',
-        difficulty: 'moderate',
-        type: 'social studies',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Film & Society': {
-        url: '/app/profiles/cca/film_and_society',
-        difficulty: 'easy',
-        type: 'elective',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    Government: {
-        url: '/app/profiles/cca/government',
-        difficulty: 'easy',
-        type: 'social studies',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Non-Western World History': {
-        url: '/app/profiles/cca/non-western_world_history',
-        difficulty: 'easy',
-        type: 'social studies',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Pop Culture': {
-        url: '/app/profiles/cca/pop_culture',
-        difficulty: 'easy',
-        type: 'elective',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    Psychology: {
-        url: '/app/profiles/cca/psychology',
-        difficulty: 'easy',
-        type: 'social studies',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    Sociology: {
-        url: '/app/profiles/cca/sociology',
-        difficulty: 'easy',
-        type: 'social studies',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'US History': {
-        url: '/app/profiles/cca/us_history',
-        difficulty: 'easy',
-        type: 'social studies',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'World History': {
-        url: '/app/profiles/cca/world_history',
-        difficulty: 'easy',
-        type: 'social studies',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Anatomy & Physiology': {
-        url: '/app/profiles/cca/anatomy_and_physiology',
-        difficulty: 'moderate',
-        type: 'life science',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP Biology': {
-        url: '/app/profiles/cca/ap_biology',
-        difficulty: 'hard',
-        type: 'life science',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Chemistry': {
-        url: '/app/profiles/cca/ap_chemistry',
-        difficulty: 'hard',
-        type: 'physical science',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Environmental Science': {
-        url: '/app/profiles/cca/ap_environmental_science',
-        difficulty: 'moderate',
-        type: 'physical science',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Physics 1': {
-        url: '/app/profiles/cca/ap_physics_1',
-        difficulty: 'hard',
-        type: 'physical science',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Physics 2': {
-        url: '/app/profiles/cca/ap_physics_2',
-        difficulty: 'hard',
-        type: 'physical science',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Physics C': {
-        url: '/app/profiles/cca/ap_physics_c',
-        difficulty: 'hard',
-        type: 'physical science',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    Biology: {
-        url: '/app/profiles/cca/biology',
-        difficulty: 'easy',
-        type: 'life science',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Biotechnology 1': {
-        url: '/app/profiles/cca/biotechnology_1',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Biotechnology 2': {
-        url: '/app/profiles/cca/biotechnology_2',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    Chemistry: {
-        url: '/app/profiles/cca/chemistry',
-        difficulty: 'easy',
-        type: 'physical science',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Honors Chemistry': {
-        url: '/app/profiles/cca/honors_chemistry',
-        difficulty: 'moderate',
-        type: 'physical science',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Organic Chemistry': {
-        url: '/app/profiles/cca/organic_chemistry',
-        difficulty: 'hard',
-        type: 'physical science',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '60-90'
-    },
-    Physics: {
-        url: '/app/profiles/cca/physics',
-        difficulty: 'easy',
-        type: 'physical science',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP Chinese': {
-        url: '/app/profiles/cca/ap_chinese',
-        difficulty: 'hard',
-        type: 'world language',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP French': {
-        url: '/app/profiles/cca/ap_french',
-        difficulty: 'hard',
-        type: 'world language',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP Japanese': {
-        url: '/app/profiles/cca/ap_japanese',
-        difficulty: 'hard',
-        type: 'world language',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP Spanish': {
-        url: '/app/profiles/cca/ap_spanish',
-        difficulty: 'hard',
-        type: 'world language',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'ASL 1': {
-        url: '/app/profiles/cca/asl_1',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'ASL 2': {
-        url: '/app/profiles/cca/asl_2',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'ASL 3': {
-        url: '/app/profiles/cca/asl_3',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'ASL 4': {
-        url: '/app/profiles/cca/asl_4',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Chinese 1': {
-        url: '/app/profiles/cca/chinese_1',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Chinese 2': {
-        url: '/app/profiles/cca/chinese_2',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Chinese 3': {
-        url: '/app/profiles/cca/chinese_3',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Chinese 4': {
-        url: '/app/profiles/cca/chinese_4',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Chinese 5': {
-        url: '/app/profiles/cca/chinese_5',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'French 1': {
-        url: '/app/profiles/cca/french_1',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'French 2': {
-        url: '/app/profiles/cca/french_2',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'French 3': {
-        url: '/app/profiles/cca/french_3',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'French 4': {
-        url: '/app/profiles/cca/french_4',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'French 5': {
-        url: '/app/profiles/cca/french_5',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Japanese 1': {
-        url: '/app/profiles/cca/japanese_1',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Japanese 2': {
-        url: '/app/profiles/cca/japanese_2',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Japanese 3': {
-        url: '/app/profiles/cca/japanese_3',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Japanese 4': {
-        url: '/app/profiles/cca/japanese_4',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Japanese 5': {
-        url: '/app/profiles/cca/japanese_5',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Spanish 1': {
-        url: '/app/profiles/cca/spanish_1',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Spanish 2': {
-        url: '/app/profiles/cca/spanish_2',
-        difficulty: 'easy',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Spanish 3': {
-        url: '/app/profiles/cca/spanish_3',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Spanish 4': {
-        url: '/app/profiles/cca/spanish_4',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Spanish 5': {
-        url: '/app/profiles/cca/spanish_5',
-        difficulty: 'moderate',
-        type: 'world language',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Dance PE': {
-        url: '/app/profiles/cca/dance_pe',
-        difficulty: 'easy',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Fitness Walking': {
-        url: '/app/profiles/cca/fitness_walking',
-        difficulty: 'easy',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Intermediate Dance': {
-        url: '/app/profiles/cca/intermediate_dance',
-        difficulty: 'easy',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Intro to Dance II': {
-        url: '/app/profiles/cca/intro_to_dance_2',
-        difficulty: 'easy',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Year 2 PE': {
-        url: '/app/profiles/cca/year_2_pe',
-        difficulty: 'easy',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Sports Performance Training': {
-        url: '/app/profiles/cca/sports_performance_training',
-        difficulty: 'hard',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Weight Training': {
-        url: '/app/profiles/cca/weight_training',
-        difficulty: 'easy',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Year One PE': {
-        url: '/app/profiles/cca/year_1_pe',
-        difficulty: 'easy',
-        type: 'physical education',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Advanced Video Film': {
-        url: '/app/profiles/cca/advanced_video_film',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Advanced Acting': {
-        url: '/app/profiles/cca/advanced_acting',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Advanced Chorus': {
-        url: '/app/profiles/cca/advanced_chorus',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Advanced Dance': {
-        url: '/app/profiles/cca/advanced_dance',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Advanced Digital Photography': {
-        url: '/app/profiles/cca/advanced_digital_photography',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Advanced Drama Honors': {
-        url: '/app/profiles/cca/advanced_drama_honors',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Advanced Drawing': {
-        url: '/app/profiles/cca/advanced_drawing',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Advanced Musical Theater Production': {
-        url: '/app/profiles/cca/advanced_musical_theater_production',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Advanced Sculpture': {
-        url: '/app/profiles/cca/advanced_sculpture',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Advanced Digital Art and Design': {
-        url: '/app/profiles/cca/advanced_digital_art_and_design',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'AP Studio Art': {
-        url: '/app/profiles/cca/ap_studio_art',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: true,
-        credits: 10,
-        homework: '0-30'
-    },
-    'AP Studio Art 3D': {
-        url: '/app/profiles/cca/ap_studio_art_3d',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP Drawing': {
-        url: '/app/profiles/cca/ap_drawing',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: true,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Chamber Orchestra': {
-        url: '/app/profiles/cca/chamber_orchestra',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    Chorus: {
-        url: '/app/profiles/cca/chorus',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Cinema Lab': {
-        url: '/app/profiles/cca/cinema_lab',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Dance Choreography & Performance': {
-        url: '/app/profiles/cca/dance_choreography_and_performance',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Digital Art & Design': {
-        url: '/app/profiles/cca/digital_art_and_design',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Digital Media Production': {
-        url: '/app/profiles/cca/digital_media_production',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Drawing & Design': {
-        url: '/app/profiles/cca/drawing_and_design',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Envision Visual Arts Conservatory': {
-        url: '/app/profiles/cca/envision_visual_arts_conservatory',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Digital Photography': {
-        url: '/app/profiles/cca/digital_photography',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Intermediate Acting': {
-        url: '/app/profiles/cca/intermediate_acting',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Intermediate Dance': {
-        url: '/app/profiles/cca/intermediate_dance',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Intro to Dance II': {
-        url: '/app/profiles/cca/intro_to_dance_2',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Jazz Band': {
-        url: '/app/profiles/cca/jazz_band',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Musical Theater Production': {
-        url: '/app/profiles/cca/musical_theater_production',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Orchestra': {
-        url: '/app/profiles/cca/orchestra',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Painting': {
-        url: '/app/profiles/cca/painting',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Photo Imaging': {
-        url: '/app/profiles/cca/photo_imaging',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    Sculpture: {
-        url: '/app/profiles/cca/sculpture',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Seminar in Art': {
-        url: '/app/profiles/cca/seminar_in_art',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Symphonic Band': {
-        url: '/app/profiles/cca/symphonic_band',
-        difficulty: 'moderate',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Video Film': {
-        url: '/app/profiles/cca/video_film',
-        difficulty: 'easy',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Wind Ensemble': {
-        url: '/app/profiles/cca/wind_ensemble',
-        difficulty: 'hard',
-        type: 'visual arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Advanced Business Management': {
-        url: '/app/profiles/cca/advanced_business_management',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Business Finance': {
-        url: '/app/profiles/cca/business_finance',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Intro to Business': {
-        url: '/app/profiles/cca/intro_to_business',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Marketing Principles': {
-        url: '/app/profiles/cca/marketing_principles',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    Yearbook: {
-        url: '/app/profiles/cca/yearbook',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Advanced Engineering Technology': {
-        url: '/app/profiles/cca/advanced_engineering_technology',
-        difficulty: 'moderate',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'AP Computer Science A': {
-        url: '/app/profiles/cca/ap_computer_science_a',
-        difficulty: 'hard',
-        type: 'practical arts',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '60-90'
-    },
-    'AP Computer Science Principles': {
-        url: '/app/profiles/cca/ap_computer_science_principles',
-        difficulty: 'moderate',
-        type: 'practical arts',
-        academic: true,
-        weighted: true,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Computer Game Design': {
-        url: '/app/profiles/cca/computer_game_design',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Computer Science Foundations': {
-        url: '/app/profiles/cca/computer_science_foundations',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Digital Electronics': {
-        url: '/app/profiles/cca/digital_electronics',
-        difficulty: 'moderate',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Exploring Computer Science': {
-        url: '/app/profiles/cca/exploring_computer_science',
-        difficulty: 'moderate',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Intro to Engineering': {
-        url: '/app/profiles/cca/intro_to_engineering',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Machine Learning': {
-        url: '/app/profiles/cca/machine_learning',
-        difficulty: 'hard',
-        type: 'practical arts',
-        academic: true,
-        weighted: false,
-        credits: 10,
-        homework: '60-90'
-    },
-    'Advanced Recording Arts': {
-        url: '/app/profiles/cca/advanced_recording_arts',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Digital Composition': {
-        url: '/app/profiles/cca/digital_composition',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Recording Arts': {
-        url: '/app/profiles/cca/recording_arts',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Rock Band Music Industry': {
-        url: '/app/profiles/cca/rock_band_music_industry',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Stagehand Technician': {
-        url: '/app/profiles/cca/stagehand_technician',
-        difficulty: 'easy',
-        type: 'practical arts',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'ASB': {
-        url: '/app/profiles/cca/asb',
-        difficulty: 'moderate',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Conservatory Cinema': {
-        url: '/app/profiles/cca/conservatory_cinema',
-        difficulty: 'hard',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Conservatory Dance': {
-        url: '/app/profiles/cca/conservatory_dance',
-        difficulty: 'hard',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Conservatory Humanities': {
-        url: '/app/profiles/cca/conservatory_humanities',
-        difficulty: 'hard',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Conservatory Instrumental Music': {
-        url: '/app/profiles/cca/conservatory_instrumental_music',
-        difficulty: 'hard',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Conservatory Theater': {
-        url: '/app/profiles/cca/conservatory_theater',
-        difficulty: 'hard',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '30-60'
-    },
-    'Conservatory Vocal Music': {
-        url: '/app/profiles/cca/conservatory_vocal_music',
-        difficulty: 'hard',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
-    },
-    'Peer Assistant Listeners': {
-        url: '/app/profiles/cca/peer_assistant_listeners',
-        difficulty: 'easy',
-        type: 'electives',
-        academic: false,
-        weighted: false,
-        credits: 10,
-        homework: '0-30'
+{
+    "AP Computer Science Principles": {
+        "difficulty": "moderate",
+        "weighted": true,
+        "homework": "30-60",
+        "credits": 10,
+        "type": "practical arts",
+        "academic": true,
+        "url": "/app/profiles/cca/ap_computer_science_principles"
+    },
+    "Advanced Drama Honors": {
+        "academic": false,
+        "weighted": false,
+        "credits": 10,
+        "url": "/app/profiles/cca/advanced_drama_honors",
+        "difficulty": "hard",
+        "homework": "30-60",
+        "type": "visual arts"
+    },
+    "AP Art History": {
+        "url": "/app/profiles/cca/ap_art_history",
+        "homework": "60-90",
+        "academic": true,
+        "weighted": true,
+        "type": "visual arts",
+        "credits": 10,
+        "difficulty": "hard"
+    },
+    "Non-Western World History": {
+        "type": "social studies",
+        "url": "/app/profiles/cca/non-western_world_history",
+        "difficulty": "easy",
+        "weighted": false,
+        "homework": "30-60",
+        "credits": 10,
+        "academic": true
+    },
+    "Advanced Topics in Math": {
+        "type": "math",
+        "homework": "0-30",
+        "credits": 10,
+        "difficulty": "moderate",
+        "weighted": false,
+        "url": "/app/profiles/cca/advanced_topics_in_math",
+        "academic": true
+    },
+    "AP Studio Art 3D": {
+        "academic": false,
+        "credits": 10,
+        "homework": "30-60",
+        "url": "/app/profiles/cca/ap_studio_art_3d",
+        "type": "visual arts",
+        "difficulty": "hard",
+        "weighted": true
+    },
+    "Modern Epic": {
+        "academic": true,
+        "credits": 10,
+        "weighted": false,
+        "type": "english",
+        "difficulty": "moderate",
+        "url": "/app/profiles/cca/modern_epic",
+        "homework": "60-90"
+    },
+    "Chinese 4": {
+        "credits": 10,
+        "academic": true,
+        "type": "world language",
+        "weighted": false,
+        "url": "/app/profiles/cca/chinese_4",
+        "homework": "30-60",
+        "difficulty": "moderate"
+    },
+    "Advanced Acting": {
+        "url": "/app/profiles/cca/advanced_acting",
+        "academic": false,
+        "homework": "30-60",
+        "type": "visual arts",
+        "difficulty": "hard",
+        "credits": 10,
+        "weighted": false
+    },
+    "Stagehand Technician": {
+        "url": "/app/profiles/cca/stagehand_technician",
+        "homework": "0-30",
+        "weighted": false,
+        "academic": false,
+        "difficulty": "easy",
+        "type": "practical arts",
+        "credits": 10
+    },
+    "Seminar in Art": {
+        "difficulty": "moderate",
+        "type": "visual arts",
+        "homework": "30-60",
+        "weighted": false,
+        "academic": false,
+        "credits": 10,
+        "url": "/app/profiles/cca/seminar_in_art"
+    },
+    "Dance Choreography & Performance": {
+        "credits": 10,
+        "academic": false,
+        "url": "/app/profiles/cca/dance_choreography_and_performance",
+        "difficulty": "hard",
+        "homework": "0-30",
+        "weighted": false,
+        "type": "visual arts"
+    },
+    "Photo Imaging": {
+        "weighted": false,
+        "type": "visual arts",
+        "difficulty": "moderate",
+        "credits": 10,
+        "academic": false,
+        "url": "/app/profiles/cca/photo_imaging",
+        "homework": "0-30"
+    },
+    "ASL 1": {
+        "credits": 10,
+        "homework": "0-30",
+        "academic": true,
+        "difficulty": "easy",
+        "weighted": false,
+        "type": "world language",
+        "url": "/app/profiles/cca/asl_1"
+    },
+    "Japanese 3": {
+        "homework": "30-60",
+        "academic": true,
+        "credits": 10,
+        "url": "/app/profiles/cca/japanese_3",
+        "type": "world language",
+        "difficulty": "moderate",
+        "weighted": false
+    },
+    "Rock Band Music Industry": {
+        "homework": "0-30",
+        "type": "practical arts",
+        "weighted": false,
+        "difficulty": "easy",
+        "academic": false,
+        "url": "/app/profiles/cca/rock_band_music_industry",
+        "credits": 10
+    },
+    "Speech & Debate": {
+        "weighted": false,
+        "academic": false,
+        "type": "practical arts",
+        "credits": 10,
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/speech_and_debate",
+        "homework": "0-30"
+    },
+    "Sculpture": {
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/sculpture",
+        "homework": "0-30",
+        "type": "visual arts",
+        "academic": false,
+        "weighted": false,
+        "credits": 10
+    },
+    "Computer Game Design": {
+        "weighted": false,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/computer_game_design",
+        "credits": 10,
+        "academic": true,
+        "type": "practical arts",
+        "difficulty": "easy"
+    },
+    "Peer Assistant Listeners": {
+        "academic": false,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/peer_assistant_listeners",
+        "weighted": false,
+        "difficulty": "easy",
+        "type": "electives",
+        "credits": 10
+    },
+    "Chinese 2": {
+        "difficulty": "easy",
+        "academic": true,
+        "type": "world language",
+        "homework": "0-30",
+        "url": "/app/profiles/cca/chinese_2",
+        "credits": 10,
+        "weighted": false
+    },
+    "Chinese 1": {
+        "credits": 10,
+        "url": "/app/profiles/cca/chinese_1",
+        "academic": true,
+        "homework": "0-30",
+        "weighted": false,
+        "type": "world language",
+        "difficulty": "easy"
+    },
+    "AP Calculus AB": {
+        "academic": true,
+        "credits": 10,
+        "difficulty": "hard",
+        "homework": "60-90",
+        "type": "math",
+        "weighted": true,
+        "url": "/app/profiles/cca/ap_calculus_ab"
+    },
+    "Conservatory Humanities": {
+        "type": "electives",
+        "credits": 10,
+        "difficulty": "hard",
+        "url": "/app/profiles/cca/conservatory_humanities",
+        "homework": "0-30",
+        "weighted": false,
+        "academic": false
+    },
+    "Intermediate Acting": {
+        "weighted": false,
+        "url": "/app/profiles/cca/intermediate_acting",
+        "credits": 10,
+        "type": "visual arts",
+        "difficulty": "moderate",
+        "academic": false,
+        "homework": "0-30"
+    },
+    "Statistics": {
+        "url": "/app/profiles/cca/statistics",
+        "homework": "30-60",
+        "type": "math",
+        "academic": true,
+        "credits": 10,
+        "difficulty": "moderate",
+        "weighted": false
+    },
+    "World History": {
+        "academic": true,
+        "homework": "30-60",
+        "weighted": false,
+        "type": "social studies",
+        "credits": 10,
+        "url": "/app/profiles/cca/world_history",
+        "difficulty": "easy"
+    },
+    "Advanced Business Management": {
+        "type": "practical arts",
+        "weighted": false,
+        "difficulty": "easy",
+        "credits": 10,
+        "academic": false,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/advanced_business_management"
+    },
+    "Weight Training": {
+        "credits": 10,
+        "url": "/app/profiles/cca/weight_training",
+        "weighted": false,
+        "difficulty": "easy",
+        "homework": "0-30",
+        "academic": false,
+        "type": "physical education"
+    },
+    "Biotechnology 2": {
+        "difficulty": "easy",
+        "academic": true,
+        "homework": "30-60",
+        "url": "/app/profiles/cca/biotechnology_2",
+        "type": "practical arts",
+        "credits": 10,
+        "weighted": false
+    },
+    "Jazz Band": {
+        "weighted": false,
+        "difficulty": "hard",
+        "url": "/app/profiles/cca/jazz_band",
+        "type": "visual arts",
+        "academic": false,
+        "credits": 10,
+        "homework": "30-60"
+    },
+    "Conservatory Dance": {
+        "url": "/app/profiles/cca/conservatory_dance",
+        "academic": false,
+        "difficulty": "hard",
+        "type": "electives",
+        "homework": "0-30",
+        "weighted": false,
+        "credits": 10
+    },
+    "English 10 Honors": {
+        "weighted": false,
+        "type": "english",
+        "homework": "60-90",
+        "difficulty": "hard",
+        "credits": 10,
+        "url": "/app/profiles/cca/english_10_honors",
+        "academic": true
+    },
+    "Biotechnology 1": {
+        "type": "practical arts",
+        "weighted": false,
+        "academic": true,
+        "homework": "30-60",
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/biotechnology_1",
+        "credits": 10
+    },
+    "Japanese 2": {
+        "difficulty": "easy",
+        "type": "world language",
+        "academic": true,
+        "credits": 10,
+        "weighted": false,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/japanese_2"
+    },
+    "Intro to Dance II": {
+        "difficulty": "easy",
+        "credits": 10,
+        "weighted": false,
+        "type": "visual arts",
+        "url": "/app/profiles/cca/intro_to_dance_2",
+        "homework": "0-30",
+        "academic": false
+    },
+    "English 12": {
+        "type": "english",
+        "url": "/app/profiles/cca/english_12",
+        "weighted": false,
+        "credits": 10,
+        "homework": "30-60",
+        "difficulty": "easy",
+        "academic": true
+    },
+    "Painting": {
+        "credits": 10,
+        "type": "visual arts",
+        "homework": "0-30",
+        "weighted": false,
+        "academic": false,
+        "url": "/app/profiles/cca/painting",
+        "difficulty": "easy"
+    },
+    "AP Japanese": {
+        "difficulty": "hard",
+        "url": "/app/profiles/cca/ap_japanese",
+        "credits": 10,
+        "academic": true,
+        "weighted": true,
+        "homework": "30-60",
+        "type": "world language"
+    },
+    "Biology": {
+        "difficulty": "easy",
+        "homework": "30-60",
+        "url": "/app/profiles/cca/biology",
+        "type": "life science",
+        "credits": 10,
+        "weighted": false,
+        "academic": true
+    },
+    "AP US History": {
+        "difficulty": "hard",
+        "homework": "60-90",
+        "type": "social studies",
+        "weighted": true,
+        "credits": 10,
+        "url": "/app/profiles/cca/ap_us_history",
+        "academic": true
+    },
+    "Integrated Math 1": {
+        "difficulty": "moderate",
+        "weighted": false,
+        "homework": "60-90",
+        "academic": true,
+        "type": "math",
+        "credits": 10,
+        "url": "/app/profiles/cca/integrated_math_1"
+    },
+    "Fitness Walking": {
+        "url": "/app/profiles/cca/fitness_walking",
+        "difficulty": "easy",
+        "weighted": false,
+        "credits": 10,
+        "academic": false,
+        "homework": "0-30",
+        "type": "physical education"
+    },
+    "Musical Theater Production": {
+        "weighted": false,
+        "credits": 10,
+        "difficulty": "moderate",
+        "url": "/app/profiles/cca/musical_theater_production",
+        "type": "visual arts",
+        "homework": "30-60",
+        "academic": false
+    },
+    "Honors Chemistry": {
+        "difficulty": "moderate",
+        "url": "/app/profiles/cca/honors_chemistry",
+        "type": "physical science",
+        "academic": true,
+        "credits": 10,
+        "homework": "30-60",
+        "weighted": false
+    },
+    "Recording Arts": {
+        "academic": false,
+        "weighted": false,
+        "difficulty": "easy",
+        "homework": "0-30",
+        "url": "/app/profiles/cca/recording_arts",
+        "type": "practical arts",
+        "credits": 10
+    },
+    "Integrated Math 2": {
+        "type": "math",
+        "homework": "60-90",
+        "academic": true,
+        "difficulty": "moderate",
+        "url": "/app/profiles/cca/integrated_math_2",
+        "weighted": false,
+        "credits": 10
+    },
+    "Advanced Math for Decision Making": {
+        "academic": true,
+        "difficulty": "easy",
+        "weighted": false,
+        "credits": 10,
+        "url": "/app/profiles/cca/advanced_math_for_decision_making",
+        "type": "math",
+        "homework": "0-30"
+    },
+    "Conservatory Vocal Music": {
+        "weighted": false,
+        "difficulty": "hard",
+        "academic": false,
+        "credits": 10,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/conservatory_vocal_music",
+        "type": "electives"
+    },
+    "Economics": {
+        "url": "/app/profiles/cca/economics",
+        "type": "social studies",
+        "difficulty": "moderate",
+        "homework": "30-60",
+        "weighted": false,
+        "credits": 10,
+        "academic": true
+    },
+    "Year Two PE": {
+        "url": "/app/profiles/cca/year_2_pe",
+        "weighted": false,
+        "difficulty": "easy",
+        "academic": false,
+        "credits": 10,
+        "homework": "0-30",
+        "type": "physical education"
+    },
+    "ASL 2": {
+        "homework": "0-30",
+        "type": "world language",
+        "url": "/app/profiles/cca/asl_2",
+        "difficulty": "easy",
+        "academic": true,
+        "weighted": false,
+        "credits": 10
+    },
+    "Dance PE": {
+        "academic": false,
+        "url": "/app/profiles/cca/dance_pe",
+        "credits": 10,
+        "weighted": false,
+        "homework": "0-30",
+        "type": "physical education",
+        "difficulty": "easy"
+    },
+    "AP Government": {
+        "url": "/app/profiles/cca/ap_government",
+        "credits": 10,
+        "weighted": true,
+        "type": "social studies",
+        "difficulty": "hard",
+        "academic": true,
+        "homework": "60-90"
+    },
+    "Advanced Digital Art and Design": {
+        "type": "visual arts",
+        "weighted": false,
+        "url": "/app/profiles/cca/advanced_digital_art_and_design",
+        "academic": false,
+        "credits": 10,
+        "homework": "0-30",
+        "difficulty": "moderate"
+    },
+    "Digital Media Production": {
+        "url": "/app/profiles/cca/digital_media_production",
+        "academic": false,
+        "homework": "0-30",
+        "credits": 10,
+        "difficulty": "easy",
+        "type": "visual arts",
+        "weighted": false
+    },
+    "Digital Photography": {
+        "weighted": false,
+        "academic": false,
+        "url": "/app/profiles/cca/digital_photography",
+        "homework": "0-30",
+        "type": "visual arts",
+        "credits": 10,
+        "difficulty": "easy"
+    },
+    "Intro to Calculus": {
+        "difficulty": "moderate",
+        "type": "math",
+        "weighted": false,
+        "academic": true,
+        "homework": "30-60",
+        "url": "/app/profiles/cca/intro_to_calculus",
+        "credits": 10
+    },
+    "Cinema Lab": {
+        "type": "visual arts",
+        "credits": 10,
+        "weighted": false,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/cinema_lab",
+        "difficulty": "easy",
+        "academic": false
+    },
+    "Marketing Principles": {
+        "url": "/app/profiles/cca/marketing_principles",
+        "academic": false,
+        "difficulty": "easy",
+        "weighted": false,
+        "credits": 10,
+        "type": "practical arts",
+        "homework": "0-30"
+    },
+    "Machine Learning": {
+        "type": "practical arts",
+        "academic": true,
+        "url": "/app/profiles/cca/machine_learning",
+        "difficulty": "hard",
+        "weighted": false,
+        "homework": "60-90",
+        "credits": 10
+    },
+    "Advanced Sculpture": {
+        "academic": false,
+        "type": "visual arts",
+        "difficulty": "moderate",
+        "weighted": false,
+        "url": "/app/profiles/cca/advanced_sculpture",
+        "homework": "0-30",
+        "credits": 10
+    },
+    "Calculus 3": {
+        "weighted": false,
+        "homework": "60-90",
+        "url": "/app/profiles/cca/calculus_3",
+        "type": "math",
+        "academic": true,
+        "credits": 5,
+        "difficulty": "hard"
+    },
+    "Advanced Drawing": {
+        "homework": "30-60",
+        "type": "visual arts",
+        "weighted": false,
+        "credits": 10,
+        "difficulty": "moderate",
+        "academic": false,
+        "url": "/app/profiles/cca/advanced_drawing"
+    },
+    "Linear Algebra": {
+        "url": "/app/profiles/cca/linear_algebra",
+        "academic": true,
+        "homework": "60-90",
+        "weighted": false,
+        "difficulty": "hard",
+        "type": "math",
+        "credits": 10
+    },
+    "Spanish 2": {
+        "weighted": false,
+        "type": "world language",
+        "difficulty": "easy",
+        "homework": "0-30",
+        "url": "/app/profiles/cca/spanish_2",
+        "credits": 10,
+        "academic": true
+    },
+    "Sociology": {
+        "type": "social studies",
+        "url": "/app/profiles/cca/sociology",
+        "credits": 10,
+        "weighted": false,
+        "homework": "30-60",
+        "difficulty": "easy",
+        "academic": true
+    },
+    "Personal Financial Literacy": {
+        "type": "electives",
+        "homework": "0-30",
+        "academic": true,
+        "difficulty": "easy",
+        "credits": 10,
+        "weighted": false,
+        "url": "/app/profiles/cca/personal_financial_literacy"
+    },
+    "Envision Visual Arts Conservatory": {
+        "type": "visual arts",
+        "credits": 10,
+        "difficulty": "hard",
+        "academic": false,
+        "homework": "0-30",
+        "weighted": false,
+        "url": "/app/profiles/cca/envision_visual_arts_conservatory"
+    },
+    "Computer Science Foundations": {
+        "homework": "0-30",
+        "credits": 10,
+        "weighted": false,
+        "difficulty": "easy",
+        "academic": true,
+        "type": "practical arts",
+        "url": "/app/profiles/cca/computer_science_foundations"
+    },
+    "AP Calculus BC": {
+        "homework": "60-90",
+        "difficulty": "hard",
+        "url": "/app/profiles/cca/ap_calculus_bc",
+        "type": "math",
+        "academic": true,
+        "credits": 10,
+        "weighted": true
+    },
+    "Chinese 3": {
+        "homework": "30-60",
+        "url": "/app/profiles/cca/chinese_3",
+        "academic": true,
+        "type": "world language",
+        "weighted": false,
+        "credits": 10,
+        "difficulty": "moderate"
+    },
+    "Advanced Journalism": {
+        "weighted": false,
+        "type": "practical arts",
+        "credits": 10,
+        "url": "/app/profiles/cca/advanced_journalism",
+        "academic": false,
+        "homework": "0-30",
+        "difficulty": "moderate"
+    },
+    "Journalism": {
+        "academic": false,
+        "type": "practical arts",
+        "homework": "0-30",
+        "weighted": false,
+        "difficulty": "moderate",
+        "credits": 10,
+        "url": "/app/profiles/cca/journalism"
+    },
+    "Conservatory Theater": {
+        "weighted": false,
+        "difficulty": "hard",
+        "credits": 10,
+        "url": "/app/profiles/cca/conservatory_theater",
+        "homework": "30-60",
+        "academic": false,
+        "type": "electives"
+    },
+    "Anatomy & Physiology": {
+        "academic": true,
+        "difficulty": "moderate",
+        "type": "life science",
+        "weighted": false,
+        "url": "/app/profiles/cca/anatomy_and_physiology",
+        "homework": "30-60",
+        "credits": 10
+    },
+    "AP Statistics": {
+        "url": "/app/profiles/cca/ap_statistics",
+        "weighted": true,
+        "credits": 10,
+        "type": "math",
+        "difficulty": "hard",
+        "academic": true,
+        "homework": "60-90"
+    },
+    "Digital Art & Design": {
+        "academic": false,
+        "type": "visual arts",
+        "weighted": false,
+        "url": "/app/profiles/cca/digital_art_and_design",
+        "difficulty": "easy",
+        "homework": "0-30",
+        "credits": 10
+    },
+    "Intro to Engineering": {
+        "academic": true,
+        "homework": "30-60",
+        "url": "/app/profiles/cca/intro_to_engineering",
+        "difficulty": "easy",
+        "weighted": false,
+        "type": "practical arts",
+        "credits": 10
+    },
+    "US History": {
+        "type": "social studies",
+        "weighted": false,
+        "difficulty": "easy",
+        "academic": true,
+        "credits": 10,
+        "url": "/app/profiles/cca/us_history",
+        "homework": "30-60"
+    },
+    "AP Spanish": {
+        "type": "world language",
+        "difficulty": "hard",
+        "credits": 10,
+        "academic": true,
+        "weighted": true,
+        "url": "/app/profiles/cca/ap_spanish",
+        "homework": "30-60"
+    },
+    "Advanced Video Film": {
+        "url": "/app/profiles/cca/advanced_video_film",
+        "difficulty": "easy",
+        "academic": false,
+        "credits": 10,
+        "type": "visual arts",
+        "weighted": false,
+        "homework": "0-30"
+    },
+    "Spanish 3": {
+        "homework": "30-60",
+        "academic": true,
+        "weighted": false,
+        "difficulty": "moderate",
+        "url": "/app/profiles/cca/spanish_3",
+        "credits": 10,
+        "type": "world language"
+    },
+    "Advanced Musical Theater Production": {
+        "credits": 10,
+        "type": "visual arts",
+        "weighted": false,
+        "url": "/app/profiles/cca/advanced_musical_theater_production",
+        "academic": false,
+        "difficulty": "hard",
+        "homework": "30-60"
+    },
+    "AP Biology": {
+        "type": "life science",
+        "academic": true,
+        "credits": 10,
+        "url": "/app/profiles/cca/ap_biology",
+        "difficulty": "hard",
+        "homework": "60-90",
+        "weighted": true
+    },
+    "Advanced Chorus": {
+        "homework": "0-30",
+        "academic": false,
+        "difficulty": "hard",
+        "credits": 10,
+        "url": "/app/profiles/cca/advanced_chorus",
+        "type": "visual arts",
+        "weighted": false
+    },
+    "Integrated Math 3 Honors": {
+        "type": "math",
+        "url": "/app/profiles/cca/integrated_math_3_honors",
+        "academic": true,
+        "difficulty": "hard",
+        "weighted": true,
+        "credits": 10,
+        "homework": "60-90"
+    },
+    "College Application Seminar": {
+        "url": "/app/profiles/cca/college_application_seminar",
+        "credits": 10,
+        "difficulty": "easy",
+        "weighted": false,
+        "academic": false,
+        "homework": "0-30",
+        "type": "electives"
+    },
+    "Drawing & Design": {
+        "type": "visual arts",
+        "weighted": false,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/drawing_and_design",
+        "credits": 10,
+        "difficulty": "easy",
+        "academic": false
+    },
+    "Film & Society": {
+        "homework": "0-30",
+        "weighted": false,
+        "difficulty": "easy",
+        "type": "electives",
+        "url": "/app/profiles/cca/film_and_society",
+        "credits": 10,
+        "academic": true
+    },
+    "Acting": {
+        "homework": "0-30",
+        "academic": false,
+        "url": "/app/profiles/cca/acting",
+        "credits": 10,
+        "weighted": false,
+        "type": "visual arts",
+        "difficulty": "easy"
+    },
+    "Creative Writing": {
+        "url": "/app/profiles/cca/creative_writing",
+        "credits": 10,
+        "academic": false,
+        "type": "electives",
+        "difficulty": "easy",
+        "weighted": false,
+        "homework": "0-30"
+    },
+    "AP English Literature": {
+        "homework": "60-90",
+        "type": "english",
+        "academic": true,
+        "url": "/app/profiles/cca/ap_english_literature",
+        "weighted": true,
+        "credits": 10,
+        "difficulty": "hard"
+    },
+    "Chamber Orchestra": {
+        "homework": "30-60",
+        "difficulty": "hard",
+        "weighted": false,
+        "url": "/app/profiles/cca/chamber_orchestra",
+        "academic": false,
+        "type": "visual arts",
+        "credits": 10
+    },
+    "ASB": {
+        "type": "electives",
+        "url": "/app/profiles/cca/asb",
+        "difficulty": "moderate",
+        "academic": false,
+        "credits": 10,
+        "weighted": false,
+        "homework": "30-60"
+    },
+    "Symphonic Band": {
+        "weighted": false,
+        "type": "visual arts",
+        "url": "/app/profiles/cca/symphonic_band",
+        "credits": 10,
+        "academic": false,
+        "difficulty": "moderate",
+        "homework": "30-60"
+    },
+    "AP Chinese": {
+        "type": "world language",
+        "difficulty": "hard",
+        "url": "/app/profiles/cca/ap_chinese",
+        "academic": true,
+        "homework": "30-60",
+        "credits": 10,
+        "weighted": true
+    },
+    "French 3": {
+        "url": "/app/profiles/cca/french_3",
+        "difficulty": "moderate",
+        "academic": true,
+        "credits": 10,
+        "weighted": false,
+        "homework": "30-60",
+        "type": "world language"
+    },
+    "Integrated Math 1 Readiness": {
+        "homework": "0-30",
+        "credits": 10,
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/integrated_math_1_readiness",
+        "type": "math",
+        "academic": true,
+        "weighted": false
+    },
+    "Digital Composition": {
+        "homework": "0-30",
+        "credits": 10,
+        "weighted": false,
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/digital_composition",
+        "academic": false,
+        "type": "practical arts"
+    },
+    "AP Studio Art": {
+        "academic": false,
+        "url": "/app/profiles/cca/ap_studio_art",
+        "type": "visual arts",
+        "homework": "0-30",
+        "weighted": true,
+        "credits": 10,
+        "difficulty": "hard"
+    },
+    "Conservatory Instrumental Music": {
+        "academic": false,
+        "homework": "0-30",
+        "weighted": false,
+        "url": "/app/profiles/cca/conservatory_instrumental_music",
+        "difficulty": "hard",
+        "type": "electives",
+        "credits": 10
+    },
+    "Advanced Digital Photography": {
+        "academic": false,
+        "homework": "0-30",
+        "difficulty": "moderate",
+        "weighted": false,
+        "type": "visual arts",
+        "credits": 10,
+        "url": "/app/profiles/cca/advanced_digital_photography"
+    },
+    "Wind Ensemble": {
+        "homework": "30-60",
+        "difficulty": "hard",
+        "weighted": false,
+        "url": "/app/profiles/cca/wind_ensemble",
+        "academic": false,
+        "credits": 10,
+        "type": "visual arts"
+    },
+    "Integrated Math 2 Honors": {
+        "homework": "60-90",
+        "credits": 10,
+        "difficulty": "hard",
+        "academic": true,
+        "url": "/app/profiles/cca/integrated_math_2_honors",
+        "weighted": false,
+        "type": "math"
+    },
+    "Sports Performance Training": {
+        "homework": "0-30",
+        "url": "/app/profiles/cca/sports_performance_training",
+        "difficulty": "hard",
+        "weighted": false,
+        "credits": 10,
+        "academic": false,
+        "type": "physical education"
+    },
+    "Integrated Math 3": {
+        "type": "math",
+        "url": "/app/profiles/cca/integrated_math_3",
+        "difficulty": "moderate",
+        "weighted": false,
+        "homework": "60-90",
+        "academic": true,
+        "credits": 10
+    },
+    "AP Psychology": {
+        "url": "/app/profiles/cca/ap_psychology",
+        "type": "social studies",
+        "difficulty": "moderate",
+        "homework": "30-60",
+        "weighted": true,
+        "academic": true,
+        "credits": 10
+    },
+    "Yearbook": {
+        "weighted": false,
+        "difficulty": "easy",
+        "type": "practical arts",
+        "academic": false,
+        "credits": 10,
+        "url": "/app/profiles/cca/yearbook",
+        "homework": "0-30"
+    },
+    "Digital Electronics": {
+        "difficulty": "moderate",
+        "homework": "0-30",
+        "credits": 10,
+        "weighted": false,
+        "type": "practical arts",
+        "academic": true,
+        "url": "/app/profiles/cca/digital_electronics"
+    },
+    "Year One PE": {
+        "homework": "0-30",
+        "credits": 10,
+        "academic": false,
+        "url": "/app/profiles/cca/year_1_pe",
+        "difficulty": "easy",
+        "weighted": false,
+        "type": "physical education"
+    },
+    "Intermediate Dance": {
+        "homework": "0-30",
+        "weighted": false,
+        "credits": 10,
+        "difficulty": "easy",
+        "academic": false,
+        "type": "visual arts",
+        "url": "/app/profiles/cca/intermediate_dance"
+    },
+    "AP Drawing": {
+        "url": "/app/profiles/cca/ap_drawing",
+        "difficulty": "hard",
+        "academic": false,
+        "weighted": true,
+        "homework": "0-30",
+        "type": "visual arts",
+        "credits": 10
+    },
+    "AP English Language": {
+        "url": "/app/profiles/cca/ap_english_language",
+        "homework": "30-60",
+        "credits": 10,
+        "academic": true,
+        "difficulty": "hard",
+        "weighted": true,
+        "type": "english"
+    },
+    "Chemistry": {
+        "academic": true,
+        "url": "/app/profiles/cca/chemistry",
+        "homework": "30-60",
+        "difficulty": "easy",
+        "weighted": false,
+        "credits": 10,
+        "type": "physical science"
+    },
+    "English 9 Honors": {
+        "weighted": false,
+        "academic": true,
+        "url": "/app/profiles/cca/english_9_honors",
+        "homework": "30-60",
+        "credits": 10,
+        "type": "english",
+        "difficulty": "hard"
+    },
+    "Japanese 5": {
+        "type": "world language",
+        "url": "/app/profiles/cca/japanese_5",
+        "homework": "30-60",
+        "weighted": false,
+        "credits": 10,
+        "academic": true,
+        "difficulty": "moderate"
+    },
+    "Spanish 4": {
+        "url": "/app/profiles/cca/spanish_4",
+        "weighted": false,
+        "difficulty": "moderate",
+        "academic": true,
+        "type": "world language",
+        "homework": "30-60",
+        "credits": 10
+    },
+    "ASL 3": {
+        "url": "/app/profiles/cca/asl_3",
+        "weighted": false,
+        "difficulty": "easy",
+        "type": "world language",
+        "academic": true,
+        "credits": 10,
+        "homework": "0-30"
+    },
+    "Japanese 1": {
+        "type": "world language",
+        "weighted": false,
+        "url": "/app/profiles/cca/japanese_1",
+        "academic": true,
+        "homework": "0-30",
+        "credits": 10,
+        "difficulty": "easy"
+    },
+    "Pop Culture": {
+        "difficulty": "easy",
+        "credits": 10,
+        "type": "electives",
+        "homework": "0-30",
+        "academic": false,
+        "url": "/app/profiles/cca/pop_culture",
+        "weighted": false
+    },
+    "Video Film": {
+        "type": "visual arts",
+        "difficulty": "easy",
+        "academic": false,
+        "weighted": false,
+        "homework": "0-30",
+        "url": "/app/profiles/cca/video_film",
+        "credits": 10
+    },
+    "AP Environmental Science": {
+        "homework": "60-90",
+        "url": "/app/profiles/cca/ap_environmental_science",
+        "academic": true,
+        "type": "physical science",
+        "weighted": true,
+        "difficulty": "moderate",
+        "credits": 10
+    },
+    "French 1": {
+        "difficulty": "easy",
+        "academic": true,
+        "url": "/app/profiles/cca/french_1",
+        "credits": 10,
+        "weighted": false,
+        "homework": "0-30",
+        "type": "world language"
+    },
+    "Orchestra": {
+        "homework": "30-60",
+        "type": "visual arts",
+        "academic": false,
+        "weighted": false,
+        "url": "/app/profiles/cca/orchestra",
+        "difficulty": "hard",
+        "credits": 10
+    },
+    "Advanced Dance": {
+        "url": "/app/profiles/cca/advanced_dance",
+        "type": "visual arts",
+        "homework": "0-30",
+        "academic": false,
+        "difficulty": "hard",
+        "credits": 10,
+        "weighted": false
+    },
+    "Intro to Business": {
+        "credits": 10,
+        "type": "practical arts",
+        "url": "/app/profiles/cca/intro_to_business",
+        "academic": false,
+        "weighted": false,
+        "difficulty": "easy",
+        "homework": "0-30"
+    },
+    "Exploring Computer Science": {
+        "difficulty": "moderate",
+        "weighted": false,
+        "homework": "0-30",
+        "academic": true,
+        "type": "practical arts",
+        "credits": 10,
+        "url": "/app/profiles/cca/exploring_computer_science"
+    },
+    "Spanish 1": {
+        "academic": true,
+        "difficulty": "easy",
+        "type": "world language",
+        "homework": "0-30",
+        "credits": 10,
+        "url": "/app/profiles/cca/spanish_1",
+        "weighted": false
+    },
+    "Psychology": {
+        "academic": true,
+        "weighted": false,
+        "url": "/app/profiles/cca/psychology",
+        "homework": "30-60",
+        "difficulty": "easy",
+        "type": "social studies",
+        "credits": 10
+    },
+    "Government": {
+        "academic": true,
+        "homework": "30-60",
+        "difficulty": "easy",
+        "weighted": false,
+        "url": "/app/profiles/cca/government",
+        "credits": 10,
+        "type": "social studies"
+    },
+    "AP Chemistry": {
+        "credits": 10,
+        "type": "physical science",
+        "url": "/app/profiles/cca/ap_chemistry",
+        "weighted": true,
+        "homework": "60-90",
+        "difficulty": "hard",
+        "academic": true
+    },
+    "AP European History": {
+        "academic": true,
+        "weighted": true,
+        "url": "/app/profiles/cca/ap_european_history",
+        "difficulty": "hard",
+        "type": "social studies",
+        "credits": 10,
+        "homework": "60-90"
+    },
+    "Business Finance": {
+        "credits": 10,
+        "url": "/app/profiles/cca/business_finance",
+        "type": "practical arts",
+        "difficulty": "easy",
+        "homework": "0-30",
+        "weighted": false,
+        "academic": false
+    },
+    "Spanish 5": {
+        "weighted": false,
+        "credits": 10,
+        "homework": "30-60",
+        "type": "world language",
+        "academic": true,
+        "difficulty": "moderate",
+        "url": "/app/profiles/cca/spanish_5"
+    },
+    "AP French": {
+        "weighted": true,
+        "credits": 10,
+        "difficulty": "hard",
+        "type": "world language",
+        "url": "/app/profiles/cca/ap_french",
+        "academic": true,
+        "homework": "30-60"
+    },
+    "French 2": {
+        "homework": "30-60",
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/french_2",
+        "credits": 10,
+        "type": "world language",
+        "weighted": false,
+        "academic": true
+    },
+    "AP Physics 2": {
+        "credits": 10,
+        "weighted": true,
+        "url": "/app/profiles/cca/ap_physics_2",
+        "homework": "60-90",
+        "type": "physical science",
+        "difficulty": "hard",
+        "academic": true
+    },
+    "ASL 4": {
+        "weighted": false,
+        "homework": "0-30",
+        "type": "world language",
+        "difficulty": "moderate",
+        "credits": 10,
+        "academic": true,
+        "url": "/app/profiles/cca/asl_4"
+    },
+    "Chinese 5": {
+        "type": "world language",
+        "academic": true,
+        "weighted": false,
+        "url": "/app/profiles/cca/chinese_5",
+        "difficulty": "moderate",
+        "homework": "30-60",
+        "credits": 10
+    },
+    "AP Computer Science A": {
+        "academic": true,
+        "homework": "60-90",
+        "weighted": true,
+        "url": "/app/profiles/cca/ap_computer_science_a",
+        "difficulty": "hard",
+        "credits": 10,
+        "type": "practical arts"
+    },
+    "AP Economics": {
+        "weighted": true,
+        "url": "/app/profiles/cca/ap_economics",
+        "credits": 10,
+        "homework": "60-90",
+        "type": "social studies",
+        "difficulty": "hard",
+        "academic": true
+    },
+    "AP Physics 1": {
+        "academic": true,
+        "weighted": true,
+        "difficulty": "hard",
+        "homework": "60-90",
+        "credits": 10,
+        "type": "physical science",
+        "url": "/app/profiles/cca/ap_physics_1"
+    },
+    "Chorus": {
+        "homework": "30-60",
+        "type": "visual arts",
+        "difficulty": "moderate",
+        "weighted": false,
+        "academic": false,
+        "url": "/app/profiles/cca/chorus",
+        "credits": 10
+    },
+    "Integrated Math 1 Honors": {
+        "weighted": false,
+        "homework": "60-90",
+        "type": "math",
+        "difficulty": "hard",
+        "academic": true,
+        "url": "/app/profiles/cca/integrated_math_1_honors",
+        "credits": 10
+    },
+    "Conservatory Cinema": {
+        "difficulty": "hard",
+        "academic": false,
+        "type": "electives",
+        "weighted": false,
+        "homework": "0-30",
+        "credits": 10,
+        "url": "/app/profiles/cca/conservatory_cinema"
+    },
+    "Advanced Recording Arts": {
+        "difficulty": "easy",
+        "academic": false,
+        "homework": "0-30",
+        "type": "practical arts",
+        "credits": 10,
+        "url": "/app/profiles/cca/advanced_recording_arts",
+        "weighted": false
+    },
+    "English 11": {
+        "credits": 10,
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/english_11",
+        "weighted": false,
+        "homework": "30-60",
+        "academic": true,
+        "type": "english"
+    },
+    "Japanese 4": {
+        "url": "/app/profiles/cca/japanese_4",
+        "difficulty": "moderate",
+        "academic": true,
+        "credits": 10,
+        "type": "world language",
+        "weighted": false,
+        "homework": "30-60"
+    },
+    "Organic Chemistry": {
+        "weighted": false,
+        "type": "physical science",
+        "url": "/app/profiles/cca/organic_chemistry",
+        "credits": 10,
+        "difficulty": "hard",
+        "academic": true,
+        "homework": "60-90"
+    },
+    "English 10": {
+        "url": "/app/profiles/cca/english_10",
+        "type": "english",
+        "difficulty": "easy",
+        "academic": true,
+        "credits": 10,
+        "weighted": false,
+        "homework": "30-60"
+    },
+    "Physics": {
+        "academic": true,
+        "weighted": false,
+        "type": "physical science",
+        "homework": "30-60",
+        "credits": 10,
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/physics"
+    },
+    "AP Physics C": {
+        "type": "physical science",
+        "weighted": true,
+        "url": "/app/profiles/cca/ap_physics_c",
+        "credits": 10,
+        "homework": "60-90",
+        "academic": true,
+        "difficulty": "hard"
+    },
+    "French 4": {
+        "url": "/app/profiles/cca/french_4",
+        "type": "world language",
+        "homework": "30-60",
+        "weighted": false,
+        "difficulty": "moderate",
+        "credits": 10,
+        "academic": true
+    },
+    "Advanced Engineering Technology": {
+        "type": "practical arts",
+        "credits": 10,
+        "academic": true,
+        "url": "/app/profiles/cca/advanced_engineering_technology",
+        "homework": "30-60",
+        "weighted": false,
+        "difficulty": "moderate"
+    },
+    "Integrated Math 1/2 Essentials": {
+        "credits": 10,
+        "weighted": false,
+        "homework": "0-30",
+        "type": "math",
+        "academic": true,
+        "difficulty": "easy",
+        "url": "/app/profiles/cca/integrated_math_1-2_essentials"
+    },
+    "English 9": {
+        "url": "/app/profiles/cca/english_9",
+        "academic": true,
+        "weighted": false,
+        "homework": "30-60",
+        "credits": 10,
+        "type": "english",
+        "difficulty": "easy"
+    },
+    "French 5": {
+        "type": "world language",
+        "weighted": false,
+        "difficulty": "moderate",
+        "homework": "30-60",
+        "url": "/app/profiles/cca/french_5",
+        "academic": true,
+        "credits": 10
+    },
+    "AP World History": {
+        "homework": "60-90",
+        "credits": 10,
+        "url": "/app/profiles/cca/ap_world_history",
+        "type": "social studies",
+        "academic": true,
+        "difficulty": "hard",
+        "weighted": true
     }
 }

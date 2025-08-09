@@ -35,6 +35,7 @@
 				'Physical Science',
 				'Life Science',
 				'World Language',
+				'Physical Education',
 				'Visual Arts',
 				'Practical Arts',
 				'Electives'
