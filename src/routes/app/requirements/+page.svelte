@@ -11,6 +11,8 @@
 	let lastCoursesLoaded = null;
 	let hasInitializedSelection = false;
 	let hasInitializedCourses = false;
+
+	// loading data
 	$effect(() => {
 		if (!hasInitializedCourses) {
 			loadCourseData().catch((err) => {
@@ -50,17 +52,35 @@
 			}
 		}
 	});
-	
+
+	// credits progress calculation
+	const flatSelection = $derived.by(() => {
+		if (!userSelection) {
+			return null;
+		}
+		return Object.values(userSelection).flatMap((year) => {
+			return [...(year.fall || []), ...(year.spring || [])];
+		});
+	});
+	let socialScienceCredits = $state(0);
+	let englishCredits = $state(0);
+	let mathCredits = $state(0);
+	let physicalScienceCredits = $state(0);
+	let lifeScienceCredits = $state(0);
+	let visualArtsCredits = $state(0);
+	let peCredits = $state(0);
+	let practicalArtsCredits = $state(0);
+	let worldLanguageCredits = $state(0);
+	let electivesCredits = $state(0);
+
+	// meets course reqs calc
 	function containsClass(sel, targets) {
 		if (!sel || !Array.isArray(targets) || targets.length === 0) return false;
 		const targetSet = new Set(targets);
 		let found = false;
 		Object.values(sel).forEach((year) => {
 			if (found) return;
-			const userSel = [
-				...year.fall,
-				...year.spring
-			];
+			const userSel = [...year.fall, ...year.spring];
 			userSel.forEach((c) => {
 				if (found) return;
 				if (targetSet.has(c)) {
@@ -71,8 +91,38 @@
 		return found;
 	}
 
-	let im1hReq = $derived(containsClass(userSelection, ["Integrated Math 1", "Integrated Math 1 Honors"]));
-
+	let im1hReq = $derived(
+		containsClass(userSelection, [
+			'Integrated Math 1',
+			'Integrated Math 1 Honors',
+			'Integrated Math 2',
+			'Integrated Math 2 Honors'
+		])
+	);
+	let english9Req = $derived(containsClass(userSelection, ['English 9', 'English 9 Honors']));
+	let english10Req = $derived(containsClass(userSelection, ['English 10', 'English 10 Honors']));
+	let english11Req = $derived(containsClass(userSelection, ['English 11', 'AP English Language']));
+	let english12Req = $derived(
+		containsClass(userSelection, ['English 12', 'AP English Literature'])
+	);
+	let worldHistoryReq = $derived(
+		containsClass(userSelection, ['World History', 'AP World History'])
+	);
+	let usHistoryReq = $derived(containsClass(userSelection, ['US History', 'AP US History']));
+	let economyGovReq = $derived(
+		containsClass(userSelection, ['Government/Economy', 'AP Government/AP Economics'])
+	);
+	let biologyReq = $derived(containsClass(userSelection, ['Biology']));
+	let chemistryReq = $derived(containsClass(userSelection, ['Chemistry', 'Honors Chemistry']));
+	let pe9Req = $derived(containsClass(userSelection, ['Year One PE', 'Dance PE']));
+	let pe10Req = $derived(
+		containsClass(userSelection, [
+			'Year Two PE',
+			'Weight Training',
+			'Sports Performance Training',
+			'Fitness Walking'
+		])
+	);
 </script>
 
 <svelte:head>
@@ -89,65 +139,73 @@
 	<div class="">
 		<h2>Social Studies</h2>
 		<p>World History, US History, Government, and Economy are required.</p>
-		<ProgressBar lower={0} upper={30} />
+		<ProgressBar lower={socialScienceCredits} upper={30} />
 	</div>
 	<div class="">
 		<h2>English</h2>
 		<p>English 9, 10, 11, and 12 (or higher) are required.</p>
 
-		<ProgressBar lower={10} upper={40} />
+		<ProgressBar lower={englishCredits} upper={40} />
 	</div>
 	<div class="">
 		<h2>Mathematics</h2>
 		<p>Integrated Math 1 or Algebra 1 (or higher) required.</p>
-		<ProgressBar lower={20} upper={30} />
+		<ProgressBar lower={mathCredits} upper={30} />
 	</div>
 	<div class="">
 		<h2>Physical Science</h2>
-		<ProgressBar lower={0} upper={10} />
+		<ProgressBar lower={physicalScienceCredits} upper={10} />
 	</div>
 	<div class="">
 		<h2>Life Science</h2>
-		<ProgressBar lower={10} upper={10} />
+		<ProgressBar lower={lifeScienceCredits} upper={10} />
 	</div>
 
 	<div class="">
 		<h2>Visual/Performing Art</h2>
-		<ProgressBar lower={0} upper={10} />
+		<ProgressBar lower={visualArtsCredits} upper={10} />
 	</div>
 
 	<div class="">
 		<h2>Physical Education</h2>
 		<p>2 PE courses (one in 9th grade, one in 10th) are required.</p>
-		<ProgressBar lower={10} upper={20} />
+		<ProgressBar lower={peCredits} upper={20} />
 	</div>
 
 	<div class="">
 		<h2>Practical Art</h2>
-		<ProgressBar lower={10} upper={10} />
+		<ProgressBar lower={practicalArtsCredits} upper={10} />
 	</div>
 	<div class="">
 		<h2>World Language</h2>
-		<ProgressBar lower={30} upper={30} />
+		<ProgressBar lower={worldLanguageCredits} upper={30} />
 	</div>
 	<div class="">
 		<h2>Electives</h2>
-		<ProgressBar lower={20} upper={70} />
+		<ProgressBar lower={electivesCredits} upper={70} />
 	</div>
 </div>
 <div class="mt-8">
 	<h2>Individual Course Requirements</h2>
 	<!-- TODO: add rest of required courses here -->
-	<Checkbox checked={im1hReq} text="Integrated Math 1 (if you took it in middle school, it counts too.)" />
-	<Checkbox checked={false} text="9th Grade PE with Health" />
-	<Checkbox checked={false} text="10th Grade PE" />
-	<Checkbox checked={false} text="World History" />
-	<Checkbox checked={false} text="US History" />
-	<Checkbox checked={false} text="Economy" />
-	<Checkbox checked={false} text="Biology" />
-	<Checkbox checked={false} text="Chemistry" />
-	<Checkbox checked={false} text="English 9" />
-	<Checkbox checked={false} text="English 10" />
-	<Checkbox checked={false} text="English 11" />
-	<Checkbox checked={false} text="English 12" />
+	<Checkbox
+		checked={im1hReq}
+		text="Integrated Math 1 (if you took it in middle school, it counts for the course requirement, but not credits.)"
+	/>
+	<Checkbox checked={pe9Req} text="9th Grade PE with Health" />
+	<Checkbox checked={pe10Req} text="10th Grade PE" />
+	<Checkbox checked={worldHistoryReq} text="World History" />
+	<Checkbox checked={usHistoryReq} text="US History" />
+	<Checkbox checked={economyGovReq} text="Government/Economy" />
+	<Checkbox checked={biologyReq} text="Biology" />
+	<Checkbox checked={chemistryReq} text="Chemistry" />
+	<Checkbox checked={english9Req} text="English 9" />
+	<Checkbox checked={english10Req} text="English 10" />
+	<Checkbox checked={english11Req} text="English 11" />
+	<Checkbox checked={english12Req} text="English 12" />
 </div>
+<button
+	onclick={() => {
+		console.log(flatSelection);
+	}}>test</button
+>

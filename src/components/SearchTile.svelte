@@ -46,6 +46,12 @@
 		if (name === 'Calculus 3' || name === 'Linear Algebra') {
 			selection = 'Calculus 3/Linear Algebra';
 		}
+		if (name === 'Government' || name === 'Economics') {
+			selection = 'Government/Economics';
+		}
+		if (name === 'AP Government' || name === 'AP Economics') {
+			selection = 'AP Government/AP Economics';
+		}
 
 		const currentUserData = $userData;
 		if (!currentUserData) {
