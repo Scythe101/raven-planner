@@ -52,8 +52,8 @@
 	});
 	
 	function containsClass(sel, targets) {
-		// values: string[] of course names to match (case-insensitive)
 		if (!sel || !Array.isArray(targets) || targets.length === 0) return false;
+		const targetSet = new Set(targets);
 		let found = false;
 		Object.values(sel).forEach((year) => {
 			if (found) return;
@@ -63,7 +63,7 @@
 			];
 			userSel.forEach((c) => {
 				if (found) return;
-				if (targets.includes(c)) {
+				if (targetSet.has(c)) {
 					found = true;
 				}
 			});
