@@ -54,7 +54,6 @@
 	function containsClass(sel, targets) {
 		// values: string[] of course names to match (case-insensitive)
 		if (!sel || !Array.isArray(targets) || targets.length === 0) return false;
-		const targetSet = new Set(targets);
 		let found = false;
 		Object.values(sel).forEach((year) => {
 			if (found) return;
@@ -64,7 +63,7 @@
 			];
 			userSel.forEach((c) => {
 				if (found) return;
-				if (targetSet.has(c)) {
+				if (targets.includes(c)) {
 					found = true;
 				}
 			});
@@ -73,7 +72,7 @@
 	}
 
 	let im1hReq = $derived(containsClass(userSelection, ["Integrated Math 1", "Integrated Math 1 Honors"]));
-	
+
 </script>
 
 <svelte:head>
