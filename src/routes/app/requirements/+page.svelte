@@ -62,16 +62,66 @@
 			return [...(year.fall || []), ...(year.spring || [])];
 		});
 	});
-	let socialScienceCredits = $state(0);
-	let englishCredits = $state(0);
-	let mathCredits = $state(0);
-	let physicalScienceCredits = $state(0);
-	let lifeScienceCredits = $state(0);
-	let visualArtsCredits = $state(0);
-	let peCredits = $state(0);
-	let practicalArtsCredits = $state(0);
-	let worldLanguageCredits = $state(0);
-	let electivesCredits = $state(0);
+	
+	const creditRequirements = {
+		"social studies": 30,
+		"english": 40,
+		"math": 30,
+		"physical science": 10,
+		"life science": 10,
+		"visual arts": 10,
+		"physical education": 20,
+		"practical arts": 10,
+		"world language": 30,
+		"electives": 70
+	};
+	
+	// calc all credits at once to avoid re-counting excess
+	const credits = $derived.by(() => {
+		//resets all credits to 0 to prevent double-counting
+		const credits = Object.fromEntries(Object.keys(creditRequirements).map(type => [type, 0]));
+		if (!userSelection || !courses || !flatSelection) {
+			return credits;
+		}
+		
+		let excess = 0;
+		
+		//FIXED: currently doesnt work for 2 classes in 1 semester, ie calc 3/linear algebra
+		flatSelection.forEach((sel) => {
+			if (sel === "Unscheduled") return;
+			let selType = courses[sel]?.type;
+			if(sel === "Calculus 3/Linear Algebra") {
+				selType = "math";
+			}
+			if(sel === "AP Government/AP Economics") {
+				selType = "social studies";
+			}
+			if(sel === "Government/Economics") {
+				selType = "social studies";
+			}
+			if (selType) {
+				if (credits[selType] < creditRequirements[selType]) {
+					credits[selType] += 10;
+				} else {
+					excess += 10;
+				}
+			}
+		});
+		
+		credits.excess = excess;
+		return credits;
+	});
+	
+	let socialStudiesCredits = $derived(credits["social studies"]);
+	let englishCredits = $derived(credits["english"]);
+	let mathCredits = $derived(credits["math"]);
+	let physicalScienceCredits = $derived(credits["physical science"]);
+	let lifeScienceCredits = $derived(credits["life science"]);
+	let visualArtsCredits = $derived(credits["visual arts"]);
+	let peCredits = $derived(credits["physical education"]);
+	let practicalArtsCredits = $derived(credits["practical arts"]);
+	let worldLanguageCredits = $derived(credits["world language"]);
+	let electivesCredits = $derived(credits["electives"] + credits.excess);
 
 	// meets course reqs calc
 	function containsClass(sel, targets) {
@@ -81,9 +131,9 @@
 		Object.values(sel).forEach((year) => {
 			if (found) return;
 			const userSel = [...year.fall, ...year.spring];
-			userSel.forEach((c) => {
+			userSel.forEach((course) => {
 				if (found) return;
-				if (targetSet.has(c)) {
+				if (targetSet.has(course)) {
 					found = true;
 				}
 			});
@@ -139,55 +189,55 @@
 	<div class="">
 		<h2>Social Studies</h2>
 		<p>World History, US History, Government, and Economy are required.</p>
-		<ProgressBar lower={socialScienceCredits} upper={30} />
+		<ProgressBar lower={socialStudiesCredits} upper={creditRequirements["social studies"]} />
 	</div>
 	<div class="">
 		<h2>English</h2>
 		<p>English 9, 10, 11, and 12 (or higher) are required.</p>
 
-		<ProgressBar lower={englishCredits} upper={40} />
+		<ProgressBar lower={englishCredits} upper={creditRequirements["english"]} />
 	</div>
 	<div class="">
 		<h2>Mathematics</h2>
 		<p>Integrated Math 1 or Algebra 1 (or higher) required.</p>
-		<ProgressBar lower={mathCredits} upper={30} />
+		<ProgressBar lower={mathCredits} upper={creditRequirements["math"]} />
 	</div>
 	<div class="">
 		<h2>Physical Science</h2>
-		<ProgressBar lower={physicalScienceCredits} upper={10} />
+		<ProgressBar lower={physicalScienceCredits} upper={creditRequirements["physical science"]} />
 	</div>
 	<div class="">
 		<h2>Life Science</h2>
-		<ProgressBar lower={lifeScienceCredits} upper={10} />
+		<ProgressBar lower={lifeScienceCredits} upper={creditRequirements["life science"]} />
 	</div>
 
 	<div class="">
 		<h2>Visual/Performing Art</h2>
-		<ProgressBar lower={visualArtsCredits} upper={10} />
+		<ProgressBar lower={visualArtsCredits} upper={creditRequirements["visual arts"]} />
 	</div>
 
 	<div class="">
 		<h2>Physical Education</h2>
 		<p>2 PE courses (one in 9th grade, one in 10th) are required.</p>
-		<ProgressBar lower={peCredits} upper={20} />
+		<ProgressBar lower={peCredits} upper={creditRequirements["physical education"]} />
 	</div>
 
 	<div class="">
 		<h2>Practical Art</h2>
-		<ProgressBar lower={practicalArtsCredits} upper={10} />
+		<ProgressBar lower={practicalArtsCredits} upper={creditRequirements["practical arts"]} />
 	</div>
 	<div class="">
 		<h2>World Language</h2>
-		<ProgressBar lower={worldLanguageCredits} upper={30} />
+		<ProgressBar lower={worldLanguageCredits} upper={creditRequirements["world language"]} />
 	</div>
 	<div class="">
 		<h2>Electives</h2>
-		<ProgressBar lower={electivesCredits} upper={70} />
+		<ProgressBar lower={electivesCredits} upper={creditRequirements["electives"]} />
 	</div>
 </div>
 <div class="mt-8">
 	<h2>Individual Course Requirements</h2>
-	<!-- TODO: add rest of required courses here -->
+	<p class="text-xl mb-4">This also checks if you have a higher level-equivalent, such as an honors or AP course.</p>
 	<Checkbox
 		checked={im1hReq}
 		text="Integrated Math 1 (if you took it in middle school, it counts for the course requirement, but not credits.)"
@@ -204,8 +254,8 @@
 	<Checkbox checked={english11Req} text="English 11" />
 	<Checkbox checked={english12Req} text="English 12" />
 </div>
-<button
+<!-- <button
 	onclick={() => {
 		console.log(flatSelection);
 	}}>test</button
->
+> -->

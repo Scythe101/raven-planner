@@ -44,7 +44,7 @@
 			class={currentPage === '/app/info'
 				? '-m-2 rounded-full bg-white p-2 ring-2 ring-slate-900'
 				: 'hover:white transition-all duration-200 hover:-m-2 hover:rounded-full hover:bg-white hover:p-2'}
-			href="/app/settings">Info</a
+			href="/app/info">Info</a
 		>
 		<a
 			class={currentPage === '/app/settings'
