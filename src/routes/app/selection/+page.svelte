@@ -161,7 +161,7 @@
 			</div>
 		</div>
 	</div>
-	<SearchCourses class="sticky top-0 w-72" {courseSelected} />
+	<SearchCourses {courseSelected} />
 </div>
 <!-- <button
 	class="shadow-sharp hover:shadow-sharp-hover fixed bottom-4 h-12 w-16 cursor-pointer rounded-full bg-amber-100 ring-2 shadow-slate-900 ring-slate-900 duration-100 hover:-translate-0.5"

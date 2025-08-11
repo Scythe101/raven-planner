@@ -40,6 +40,12 @@
 		}
 	});
 
+	// $effect(() => {
+	// 	if (browser && user && !$authStore.isLoading && $page.url.pathname.startsWith('/app') && $page.url.pathname !== '/app/info') {
+	// 		goto('/app/info');
+	// 	}
+	// });
+
 	let { children } = $props();
 </script>
 

@@ -59,7 +59,7 @@ export async function loadUserData() {
 			const structuredData = {
 				selection: data.selection || defaultUserData.selection,
 				settings: data.settings || defaultUserData.settings,
-				email: data.email || currentUser.email,
+				email: currentUser.email,
 			};
 
 			userData.set(structuredData);

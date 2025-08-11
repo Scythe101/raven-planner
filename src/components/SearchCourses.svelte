@@ -132,7 +132,7 @@
 </script>
 
 <div
-	class="shadow-sharp sticky top-4 mr-4 mb-4 flex h-[calc(100dvh-2rem)] flex-col overflow-x-hidden rounded-3xl bg-orange-50 p-4 ring-2 shadow-slate-900 ring-slate-900 {courseSelection
+	class="shadow-sharp sticky w-70 2xl:w-92 top-4 mr-4 mb-4 flex h-[calc(100dvh-2rem)] flex-col overflow-x-hidden rounded-3xl bg-orange-50 p-4 ring-2 shadow-slate-900 ring-slate-900 {courseSelection
 		? 'overflow-y-scroll'
 		: 'overflow-y-hidden'}"
 >

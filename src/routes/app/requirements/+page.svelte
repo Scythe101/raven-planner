@@ -88,6 +88,10 @@
 
 		//FIXED: currently doesnt work for 2 classes in 1 semester, ie calc 3/linear algebra
 		flatSelection.forEach((sel) => {
+			let creditsToAdd = 10;
+			if (sel == "Athletics PE Credit") {
+				creditsToAdd = 5;
+			}
 			if (sel === 'Unscheduled') return;
 			let selType = courses[sel]?.type;
 			if (sel === 'Calculus 3/Linear Algebra') {
@@ -100,10 +104,16 @@
 				selType = 'social studies';
 			}
 			if (selType) {
-				if (credits[selType] < creditRequirements[selType]) {
-					credits[selType] += 10;
-				} else {
-					excess += 10;
+				// this logic is absolutely horribly scuffed
+				if ((credits[selType]+creditsToAdd) <= creditRequirements[selType]) {
+					credits[selType] += creditsToAdd;
+				} else if((credits[selType] + 5) <= creditRequirements[selType]) {
+					creditsToAdd-=5;
+					credits[selType] += creditsToAdd;
+					excess += 5;
+				} 
+				else {
+					excess += creditsToAdd;
 				}
 			}
 		});

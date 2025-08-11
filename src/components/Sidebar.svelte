@@ -38,20 +38,21 @@
 				: 'hover:white transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
 			>Graduation Reqs</a
 		>
-	</div>
-	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium">
 		<a
 			class={currentPage === '/app/info'
-				? '-m-2 rounded-full bg-white p-2 ring-2 ring-slate-900'
+				? '-m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
 				: 'hover:white transition-all duration-200 hover:-m-2 hover:rounded-full hover:bg-white hover:p-2'}
 			href="/app/info">Info</a
 		>
-		<a
+	</div>
+	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium">
+		
+		<!-- <a
 			class={currentPage === '/app/settings'
 				? '-m-2 rounded-full bg-white p-2 ring-2 ring-slate-900'
 				: 'hover:white transition-all duration-200 hover:-m-2 hover:rounded-full hover:bg-white hover:p-2'}
 			href="/app/settings">Settings</a
-		>
+		> -->
 	</div>
 	<div class="font-noto-serif mt-12 flex flex-col text-lg font-medium">
 		<button

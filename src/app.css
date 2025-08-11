@@ -12,6 +12,7 @@
 @source inline('bg-green-300');
 @source inline('bg-sky-300');
 @source inline('bg-purple-300');
+@source inline('leading-12');
 
 @custom-variant hover (&:hover);
 
