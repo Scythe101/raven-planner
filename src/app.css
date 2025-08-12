@@ -22,6 +22,8 @@
 	--font-dm-serif-text: 'DM Serif Text', serif;
 	--shadow-sharp: 6px 6px 0px 0px var(--color-slate-900);
 	--shadow-sharp-hover: 8px 8px 0px 0px var(--color-slate-900);
+	--shadow-sharp-chonk: 30px 30px 0px 0px var(--color-slate-900);
+	--shadow-sharp-chonk-hover: 40px 40px 0px 0px var(--color-slate-900);
 	--breakpoint-2xl: 106rem;
 }
 
