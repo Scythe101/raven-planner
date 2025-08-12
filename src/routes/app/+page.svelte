@@ -31,6 +31,8 @@
 	let hasInitializedCourses = false;
 	let lastCoursesLoaded = { '': '' };
 
+	let photoUrl = $state('');
+
 	$effect(() => {
 		if (!hasInitializedCourses) {
 			loadCourseData().catch((err) => {
@@ -77,6 +79,7 @@
 		const newUserData = $userData;
 		if (newUserData && !hasInitializedSelection) {
 			info = structuredClone(newUserData); // Create a deep copy to avoid proxy issues
+			photoUrl = $authStore.currentUser.photoUrl
 			infoEdit = JSON.stringify(info, null, 4);
 			hasInitializedSelection = true;
 		}
@@ -100,68 +103,20 @@
 			courses = 'ERROR';
 		}
 	}
+
+	
 </script>
 
 <svelte:head>
 	<title>Raven Planner</title>
 </svelte:head>
-<h1 class="mt-4">Home</h1>
+<h1 class="mt-4">Welcome!</h1>
 
 {#if $authStore.currentUser}
-	<h2 class="text-3xl">Current User: {$authStore.currentUser.email}</h2>
-	{#if !$loadingUserData && $userData?.settings?.newUser}
-		<h1>Go to Info to learn more</h1>
-	{/if}
 	<div class="mt-8">
-		<h3 class="mb-4 text-2xl font-semibold">Test List:</h3>
-
-		{#if $loadingUserData}
-			<p class="mb-4 text-gray-600">Loading data...</p>
-		{/if}
-		{#if !$loadingUserData}
-			<textarea class="h-96 w-96" bind:value={infoEdit}></textarea>
-			<textarea class="h-96 w-112" bind:value={courseEdit}></textarea>
-		{/if}
-		<button
-			class="border-2 bg-blue-200 px-4 py-2"
-			onclick={() => {
-				saveUserData();
-				saveCourseData();
-			}}
-		>
-			Save
-		</button>
-		<button class="border-2 bg-green-200 px-4 py-2" onclick={parseSelection}>
-			Parse Selection
-		</button>
-		<button class="border-2 bg-green-200 px-4 py-2" onclick={parseCourses}> Parse Courses </button>
-		<p class="mt-4 text-sm text-gray-600">
-			Selection data: {JSON.stringify(info)}
-		</p>
-		<p class="mt-4 text-sm text-gray-600">
-			Course data: {JSON.stringify(courses)}
-		</p>
+		<p class="text-2xl">I haven't made a home page yet, so use the sidebar to navigate to the other pages :)</p>
+		<!-- <a href="/app/requirements" class="font-dm-serif-display italic text-3xl">Credits</a> -->
 	</div>
-{:else}
-	<h2 class="text-3xl">Loading User...</h2>
+	{:else}
+	<h2 class="text-3xl">Loading...</h2>
 {/if}
-{#if isSaving}
-	<svg
-		class="mr-3 -ml-1 size-5 animate-spin text-black"
-		xmlns="http://www.w3.org/2000/svg"
-		fill="none"
-		viewBox="0 0 24 24"
-		><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
-		></circle><path
-			class="opacity-75"
-			fill="currentColor"
-			d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-		></path></svg
-	>
-{:else if isSaved}
-	<p class="text-2xl">Saved!</p>
-{/if}
-
-<button class="mt-4 border-2 bg-gray-200 px-4 py-2" onclick={() => auth.signOut()}>
-	Sign Out
-</button>

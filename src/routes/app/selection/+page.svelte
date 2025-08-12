@@ -101,7 +101,7 @@
 </svelte:head>
 
 <div class="flex flex-row gap-8">
-	<div class="grid h-fit flex-1 grid-cols-1 gap-x-12 gap-y-32 p-2 2xl:grid-cols-2">
+	<div class="grid h-fit flex-1 grid-cols-1 gap-x-12 gap-y-16 p-2 2xl:grid-cols-2">
 		<div>
 			<h1>Freshman</h1>
 			<div class="flex flex-row gap-6">
