@@ -11,10 +11,10 @@
 
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
-			console.log('Auth state changed:', user);
-			console.log('Current pathname:', window.location.pathname);
-			console.log('User exists:', !!user);
-			console.log('AuthStore loading:', $authStore.isLoading);
+			// console.log('Auth state changed:', user);
+			// console.log('Current pathname:', window.location.pathname);
+			// console.log('User exists:', !!user);
+			// console.log('AuthStore loading:', $authStore.isLoading);
 
 			authStore.update((curr) => {
 				return {

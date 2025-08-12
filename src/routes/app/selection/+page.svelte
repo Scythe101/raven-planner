@@ -80,7 +80,7 @@
 			selection = structuredClone(newUserData.selection); // Create a deep copy to avoid proxy issues
 			hasInitializedSelection = true;
 		} else if (newUserData && !newUserData.selection) {
-			console.log('User data exists but no selection found, initializing default selection');
+			// console.log('User data exists but no selection found, initializing default selection');
 			// Initialize default selection structure
 			const defaultSelection = {
 				freshman: { fall: [], spring: [] },
@@ -91,7 +91,7 @@
 			selection = defaultSelection;
 			hasInitializedSelection = true;
 		} else if (newUserData === null) {
-			console.log('User data is null - user may not exist in database');
+			// console.log('User data is null - user may not exist in database');
 		}
 	});
 </script>

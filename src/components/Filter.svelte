@@ -26,7 +26,7 @@
 				openFilter.set(null);
 			} else {
 				openFilter.set(id);
-				console.log(id);
+				// console.log(id);
 			}
 		}}
 	>
