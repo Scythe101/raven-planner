@@ -41,44 +41,26 @@
 		}
 	});
 
-	let redirect = $derived($page.url.pathname.startsWith('/app') && $page.url.pathname !== '/app/info' && info && info.settings?.newUser);
-    
-    $effect(() => {
-        if (redirect) {
-            goto('/app/info');
-        }
-    });
+	let redirect = $derived(
+		$page.url.pathname.startsWith('/app') &&
+			$page.url.pathname !== '/app/info' &&
+			info &&
+			info.settings?.newUser
+	);
+
+	$effect(() => {
+		if (redirect) {
+			goto('/app/info');
+		}
+	});
 
 	let { children } = $props();
 </script>
 
-<div class="h-screen-dvh flex gap-8 viewport">
+<div class="h-screen-dvh flex gap-8">
 	<Sidebar class="fixed h-full bg-white" />
 	<div class="flex-1 overflow-y-auto">
 		<!-- Shown only when viewport is too small -->
 		{@render children()}
 	</div>
 </div>
-<div class="items-center text-center justify-center warning">
-	<h1>Come back on a tablet or computer or device with a larger screen.</h1>
-</div>
-<style>
-	/* Hidden by default */
-	.viewport {
-		display: flex;
-	}
-
-	.warning {
-		display: none;
-	}
-
-	/* Show when width < 1024px OR height < 700px */
-	@media (max-width: 1000px), (max-height: 400px) {
-		.viewport {
-			display: none;
-		}
-		.warning {
-			display: flex;
-		}
-	}
-</style>

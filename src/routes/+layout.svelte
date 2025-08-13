@@ -49,6 +49,30 @@
 	let { children } = $props();
 </script>
 
-<main class="min-h-screen-dvh bg-white">
+<main class="min-h-screen-dvh viewport bg-white">
 	{@render children()}
 </main>
+<div class="warning items-center justify-center text-center">
+	<h1>Come back on a tablet or computer or device with a larger screen.</h1>
+</div>
+
+<style>
+	/* Hidden by default */
+	.viewport {
+		display: block;
+	}
+
+	.warning {
+		display: none;
+	}
+
+	/* Show when width < 1024px OR height < 700px */
+	@media (max-width: 1000px), (max-height: 400px) {
+		.viewport {
+			display: none;
+		}
+		.warning {
+			display: flex;
+		}
+	}
+</style>
