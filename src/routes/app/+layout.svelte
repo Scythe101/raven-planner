@@ -1,12 +1,9 @@
 <script>
 	import Sidebar from '$components/Sidebar.svelte';
-	import { auth } from '$lib/firebase/firebase.client';
-	import { authHandlers } from '$stores/AuthStore';
 	import { authStore } from '$stores/AuthStore';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { browser } from '$app/environment';
-	import { userData, loadUserData, loadingUserData, saveUserData } from '$stores/UserStore';
+	import { userData, loadUserData } from '$stores/UserStore';
 	let lastLoadedUserId;
 	let hasInitializedSelection;
 	let info = $derived($userData);

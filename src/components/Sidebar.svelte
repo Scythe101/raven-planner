@@ -1,7 +1,6 @@
 <script>
 	import { page } from '$app/state';
 
-	import { auth } from '$lib/firebase/firebase.client';
 	import { authHandlers } from '$stores/AuthStore';
 	let currentPage = $derived(page.url.pathname);
 </script>
@@ -10,7 +9,11 @@
 	class="shadow-sharp m-4
     box-content flex w-72 flex-col rounded-3xl bg-orange-50 p-6 ring-2 shadow-slate-900 ring-slate-900"
 >
-	<h1 class="">Raven Planner</h1>
+	<a class="flex flex-row items-center gap-4" href="/">
+		<img src="planner.png" alt="raven planner" class="w-12" />
+
+		<h2 class="w-fit">Raven Planner</h2>
+	</a>
 	<div class="font-noto-serif mt-12 flex flex-col gap-8 text-2xl font-medium">
 		<a
 			href="/app"
@@ -46,7 +49,6 @@
 		>
 	</div>
 	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium">
-		
 		<!-- <a
 			class={currentPage === '/app/settings'
 				? '-m-2 rounded-full bg-white p-2 ring-2 ring-slate-900'

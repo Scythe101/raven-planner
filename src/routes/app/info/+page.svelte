@@ -1,10 +1,8 @@
 <script>
-	import { auth } from '$lib/firebase/firebase.client';
-	import { authHandlers } from '$stores/AuthStore';
 	import { authStore } from '$stores/AuthStore';
 	import { goto } from '$app/navigation';
 
-	import { userData, loadUserData, loadingUserData, saveUserData } from '$stores/UserStore';
+	import { userData, loadUserData, saveUserData } from '$stores/UserStore';
 	let lastLoadedUserId;
 	let hasInitializedSelection;
 	let info = $derived($userData);
