@@ -29,6 +29,7 @@ const defaultUserData = {
 export const userData = writable(null);
 export const loadingUserData = writable(false);
 export const savingUserData = writable(false);
+
 export const currentSelection = writable('selection');
 
 export async function loadUserData() {

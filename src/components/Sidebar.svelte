@@ -1,10 +1,10 @@
 <script>
 	import { page } from '$app/state';
-	import { userData } from '$stores/UserStore';
+	import { userData, currentSelection } from '$stores/UserStore';
 
 	import { authHandlers } from '$stores/AuthStore';
 	let currentPage = $derived(page.url.pathname);
-	let selected;
+	let selected = $state('selection');
 </script>
 
 <div
@@ -51,6 +51,17 @@
 			href="/app/settings">Settings</a
 		> -->
 	</div>
+	<p>{selected}</p>
+	<select
+		bind:value={selected}
+		onchange={() => {
+			currentSelection.set(selected);
+		}}
+	>
+		<option value="selection">Profile 1</option>
+		<option value="selection1">Profile 2</option>
+		<option value="selection2">Profile 3</option>
+	</select>
 	<div class="font-noto-serif mt-12 flex flex-col text-lg font-medium">
 		<p class="mb-2 text-neutral-500">{$userData?.email}</p>
 		<button
