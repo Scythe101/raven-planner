@@ -8,11 +8,11 @@
 		if (!$userData) {
 			return null;
 		}
-		if ($currentSelection === "selection") {
+		if ($currentSelection === 'selection') {
 			return $userData.selection[year][semester];
-		} else if ($currentSelection === "selection1") {
+		} else if ($currentSelection === 'selection1') {
 			return $userData.selection1[year][semester];
-		} else if ($currentSelection === "selection2") {
+		} else if ($currentSelection === 'selection2') {
 			return $userData.selection2[year][semester];
 		}
 	});
@@ -80,6 +80,7 @@
 					? 'cursor-not-allowed opacity-50'
 					: 'cursor-pointer'}"
 				onclick={addCourse}
+				aria-label="Add course"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +97,7 @@
 				class="flex size-4 cursor-pointer items-center justify-center rounded-full bg-white ring-2 ring-slate-900
 				{length < 5 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}"
 				onclick={removeCourse}
+				aria-label="Remove course"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

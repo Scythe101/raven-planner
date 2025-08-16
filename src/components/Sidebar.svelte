@@ -1,8 +1,9 @@
 <script>
 	import { page } from '$app/state';
 	import { userData, currentSelection } from '$stores/UserStore';
+	import LogOut from '$components/LogOut.svelte';
+	import Settings from '$components/Settings.svelte';
 
-	import { authHandlers } from '$stores/AuthStore';
 	let currentPage = $derived(page.url.pathname);
 	let selected = $state('selection');
 </script>
@@ -43,30 +44,39 @@
 			href="/app/info">Info</a
 		>
 	</div>
-	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium">
-		<!-- <a
-			class={currentPage === '/app/settings'
-				? '-m-2 rounded-full bg-white p-2 ring-2 ring-slate-900'
-				: 'hover:white transition-all duration-200 hover:-m-2 hover:rounded-full hover:bg-white hover:p-2'}
-			href="/app/settings">Settings</a
-		> -->
-	</div>
-	<!-- <p>{selected}</p> -->
-	<select
-		bind:value={selected}
-		onchange={() => {
-			currentSelection.set(selected);
-		}}
-	>
-		<option value="selection">Profile 1</option>
-		<option value="selection1">Profile 2</option>
-		<option value="selection2">Profile 3</option>
-	</select>
-	<div class="font-noto-serif mt-12 flex flex-col text-lg font-medium">
-		<p class="mb-2 text-neutral-500">{$userData?.email}</p>
-		<button
-			class="-m-2 cursor-pointer rounded-full p-2 text-left ring-slate-900 transition-all duration-200 hover:bg-red-200 hover:ring-2"
-			onclick={() => authHandlers.logout()}>Sign Out</button
+	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium"></div>
+
+	<p class="mb-4 text-neutral-500 italic">{$userData?.email}</p>
+	<div class="flex flex-row items-center">
+		<Settings />
+		<div
+			class="mx-4 grid flex-1 rounded-full bg-white ring-2 ring-slate-900 transition-all hover:bg-slate-200"
 		>
+			<svg
+				class="relative right-10 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end transition-all forced-colors:hidden"
+				viewBox="0 0 16 16"
+				fill="currentColor"
+				aria-hidden="true"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+					clip-rule="evenodd"
+				></path>
+			</svg>
+			<select
+				class="col-start-1 row-start-1 h-12 w-full appearance-none pr-3 text-center focus:outline-0"
+				bind:value={selected}
+				onchange={() => {
+					currentSelection.set(selected);
+				}}
+			>
+				<option value="selection">Profile 1</option>
+				<option value="selection1">Profile 2</option>
+				<option value="selection2">Profile 3</option>
+			</select>
+		</div>
+
+		<LogOut />
 	</div>
 </div>

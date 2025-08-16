@@ -7,14 +7,14 @@
 	// const englishCredits = $derived.by(() => {});
 	let courses = $derived($courseData);
 	let userSelection = $derived.by(() => {
-		if(!$userData || !$currentSelection ) {
+		if (!$userData || !$currentSelection) {
 			return null;
 		}
-		if ($currentSelection === "selection") {
+		if ($currentSelection === 'selection') {
 			return $userData.selection;
-		} else if ($currentSelection === "selection1") {
+		} else if ($currentSelection === 'selection1') {
 			return $userData.selection1;
-		} else if ($currentSelection === "selection2") {
+		} else if ($currentSelection === 'selection2') {
 			return $userData.selection2;
 		}
 	});
@@ -202,7 +202,7 @@
 			return;
 		}
 		Object.values(flatSelection).forEach((sel) => {
-			if (sel === 'Unscheduled') {
+			if (sel === 'Unscheduled' || sel === 'Athletics PE Credit') {
 				return;
 			}
 			if (courses[sel]?.weighted === true) {
@@ -213,7 +213,7 @@
 			count += 1;
 		});
 		if (count === 0) {
-			return 0.00.toFixed(2);
+			return (0.0).toFixed(2);
 		}
 		return (temp / count).toFixed(2);
 	});

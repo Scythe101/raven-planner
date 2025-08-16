@@ -12,3 +12,6 @@ A course planning web application for students to visualize their four-year acad
 - **Easy Searching**: You are able to search for classes, and filter them by type, homework time, difficulty, and more!
 - **User Authentication**: Login with Google and GitHub (through Google Firebase)
 - **Data Persistence**: Your course selections are saved to the cloud
+
+## Credits
+[Heroicons](https://heroicons.com/) was used for a lot of the icons in the application.

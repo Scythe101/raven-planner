@@ -3,7 +3,7 @@
 	import SearchCourses from '$components/SearchCourses.svelte';
 	import { authStore } from '$stores/AuthStore';
 	import { loadCourseData, courseData } from '$stores/CourseStore';
-	import { loadUserData, userData, saveUserData, currentSelection } from '$stores/UserStore';
+	import { loadUserData, userData, currentSelection } from '$stores/UserStore';
 	import { writable } from 'svelte/store';
 
 	let selection = $state({
@@ -77,14 +77,15 @@
 
 		if (newUserData) {
 			// console.log('Setting selection from user data:', newUserData.selection);
-			if($currentSelection === "selection") {
+			if ($currentSelection === 'selection') {
 				selection = structuredClone(newUserData.selection);
-			} else if ($currentSelection === "selection1") {
+			} else if ($currentSelection === 'selection1') {
 				selection = structuredClone(newUserData.selection1);
-			} else if ($currentSelection === "selection2") {
+			} else if ($currentSelection === 'selection2') {
 				selection = structuredClone(newUserData.selection2);
 			}
-		} else if (newUserData && !newUserData.selection) {
+		}
+		if (newUserData && !newUserData.selection) {
 			// console.log('User data exists but no selection found, initializing default selection');
 			// Initialize default selection structure
 			const defaultSelection = {
