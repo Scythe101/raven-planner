@@ -24,12 +24,12 @@ const defaultUserData = {
 	settings: {
 		theme: 'light',
 		newUser: true
-	},
-
+	}
 };
 export const userData = writable(null);
 export const loadingUserData = writable(false);
 export const savingUserData = writable(false);
+export const currentSelection = writable('selection');
 
 export async function loadUserData() {
 	const currentUser = get(authStore).currentUser;
@@ -59,7 +59,7 @@ export async function loadUserData() {
 			const structuredData = {
 				selection: data.selection || defaultUserData.selection,
 				settings: data.settings || defaultUserData.settings,
-				email: currentUser.email,
+				email: currentUser.email
 			};
 
 			userData.set(structuredData);

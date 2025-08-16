@@ -89,7 +89,7 @@
 		//FIXED: currently doesnt work for 2 classes in 1 semester, ie calc 3/linear algebra
 		flatSelection.forEach((sel) => {
 			let creditsToAdd = 10;
-			if (sel == "Athletics PE Credit") {
+			if (sel == 'Athletics PE Credit') {
 				creditsToAdd = 5;
 			}
 			if (sel === 'Unscheduled') return;
@@ -105,14 +105,13 @@
 			}
 			if (selType) {
 				// this logic is absolutely horribly scuffed
-				if ((credits[selType]+creditsToAdd) <= creditRequirements[selType]) {
+				if (credits[selType] + creditsToAdd <= creditRequirements[selType]) {
 					credits[selType] += creditsToAdd;
-				} else if((credits[selType] + 5) <= creditRequirements[selType]) {
-					creditsToAdd-=5;
+				} else if (credits[selType] + 5 <= creditRequirements[selType]) {
+					creditsToAdd -= 5;
 					credits[selType] += creditsToAdd;
 					excess += 5;
-				} 
-				else {
+				} else {
 					excess += creditsToAdd;
 				}
 			}
@@ -183,6 +182,27 @@
 			'Fitness Walking'
 		])
 	);
+
+	// calculate max possible gpa
+	let maxGPA = $derived.by(() => {
+		let temp = 0.0;
+		let count = 0.0;
+		if (!flatSelection || !courses) {
+			return;
+		}
+		Object.values(flatSelection).forEach((sel) => {
+			if (sel === 'Unscheduled') {
+				return;
+			}
+			if (courses[sel]?.weighted === true) {
+				temp += 5;
+			} else {
+				temp += 4;
+			}
+			count += 1;
+		});
+		return (temp / count).toFixed(2);
+	});
 </script>
 
 <svelte:head>
@@ -265,6 +285,11 @@
 	<Checkbox checked={english10Req} text="English 10" />
 	<Checkbox checked={english11Req} text="English 11" />
 	<Checkbox checked={english12Req} text="English 12" />
+</div>
+<div class="mt-8">
+	<h2>Max Possible GPA</h2>
+	<!-- <p class="text-xl">This calculates the max possible GPA you can get from your schedule:</p> -->
+	<p class="text-xl">{maxGPA}</p>
 </div>
 <!-- <button
 	onclick={() => {

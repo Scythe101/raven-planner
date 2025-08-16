@@ -36,7 +36,7 @@
 
 	$effect(() => {
 		if (browser && user && !$authStore.isLoading && $page.url.pathname === '/auth') {
-			goto('/app');
+			goto('/app/selection');
 		}
 	});
 

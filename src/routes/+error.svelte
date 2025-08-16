@@ -4,7 +4,7 @@
 	let url = $state('/');
 	$effect(() => {
 		if ($authStore.currentUser) {
-			url = '/app';
+			url = '/app/selection';
 		}
 	});
 </script>
