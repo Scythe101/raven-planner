@@ -57,11 +57,14 @@ export async function loadUserData() {
 
 		if (userSnap.exists()) {
 			const data = userSnap.data();
-			const structuredData = {
+			let structuredData = {
 				selection: data.selection || defaultUserData.selection,
+				selection1: data.selection1 || defaultUserData.selection,
+				selection2: data.selecetion2 || defaultUserData.selection,
 				settings: data.settings || defaultUserData.settings,
 				email: currentUser.email
 			};
+			
 
 			userData.set(structuredData);
 			return structuredData;

@@ -3,10 +3,21 @@
 	import ProgressBar from '$components/ProgressBar.svelte';
 	import { authStore } from '$stores/AuthStore';
 	import { courseData, loadCourseData } from '$stores/CourseStore';
-	import { userData, loadUserData } from '$stores/UserStore';
+	import { userData, loadUserData, currentSelection } from '$stores/UserStore';
 	// const englishCredits = $derived.by(() => {});
 	let courses = $derived($courseData);
-	let userSelection = $derived($userData?.selection);
+	let userSelection = $derived.by(() => {
+		if(!$userData || !$currentSelection ) {
+			return null;
+		}
+		if ($currentSelection === "selection") {
+			return $userData.selection;
+		} else if ($currentSelection === "selection1") {
+			return $userData.selection1;
+		} else if ($currentSelection === "selection2") {
+			return $userData.selection2;
+		}
+	});
 	let lastLoadedUserId = null;
 	let lastCoursesLoaded = null;
 	let hasInitializedSelection = false;

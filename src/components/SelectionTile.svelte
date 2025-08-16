@@ -1,14 +1,27 @@
 <script>
-	import { userData, saveUserData } from '$stores/UserStore';
+	import { userData, saveUserData, currentSelection } from '$stores/UserStore';
 	let { fall, courses, year, courseSelected } = $props();
 
 	const semester = fall === 'true' ? 'fall' : 'spring';
+
+	const currentSelectionData = $derived.by(() => {
+		if (!$userData) {
+			return null;
+		}
+		if ($currentSelection === "selection") {
+			return $userData.selection[year][semester];
+		} else if ($currentSelection === "selection1") {
+			return $userData.selection1[year][semester];
+		} else if ($currentSelection === "selection2") {
+			return $userData.selection2[year][semester];
+		}
+	});
 
 	const length = $derived.by(() => {
 		if (!$userData) {
 			return 0;
 		}
-		return $userData.selection[year][semester].length;
+		return currentSelectionData.length;
 	});
 
 	function isButtonSelected(index) {
@@ -16,7 +29,7 @@
 			return false;
 		}
 
-		const expectedPath = `selection.${year}.${semester}[${index}]`;
+		const expectedPath = `${$currentSelection}.${year}.${semester}[${index}]`;
 		return $courseSelected === expectedPath;
 	}
 
@@ -29,7 +42,7 @@
 		if (length > 5) {
 			return;
 		}
-		currentUserData.selection[year][semester].push('Unscheduled');
+		currentUserData[$currentSelection][year][semester].push('Unscheduled');
 		userData.set(currentUserData);
 		saveUserData();
 	}
@@ -43,7 +56,7 @@
 		if (length < 5) {
 			return;
 		}
-		currentUserData.selection[year][semester].splice(length - 1, 1);
+		currentUserData[$currentSelection][year][semester].splice(length - 1, 1);
 		userData.set(currentUserData);
 		saveUserData();
 	}
@@ -105,11 +118,8 @@
 						? '-m-2 bg-white p-2 ring-2'
 						: ''}"
 					onclick={() => {
-						// courseSelected = null;
-						courseSelected.set(`selection.${year}.${semester}[${i}]`);
-						// setTimeout(() => {
-						// 	console.log(courseSelection);
-						// }, 0);
+						let path = `${$currentSelection}.${year}.${semester}[${i}]`;
+						courseSelected.set(path);
 					}}>{courses[i]}</button
 				>
 			{/each}

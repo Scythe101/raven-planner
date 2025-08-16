@@ -3,7 +3,7 @@
 	import SearchCourses from '$components/SearchCourses.svelte';
 	import { authStore } from '$stores/AuthStore';
 	import { loadCourseData, courseData } from '$stores/CourseStore';
-	import { loadUserData, userData, saveUserData } from '$stores/UserStore';
+	import { loadUserData, userData, saveUserData, currentSelection } from '$stores/UserStore';
 	import { writable } from 'svelte/store';
 
 	let selection = $state({
@@ -75,10 +75,15 @@
 	$effect(() => {
 		const newUserData = $userData;
 
-		if (newUserData?.selection) {
+		if (newUserData) {
 			// console.log('Setting selection from user data:', newUserData.selection);
-			selection = structuredClone(newUserData.selection); // Create a deep copy to avoid proxy issues
-			hasInitializedSelection = true;
+			if($currentSelection === "selection") {
+				selection = structuredClone(newUserData.selection);
+			} else if ($currentSelection === "selection1") {
+				selection = structuredClone(newUserData.selection1);
+			} else if ($currentSelection === "selection2") {
+				selection = structuredClone(newUserData.selection2);
+			}
 		} else if (newUserData && !newUserData.selection) {
 			// console.log('User data exists but no selection found, initializing default selection');
 			// Initialize default selection structure
