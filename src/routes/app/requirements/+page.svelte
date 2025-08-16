@@ -212,6 +212,9 @@
 			}
 			count += 1;
 		});
+		if (count === 0) {
+			return 0.00.toFixed(2);
+		}
 		return (temp / count).toFixed(2);
 	});
 </script>
