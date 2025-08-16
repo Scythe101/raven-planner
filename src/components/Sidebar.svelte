@@ -51,7 +51,7 @@
 			href="/app/settings">Settings</a
 		> -->
 	</div>
-	<p>{selected}</p>
+	<!-- <p>{selected}</p> -->
 	<select
 		bind:value={selected}
 		onchange={() => {
