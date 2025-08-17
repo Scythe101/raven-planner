@@ -114,7 +114,7 @@
 			info.settings.newUser = false;
 			userData.set(info);
 			saveUserData();
-			goto('/app');
+			goto('/app/selection');
 		}}
 		class="font-noto-serif shadow-sharp hover:shadow-sharp-hover mt-8 mb-4 ml-0.5 flex h-12 w-fit cursor-pointer flex-row items-center justify-center gap-3 rounded-full border-2 border-slate-900 bg-white px-4 py-2 text-lg font-semibold shadow-slate-900 transition-all duration-200 hover:-translate-0.5"
 		>I understand and read everything, let me access the website.</button
