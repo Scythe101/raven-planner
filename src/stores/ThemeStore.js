@@ -17,7 +17,7 @@ export async function changeTheme(theme) {
 export async function loadTheme() {
 	const data = get(userData);
 	if (!data) {
-		setMode('system');
+		setMode('light');
 	} else if (data?.settings?.theme) {
 		setMode(data.settings.theme);
 	}

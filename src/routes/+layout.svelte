@@ -12,6 +12,7 @@
 	const user = $derived($authStore.currentUser);
 
 	onMount(() => {
+		loadTheme();
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
 			// console.log('Auth state changed:', user);
 			// console.log('Current pathname:', window.location.pathname);

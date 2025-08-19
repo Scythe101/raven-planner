@@ -3,8 +3,9 @@
 	let currentPage = $derived(page.url.pathname);
 </script>
 
+<!-- currently disabled -->
 <a
-	class="flex size-12 items-center justify-center rounded-full bg-white ring-2 ring-slate-900 transition-all duration-200 hover:rotate-90 hover:bg-slate-200"
+	class="group flex justify-center items-center size-12 rounded-full bg-white ring-2 ring-slate-900 transition-all duration-200 hover:bg-slate-200 pointer-events-none opacity-50"
 	href="/app/settings"
 	aria-label="Settings"
 >
@@ -14,7 +15,7 @@
 		viewBox="0 0 24 24"
 		stroke-width="1.5"
 		stroke="currentColor"
-		class="size-6"
+		class="size-6 flex justify-center items-center group-hover:rotate-90 transition-transform duration-200"
 	>
 		<path
 			stroke-linecap="round"

@@ -460,8 +460,12 @@ input {
 	.github-logo {
 		@apply text-black;
 	}
+	.visible-link {
+		@apply font-noto-serif text-sky-600 underline;
+	}
+	
 }
-
+/* 
 .dark {
 	@apply text-ctp-rosewater-50;
 	@apply bg-ctp-base;
@@ -486,4 +490,4 @@ input {
 	.sidebar-item-selected {
 		@apply ring-ctp-rosewater-100 bg-ctp-surface1;
 	}
-}
+} */
