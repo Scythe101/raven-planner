@@ -6,6 +6,8 @@
 	import { page } from '$app/stores';
 	import { auth } from '$lib/firebase/firebase.client';
 	import { authStore } from '$stores/AuthStore';
+	import { loadTheme } from '$stores/ThemeStore';
+	import { ModeWatcher } from 'mode-watcher';
 
 	const user = $derived($authStore.currentUser);
 
@@ -49,7 +51,8 @@
 	let { children } = $props();
 </script>
 
-<main class="min-h-screen-dvh viewport bg-white">
+<ModeWatcher />
+<main class="min-h-screen-dvh viewport">
 	{@render children()}
 </main>
 <div class="warning items-center justify-center text-center">

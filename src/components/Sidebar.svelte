@@ -9,6 +9,7 @@
 </script>
 
 <div
+	id="sidebar"
 	class="shadow-sharp m-4
     box-content flex w-72 flex-col rounded-3xl bg-orange-50 p-6 ring-2 shadow-slate-900 ring-slate-900"
 >
@@ -20,8 +21,8 @@
 	<div class="font-noto-serif mt-12 flex flex-col gap-8 text-2xl font-medium">
 		<a
 			class={currentPage === '/app/selection'
-				? '-m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
-				: 'hover:white appearance-none transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
+				? 'sidebar-item-selected -m-3 rounded-full p-3 ring-2 ring-slate-900'
+				: 'hover:white sidebar-item appearance-none transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
 			href="/app/selection">Course Selection</a
 		>
 		<a

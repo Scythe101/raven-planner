@@ -4,9 +4,12 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { userData, loadUserData } from '$stores/UserStore';
+	import { loadTheme } from '$stores/ThemeStore';
+	import { setMode } from 'mode-watcher';
 	let lastLoadedUserId;
 	let hasInitializedSelection;
 	let info = $derived($userData);
+	let lastTheme = 'system';
 
 	$effect(() => {
 		const currentUser = $authStore.currentUser;
@@ -26,6 +29,7 @@
 					console.error('Failed to load user data:', error);
 					lastLoadedUserId = null;
 				});
+				loadTheme();
 			}
 		}
 	});
@@ -48,6 +52,16 @@
 	$effect(() => {
 		if (redirect) {
 			goto('/app/info');
+		}
+	});
+
+	$effect(() => {
+		const currentTheme = $userData?.settings?.theme || 'system';
+
+		// Only set mode if theme has actually changed
+		if (currentTheme !== lastTheme) {
+			setMode(currentTheme);
+			lastTheme = currentTheme;
 		}
 	});
 

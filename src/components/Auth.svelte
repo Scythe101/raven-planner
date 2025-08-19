@@ -11,14 +11,14 @@
 	<p class=" mt-2 text-lg">Make sure to sign in with the one you made the account with!</p>
 	<div class="mt-24 flex flex-col gap-y-4">
 		<button
-			class="font-noto-serif shadow-sharp hover:shadow-sharp-hover flex h-16 w-72 cursor-pointer flex-row items-center justify-center gap-3 rounded-full bg-white px-4 py-2 text-lg font-semibold ring-2 shadow-slate-900 ring-slate-900 transition-all duration-200 hover:-translate-0.5"
+			class="auth-button font-noto-serif shadow-sharp hover:shadow-sharp-hover flex h-16 w-72 cursor-pointer flex-row items-center justify-center gap-3 rounded-full px-4 py-2 text-lg font-semibold ring-2 shadow-slate-900 ring-slate-900 transition-all duration-200 hover:-translate-0.5"
 			on:click={authHandlers.googleSignIn}
 		>
 			<GoogleLogo />
 			Continue with Google
 		</button>
 		<button
-			class="font-noto-serif shadow-sharp hover:shadow-sharp-hover flex h-16 w-72 cursor-pointer flex-row items-center justify-center gap-3 rounded-full bg-white px-4 py-2 text-lg font-semibold ring-2 shadow-slate-900 ring-slate-900 transition-all duration-200 hover:-translate-0.5"
+			class="auth-button font-noto-serif shadow-sharp hover:shadow-sharp-hover flex h-16 w-72 cursor-pointer flex-row items-center justify-center gap-3 rounded-full px-4 py-2 text-lg font-semibold ring-2 shadow-slate-900 ring-slate-900 transition-all duration-200 hover:-translate-0.5"
 			on:click={authHandlers.githubSignIn}
 		>
 			<GitHubLogo />

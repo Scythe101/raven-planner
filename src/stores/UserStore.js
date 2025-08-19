@@ -22,7 +22,7 @@ const defaultUserData = {
 		}
 	},
 	settings: {
-		theme: 'light',
+		theme: 'system',
 		newUser: true
 	}
 };
@@ -64,7 +64,6 @@ export async function loadUserData() {
 				settings: data.settings || defaultUserData.settings,
 				email: currentUser.email
 			};
-			
 
 			userData.set(structuredData);
 			return structuredData;
