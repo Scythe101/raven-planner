@@ -41,7 +41,7 @@
 		<a
 			class={currentPage === '/app/info'
 				? 'sidebar-item-selected -m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
-				: 'sidebar-item transition-all duration-200 hover:-m-2 hover:rounded-full hover:bg-white  hover:p-2'}
+				: 'sidebar-item transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
 			href="/app/info">Info</a
 		>
 	</div>
