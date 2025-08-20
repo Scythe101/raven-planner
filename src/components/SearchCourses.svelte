@@ -132,7 +132,7 @@
 </script>
 
 <div
-	class="shadow-sharp sticky w-70 2xl:w-92 top-4 mr-4 mb-4 flex h-[calc(100dvh-2rem)] flex-col overflow-x-hidden rounded-3xl bg-orange-50 p-4 ring-2 shadow-slate-900 ring-slate-900 {courseSelection
+	class="shadow-sharp sticky top-4 mr-4 mb-4 flex h-[calc(100dvh-2rem)] w-70 flex-col overflow-x-hidden rounded-3xl bg-orange-50 p-4 ring-2 shadow-slate-900 ring-slate-900 2xl:w-92 {courseSelection
 		? 'overflow-y-scroll'
 		: 'overflow-y-hidden'}"
 >
@@ -161,7 +161,7 @@
 		<input
 			type="text"
 			bind:value={searchQuery}
-			class="mb-2 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 placeholder:text-slate-400 placeholder:italic"
+			class="search mb-2 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 placeholder:text-slate-400 placeholder:italic"
 			placeholder="Search for a class..."
 		/>
 		<Filters

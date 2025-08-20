@@ -37,7 +37,7 @@
 </script>
 
 <button
-	class="shadow-sharp hover:shadow-sharp-hover ml-1 flex h-30 w-full flex-col rounded-lg border-2 border-slate-900 bg-rose-100 p-3 text-left align-top shadow-slate-900 transition-all duration-200 hover:-translate-0.5 hover:bg-rose-200"
+	class="course-tile shadow-sharp hover:shadow-sharp-hover ml-1 flex h-30 w-full flex-col rounded-lg border-2 border-slate-900 bg-rose-100 p-3 text-left align-top shadow-slate-900 transition-all duration-200 hover:-translate-0.5 hover:bg-rose-200"
 	onclick={() => {
 		// console.log('courseSelected path:', courseSelected);
 		// console.log('Current userData:', $userData);

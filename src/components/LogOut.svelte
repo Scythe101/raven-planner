@@ -14,6 +14,7 @@
 </script>
 
 <button
+	id="logout-button"
 	class="group/logout flex size-12 cursor-pointer items-center justify-center rounded-full bg-red-200 p-2 text-left ring-2 ring-slate-900 transition-all duration-200 hover:bg-red-300"
 	onclick={() => authHandlers.logout()}
 	onmouseenter={handleMouseEnter}

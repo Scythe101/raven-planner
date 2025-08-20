@@ -100,7 +100,7 @@
 	<input
 		type="text"
 		bind:value={searchQuery}
-		class="shadow-sharp hover:shadow-sharp-hover focus:shadow-sharp mb-2 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 duration-100 placeholder:text-slate-400 placeholder:italic hover:-translate-0.5 focus:translate-0"
+		class="search shadow-sharp hover:shadow-sharp-hover focus:shadow-sharp mb-2 ml-1 h-12 rounded-full bg-white p-4 ring-2 ring-slate-900 duration-100 placeholder:text-slate-400 placeholder:italic hover:-translate-0.5 focus:translate-0"
 		placeholder="Search for a class..."
 	/>
 	<Filters

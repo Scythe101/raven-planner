@@ -21,37 +21,38 @@
 	<div class="font-noto-serif mt-12 flex flex-col gap-8 text-2xl font-medium">
 		<a
 			class={currentPage === '/app/selection'
-				? 'bg-white -m-3 rounded-full p-3 ring-2 ring-slate-900'
-				: 'hover:white appearance-none transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
+				? 'sidebar-item-selected -m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
+				: 'sidebar-item appearance-none transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
 			href="/app/selection">Course Selection</a
 		>
 		<a
 			class={currentPage.startsWith('/app/profiles')
-				? '-m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
-				: 'hover:white appearance-none transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
+				? 'sidebar-item-selected -m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
+				: 'sidebar-item appearance-none  transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
 			href="/app/profiles">Course Profiles</a
 		>
 		<a
 			href="/app/requirements"
 			class={currentPage === '/app/requirements'
-				? '-m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
-				: 'hover:white transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
+				? 'sidebar-item-selected -m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
+				: 'sidebar-item transition-all duration-200 hover:-m-3 hover:rounded-full hover:bg-white hover:p-3'}
 			>Graduation Reqs</a
 		>
 		<a
 			class={currentPage === '/app/info'
-				? '-m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
-				: 'hover:white transition-all duration-200 hover:-m-2 hover:rounded-full hover:bg-white hover:p-2'}
+				? 'sidebar-item-selected -m-3 rounded-full bg-white p-3 ring-2 ring-slate-900'
+				: 'sidebar-item transition-all duration-200 hover:-m-2 hover:rounded-full hover:bg-white  hover:p-2'}
 			href="/app/info">Info</a
 		>
 	</div>
 	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium"></div>
 
-	<p class="mb-4 text-neutral-500 italic">{$userData?.email}</p>
+	<p class="text-secondary mb-4 italic">{$userData?.email}</p>
 	<div class="flex flex-row items-center">
 		<!-- settings is currently disabled -->
 		<Settings />
 		<div
+			id="profile-selector"
 			class="mx-4 grid flex-1 rounded-full bg-white ring-2 ring-slate-900 transition-all hover:bg-slate-200"
 		>
 			<svg

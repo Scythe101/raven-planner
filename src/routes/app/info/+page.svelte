@@ -48,7 +48,7 @@
 <p class="mt-2 text-xl">
 	If you are in Conservatory or have <a
 		target="_blank"
-		class="text-sky-700 underline"
+		class="visible-link"
 		href="http://www.ccaravensathletics.com/pe-credit.html">athletics PE credit</a
 	>, press the "+" button in the top right corner of the course selection tiles to be able to add it
 	to your schedule planner!
@@ -60,7 +60,7 @@
 	This should not be taken as academic advice, it's just a tool to help you plan. If you are in need
 	of academic help, <a
 		target="_blank"
-		class="text-sky-700 underline"
+		class="visible-link"
 		href="https://sites.google.com/sduhsd.net/cca-counseling/home"
 		>please reach out to a counselor</a
 	>.
@@ -72,7 +72,7 @@
 <p class="mt-2 text-xl">
 	All the course profile information was copied directly from the <a
 		target="_blank"
-		class="text-sky-700 underline"
+		class="visible-link"
 		href="https://sites.google.com/sduhsd.net/cca-counseling/home">counselors' website</a
 	>, and some information may be dependent on the teacher.
 </p>
@@ -91,21 +91,20 @@
 	The source code for this whole project is on <a
 		target="_blank"
 		href="https://github.com/Scythe101/raven-planner"
-		class="text-sky-700 underline">GitHub</a
+		class="visible-link">GitHub</a
 	>!
 </p>
 <p class="mt-2 text-xl">This took me around a month to build.</p>
 <p class="mt-2 mb-4 text-xl">
-	<a target="_blank" href="https://svelte.dev/" class="text-sky-700 underline">Svelte</a> is my
-	framework of choice,
-	<a target="_blank" href="https://firebase.google.com" class="text-sky-700 underline">Firebase</a>
+	<a target="_blank" href="https://svelte.dev/" class="visible-link">Svelte</a> is my framework of
+	choice,
+	<a target="_blank" href="https://firebase.google.com" class="visible-link">Firebase</a>
 	is the database and authentication,
-	<a target="_blank" href="https://figma.com/" class="text-sky-700 underline">Figma</a>
+	<a target="_blank" href="https://figma.com/" class="visible-link">Figma</a>
 	was used for designing, and
-	<a target="_blank" href="https://code.visualstudio.com/" class="text-sky-700 underline">VS Code</a
-	>
-	and <a target="_blank" href="https://zed.dev/" class="text-sky-700 underline">Zed</a> are where this
-	website was written.
+	<a target="_blank" href="https://code.visualstudio.com/" class="visible-link">VS Code</a>
+	and <a target="_blank" href="https://zed.dev/" class="visible-link">Zed</a> are where this website
+	was written.
 </p>
 
 {#if !info || info?.settings?.newUser}

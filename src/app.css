@@ -199,6 +199,8 @@
 	--catppuccin-color-mantle: #1e2030;
 	--catppuccin-color-crust: #181926;
 
+	--catppuccin-color-lavender-975: #535974;
+
 	--color-ctp-rosewater: var(--catppuccin-color-rosewater);
 	--color-ctp-rosewater-500: var(--catppuccin-color-rosewater-500);
 	--color-ctp-rosewater-400: var(--catppuccin-color-rosewater-400);
@@ -380,6 +382,8 @@
 	--color-ctp-mantle: var(--catppuccin-color-mantle);
 	--color-ctp-crust: var(--catppuccin-color-crust);
 
+	--color-ctp-lavender-975: var(--catppuccin-color-lavender-975);
+
 	--font-noto-serif: 'Noto Serif', serif;
 	--font-dm-serif-display: 'DM Serif Display', serif;
 	--font-dm-serif-text: 'DM Serif Text', serif;
@@ -463,14 +467,16 @@ input {
 	.visible-link {
 		@apply font-noto-serif text-sky-600 underline;
 	}
-	
+	.text-secondary {
+		@apply text-slate-500;
+	}
 }
-/* 
+
 .dark {
 	@apply text-ctp-rosewater-50;
 	@apply bg-ctp-base;
 	#chonky-button {
-		@apply bg-ctp-surface0 shadow-ctp-rosewater-600 border-ctp-rosewater-600;
+		@apply bg-ctp-surface0 shadow-ctp-rosewater border-ctp-rosewater;
 	}
 	.visible-link {
 		@apply font-noto-serif text-ctp-blue-300 underline;
@@ -482,12 +488,36 @@ input {
 		@apply text-white;
 	}
 	#sidebar {
-		@apply bg-ctp-surface0 shadow-ctp-rosewater-600 ring-ctp-rosewater-600;
+		@apply bg-ctp-surface0 shadow-ctp-rosewater ring-ctp-rosewater;
 	}
 	.sidebar-item {
-		@apply hover:bg-ctp-blue-900;
+		@apply hover:bg-ctp-surface1;
 	}
 	.sidebar-item-selected {
-		@apply ring-ctp-rosewater-100 bg-ctp-surface1;
+		@apply ring-ctp-rosewater bg-ctp-surface1;
 	}
-} */
+	.text-secondary {
+		@apply text-ctp-lavender-800;
+	}
+	#settings-button {
+		@apply bg-ctp-surface1 ring-ctp-rosewater hover:bg-ctp-surface2;
+	}
+	#logout-button {
+		@apply bg-ctp-red-950 ring-ctp-rosewater hover:bg-ctp-red-800;
+	}
+	#profile-selector {
+		@apply bg-ctp-surface1 hover:bg-ctp-surface2 ring-ctp-rosewater;
+	}
+	.course-tile {
+		@apply bg-ctp-surface1 hover:bg-ctp-surface2 shadow-ctp-lavender-900 border-ctp-lavender-900;
+	}
+	.search {
+		@apply bg-ctp-surface0 placeholder:text-ctp-rosewater-700 ring-ctp-rosewater shadow-ctp-rosewater text-ctp-rosewater-100;
+	}
+	.clear-filter {
+		@apply bg-ctp-pink-950 hover:bg-ctp-pink-900;
+	}
+	.class-filter {
+		@apply ring-ctp-rosewater;
+	}
+}

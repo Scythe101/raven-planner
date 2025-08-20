@@ -1,5 +1,6 @@
 <script>
-	import Filter from './Filter.svelte';
+	import Filter from '$components/Filter.svelte';
+	import { mode } from 'mode-watcher';
 	let {
 		typeFilter,
 		openFilter,
@@ -15,7 +16,7 @@
 	let color = $state(null);
 
 	function getColorClasses(color) {
-		const colorMap = {
+		let colorMap = {
 			red: 'bg-red-200 hover:bg-red-300',
 			orange: 'bg-orange-200 hover:bg-orange-300',
 			yellow: 'bg-yellow-200 hover:bg-yellow-300',
@@ -23,6 +24,16 @@
 			sky: 'bg-sky-200 hover:bg-sky-300',
 			purple: 'bg-purple-200 hover:bg-purple-300'
 		};
+		if (mode.current === 'dark') {
+			colorMap = {
+				red: 'bg-ctp-red-950 hover:bg-ctp-red-900',
+				orange: 'bg-ctp-peach-950 hover:bg-ctp-peach-900',
+				yellow: 'bg-ctp-yellow-950 hover:bg-ctp-yellow-900',
+				green: 'bg-ctp-green-950 hover:bg-ctp-green-950',
+				sky: 'bg-ctp-blue-950 hover:bg-ctp-blue-900',
+				purple: 'bg-ctp-lavender-950 hover:bg-ctp-lavender-900'
+			};
+		}
 		return colorMap[color] || '';
 	}
 
@@ -74,7 +85,7 @@
 	<Filter id="academic" {openFilter} filter={academicFilter} color="sky" />
 	<Filter id="weighted" {openFilter} filter={weightedFilter} color="purple" />
 	<button
-		class="font-noto-serif -mx-2 -my-1 h-fit cursor-pointer rounded-full bg-gray-200 px-2 py-1 ring-slate-900 duration-100 hover:bg-gray-300 hover:ring-1"
+		class="class-filter clear-filter font-noto-serif -mx-2 -my-1 h-fit cursor-pointer rounded-full bg-gray-200 px-2 py-1 ring-slate-900 duration-100 hover:bg-gray-300 hover:ring-1"
 		onclick={() => {
 			openFilter.set(null);
 			typeFilter.set('');
@@ -96,7 +107,7 @@
 			<button class="cursor-pointer" onclick={() => filter.set('math')}>Math</button> -->
 		{#each options as option, i (i)}
 			<button
-				class="-mx-2 -my-1 cursor-pointer rounded-full px-2 py-1 ring-slate-900 duration-100 {getColorClasses(
+				class="class-filter -mx-2 -my-1 cursor-pointer rounded-full px-2 py-1 ring-slate-900 duration-100 {getColorClasses(
 					color
 				)} {$filter === option.toLowerCase() ? 'ring-2' : 'hover:ring-1'}"
 				onclick={() => {
