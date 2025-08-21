@@ -132,6 +132,7 @@
 </script>
 
 <div
+	id="search-courses"
 	class="shadow-sharp sticky top-4 mr-4 mb-4 flex h-[calc(100dvh-2rem)] w-70 flex-col overflow-x-hidden rounded-3xl bg-orange-50 p-4 ring-2 shadow-slate-900 ring-slate-900 2xl:w-92 {courseSelection
 		? 'overflow-y-scroll'
 		: 'overflow-y-hidden'}"
@@ -148,7 +149,7 @@
 	>
 		<div class="mb-4 flex w-full flex-row">
 			<button
-				class="font-noto-serif shadow-sharp hover:shadow-sharp-hover h-12 w-fit cursor-pointer rounded-full bg-white p-2 ring-2 ring-slate-900 duration-200 hover:-translate-0.5"
+				class="flat-button font-noto-serif shadow-sharp hover:shadow-sharp-hover h-12 w-fit cursor-pointer rounded-full bg-white p-2 ring-2 ring-slate-900 duration-200 hover:-translate-0.5"
 				onclick={() => {
 					courseSelected.set(null);
 					isSelected = false;

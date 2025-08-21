@@ -509,7 +509,7 @@ input {
 		@apply bg-ctp-surface1 hover:bg-ctp-surface2 ring-ctp-rosewater;
 	}
 	.course-tile {
-		@apply bg-ctp-surface1 hover:bg-ctp-surface2 shadow-ctp-lavender-900 border-ctp-lavender-900;
+		@apply bg-ctp-surface1 hover:bg-ctp-surface2 shadow-ctp-lavender border-ctp-lavender;
 	}
 	.search {
 		@apply bg-ctp-surface0 placeholder:text-ctp-rosewater-700 ring-ctp-rosewater shadow-ctp-rosewater text-ctp-rosewater-100;
@@ -519,5 +519,14 @@ input {
 	}
 	.class-filter {
 		@apply ring-ctp-rosewater;
+	}
+	#search-courses {
+		@apply bg-ctp-surface0 shadow-ctp-rosewater ring-ctp-rosewater;
+	}
+	.flat-button {
+		@apply ring-ctp-rosewater shadow-ctp-rosewater bg-ctp-surface1 border-ctp-rosewater;
+	}
+	.uncolored-flat-button {
+		@apply ring-ctp-rosewater border-ctp-rosewater;
 	}
 }
