@@ -529,4 +529,13 @@ input {
 	.uncolored-flat-button {
 		@apply ring-ctp-rosewater border-ctp-rosewater;
 	}
+	.check {
+		@apply text-ctp-green;
+	}
+	.x {
+		@apply text-ctp-red;
+	}
+	.progress-bar {
+		@apply ring-ctp-rosewater border-ctp-rosewater shadow-ctp-rosewater bg-ctp-surface2;
+	}
 }

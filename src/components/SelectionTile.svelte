@@ -91,15 +91,28 @@
 
 	function getSelectionColor() {
 		if (mode.current === 'light') {
-			return 'bg-white ';
+			return 'bg-white ring-slate-900';
 		} else {
 			if (fall === 'true') {
-				return 'bg-ctp-peach-950';
+				return 'bg-ctp-peach-900 ring-ctp-peach-700';
 			} else {
-				return 'bg-ctp-lavender-950';
+				return 'bg-ctp-lavender-900 ring-ctp-lavender-700';
 			}
 		}
 	}
+
+	function getSelectionHoverColor() {
+		if (mode.current === 'light') {
+			return 'hover:ring-slate-900';
+		} else {
+			if (fall === 'true') {
+				return 'hover:ring-ctp-peach-700';
+			} else {
+				return 'hover:ring-ctp-lavender-700';
+			}
+		}
+	}
+	// dark mode implementation broke transitions:(
 </script>
 
 <div class="selection-tile shadow-sharp w-1/2 rounded-lg pb-4 ring-2 {getColor()}">
@@ -150,10 +163,10 @@
 		<div class="mx-4 flex flex-col gap-6">
 			{#each courses as _, i (i)}
 				<button
-					class="font-noto-serif cursor-pointer rounded-full text-left text-xl ring-slate-900 transition-all duration-150 hover:-m-2 hover:bg-white hover:p-2 hover:ring-2 {isButtonSelected(
+					class="font-noto-serif cursor-pointer rounded-2xl text-left text-xl transition-all duration-150 hover:-m-2 hover:p-2 hover:ring-2 {getSelectionHoverColor()} {isButtonSelected(
 						i
 					)
-						? '-m-2 p-2 ring-2 ring-slate-900'
+						? `-m-2 p-2 ring-2 ${getSelectionColor()}`
 						: ''}"
 					onclick={() => {
 						let path = `${$currentSelection}.${year}.${semester}[${i}]`;

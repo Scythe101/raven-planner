@@ -49,7 +49,6 @@
 
 	<p class="text-secondary mb-4 italic">{$userData?.email}</p>
 	<div class="flex flex-row items-center">
-		<!-- settings is currently disabled -->
 		<Settings />
 		<div
 			id="profile-selector"
