@@ -115,7 +115,7 @@
 	// dark mode implementation broke transitions:(
 </script>
 
-<div class="selection-tile shadow-sharp w-1/2 rounded-lg pb-4 ring-2 {getColor()}">
+<div class="selection-tile shadow-sharp w-1/2 rounded-xl pb-4 ring-2 {getColor()}">
 	<div class="flex items-start">
 		<h3
 			class="uncolored-flat-button font-dm-serif-display m-2 mb-4 flex h-8 w-16 items-center justify-center rounded-full italic ring-2 ring-slate-900 {getButtonColor()}"
@@ -163,7 +163,7 @@
 		<div class="mx-4 flex flex-col gap-6">
 			{#each courses as _, i (i)}
 				<button
-					class="font-noto-serif cursor-pointer rounded-2xl text-left text-xl transition-all duration-150 hover:-m-2 hover:p-2 hover:ring-2 {getSelectionHoverColor()} {isButtonSelected(
+					class="font-noto-serif cursor-pointer rounded-xl text-left text-xl transition-all duration-150 hover:-m-2 hover:p-2 hover:ring-2 {getSelectionHoverColor()} {isButtonSelected(
 						i
 					)
 						? `-m-2 p-2 ring-2 ${getSelectionColor()}`
