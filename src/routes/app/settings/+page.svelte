@@ -2,6 +2,8 @@
 	import { authStore } from '$stores/AuthStore';
 	import { userData, loadUserData, saveUserData } from '$stores/UserStore';
 	import { changeTheme } from '$stores/ThemeStore';
+	import { mode } from 'mode-watcher';
+	import { onDestroy } from 'svelte';
 
 	let userTheme = $derived($userData?.settings?.theme);
 
@@ -29,25 +31,76 @@
 			}
 		}
 	});
+
+	function getColor(userMode) {
+		if(userTheme === userMode) {
+			if(mode.current === "light") {
+				return 'bg-green-200';
+			} else {
+				return 'bg-ctp-green-800';
+			}
+			
+		} else {
+			if(mode.current === "light") {
+				return 'bg-white';
+			} else {
+				return 'bg-ctp-surface0';
+			}
+		}
+	}
 </script>
 
-<div class="flex flex-row">
+<h1>Appearance</h1>
+
+<h3 class="text-2xl mt-4">Theme</h3>
+<div class="flex flex-row pl-1 gap-4">
 	<button
-		class="h-24 w-24 {userTheme === 'light' ? 'bg-red-200' : 'bg-orange-200'}"
+		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor('light')}"
 		onclick={() => {
 			changeTheme('light');
-		}}>Light</button
-	>
+		}}>
+			<div class="m-2 p-3 rounded-xl h-full bg-white gap-2 flex flex-col ring-2">
+				<div class="h-2 w-1/3 bg-black rounded-xl"></div>
+				<div class="w-full flex-1 rounded-xl flex flex-row gap-2">
+					<div class="w-1/2 bg-orange-300 ring-slate-900 rounded-lg ring-2"></div>
+					<div class="w-1/2 bg-fuchsia-300 ring-slate-900 rounded-lg ring-2"></div>
+				</div>
+			</div>
+			<p class="mt-auto mb-2 mx-auto text-center">Light</p>
+		</button>
 	<button
-		class="h-24 w-24 {userTheme === 'dark' ? 'bg-red-200' : 'bg-orange-200'}"
+		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor('dark')}"
 		onclick={() => {
 			changeTheme('dark');
-		}}>Dark</button
-	>
+		}}>
+			<div class="m-2 p-3 rounded-xl h-full bg-ctp-base gap-2 flex flex-col ring-2">
+				<div class="h-2 w-1/3 bg-ctp-rosewater rounded-xl"></div>
+				<div class="w-full flex-1 rounded-xl flex flex-row gap-2">
+					<div class="w-1/2 bg-ctp-peach-950 ring-ctp-peach rounded-lg ring-2"></div>
+					<div class="w-1/2 bg-ctp-lavender-950 ring-ctp-lavender rounded-lg ring-2"></div>
+				</div>
+			</div>
+			<p class="mt-auto mb-2 mx-auto text-center">Dark</p>
+		</button>
 	<button
-		class="h-24 w-24 {userTheme === 'system' ? 'bg-red-200' : 'bg-orange-200'}"
+		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor('system')}"
 		onclick={() => {
 			changeTheme('system');
-		}}>System</button
-	>
+	}}>
+		<div class="rounded-xl h-full flex flex-row ring-2 bg-white m-2 flex-1">
+			<div class="flex flex-col w-1/2 h-full gap-2 bg-white pr-1 pl-3 pt-3 pb-3 rounded-l-xl">
+				<div class="h-2 w-2/3 bg-black rounded-xl"></div>
+				<div class="w-full flex-1 rounded-xl flex flex-row gap-2">
+					<div class="w-full bg-orange-300 rounded-lg ring-2 ring-slate-900"></div>
+				</div>
+			</div>
+			<div class="flex flex-col w-1/2 h-full gap-2 bg-ctp-base pl-1 pr-3 pt-3 pb-3 rounded-r-xl">
+				<div class="h-2 w-2/3 rounded-xl"></div>
+				<div class="w-full flex-1 rounded-xl flex flex-row gap-2">
+					<div class="w-full bg-ctp-lavender-950 ring-ctp-lavender rounded-lg ring-2"></div>
+				</div>
+			</div>
+		</div>
+		<p class="mt-auto mb-2 mx-auto text-center">System</p>
+	</button>
 </div>

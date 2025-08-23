@@ -396,7 +396,10 @@
 	--shadow-sharp-chonk-dark: 30px 30px 0px 0px var(--color-slate-100);
 	--shadow-sharp-chonk-hover-dark: 40px 40px 0px 0px var(--color-slate-100);
 	--breakpoint-2xl: 106rem;
+	
 }
+
+
 
 @layer base {
 	h1 {
@@ -428,6 +431,9 @@
 		list-style-position: outside;
 		list-style-type: decimal;
 		font-size: var(--font-xl);
+	}
+	.standard-button{
+		@apply shadow-sharp ring-slate-900 shadow-slate-900 ring-2 hover:shadow-sharp-hover hover:-translate-0.5 transition-all duration-150;
 	}
 }
 
@@ -482,7 +488,7 @@ input {
 		@apply font-noto-serif text-ctp-blue-300 underline;
 	}
 	.auth-button {
-		@apply bg-ctp-surface0;
+		@apply bg-ctp-surface0 shadow-ctp-rosewater ring-ctp-rosewater;
 	}
 	.github-logo {
 		@apply text-white;
@@ -538,4 +544,5 @@ input {
 	.progress-bar {
 		@apply ring-ctp-rosewater border-ctp-rosewater shadow-ctp-rosewater bg-ctp-surface2;
 	}
+	
 }
