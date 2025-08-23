@@ -432,9 +432,7 @@
 		list-style-type: decimal;
 		font-size: var(--font-xl);
 	}
-	.standard-button{
-		@apply shadow-sharp ring-slate-900 shadow-slate-900 ring-2 hover:shadow-sharp-hover hover:-translate-0.5 transition-all duration-150;
-	}
+	
 }
 
 @layer utilities {
@@ -475,6 +473,9 @@ input {
 	}
 	.text-secondary {
 		@apply text-slate-500;
+	}
+	.standard-button{
+		@apply shadow-sharp ring-slate-900 shadow-slate-900 ring-2 hover:shadow-sharp-hover hover:-translate-0.5 transition-all duration-150;
 	}
 }
 
@@ -545,5 +546,7 @@ input {
 	.progress-bar {
 		@apply ring-ctp-rosewater border-ctp-rosewater shadow-ctp-rosewater bg-ctp-surface2;
 	}
-	
+	.standard-button{
+		@apply shadow-sharp ring-ctp-rosewater shadow-ctp-rosewater ring-2 hover:shadow-sharp-hover hover:-translate-0.5 transition-all duration-150;
+	}
 }
