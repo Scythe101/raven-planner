@@ -37,7 +37,7 @@
 			if(mode.current === "light") {
 				return 'bg-green-200';
 			} else {
-				return 'bg-ctp-green-800';
+				return 'bg-ctp-green-950';
 			}
 			
 		} else {

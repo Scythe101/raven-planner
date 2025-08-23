@@ -478,6 +478,7 @@ input {
 	}
 }
 
+/* PLEASE REWRITE THIS TO AVOID REPETITION */
 .dark {
 	@apply text-ctp-rosewater-50;
 	@apply bg-ctp-base;
