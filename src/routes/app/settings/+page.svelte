@@ -37,14 +37,14 @@
 			if(mode.current === "light") {
 				return 'bg-green-200';
 			} else {
-				return 'bg-ctp-green-950';
+				return 'bg-ctp-green text-ctp-base';
 			}
 			
 		} else {
 			if(mode.current === "light") {
 				return 'bg-white';
 			} else {
-				return 'bg-ctp-surface0';
+				return 'bg-ctp-surface0 ';
 			}
 		}
 	}

@@ -478,7 +478,7 @@ input {
 	}
 }
 
-/* PLEASE REWRITE THIS TO AVOID REPETITION */
+/* PLEASE REWRITE THIS TO AVOID REPETITION :D */
 .dark {
 	@apply text-ctp-rosewater-50;
 	@apply bg-ctp-base;
