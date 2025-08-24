@@ -23,7 +23,8 @@ const defaultUserData = {
 	},
 	settings: {
 		theme: 'system',
-		newUser: true
+		newUser: true,
+		showEmail: false
 	}
 };
 export const userData = writable(null);
@@ -105,4 +106,14 @@ export async function saveUserData() {
 	} finally {
 		savingUserData.set(false);
 	}
+}
+
+export async function changeEmailVisibility(show) {
+	const data = get(userData);
+	if (data?.settings?.showEmail !== show) {
+		data.settings.showEmail = show;
+		userData.set(data);
+	}
+
+	await saveUserData();
 }

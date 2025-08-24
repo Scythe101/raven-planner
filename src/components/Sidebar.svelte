@@ -47,7 +47,9 @@
 	</div>
 	<div class="font-noto-serif mt-auto flex flex-col gap-6 text-2xl font-medium"></div>
 
+	{#if $userData?.settings?.showEmail}
 	<p class="text-secondary mb-4 italic">{$userData?.email}</p>
+	{/if}
 	<div class="flex flex-row items-center">
 		<Settings />
 		<div

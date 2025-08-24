@@ -103,7 +103,7 @@
 
 	function getSelectionHoverColor() {
 		if (mode.current === 'light') {
-			return 'hover:ring-slate-900';
+			return 'hover:ring-slate-900 hover:bg-white';
 		} else {
 			if (fall === 'true') {
 				return 'hover:ring-ctp-peach-700';

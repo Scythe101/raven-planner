@@ -1,11 +1,12 @@
 <script>
 	import { authStore } from '$stores/AuthStore';
-	import { userData, loadUserData, saveUserData } from '$stores/UserStore';
+	import { userData, loadUserData, saveUserData, changeEmailVisibility } from '$stores/UserStore';
 	import { changeTheme } from '$stores/ThemeStore';
 	import { mode } from 'mode-watcher';
 	import { onDestroy } from 'svelte';
 
 	let userTheme = $derived($userData?.settings?.theme);
+	let userEmailShow = $derived($userData?.settings?.showEmail);
 
 	let lastLoadedUserId;
 	let hasInitializedSelection;
@@ -32,8 +33,8 @@
 		}
 	});
 
-	function getColor(userMode) {
-		if(userTheme === userMode) {
+	function getColor(option, userMode) {
+		if(option === userMode) {
 			if(mode.current === "light") {
 				return 'bg-green-200';
 			} else {
@@ -52,10 +53,10 @@
 
 <h1>Appearance</h1>
 
-<h3 class="text-2xl mt-4">Theme</h3>
+<h3 class="text-2xl mb-2">Theme</h3>
 <div class="flex flex-row pl-1 gap-4">
 	<button
-		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor('light')}"
+		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor(userTheme,'light')}"
 		onclick={() => {
 			changeTheme('light');
 		}}>
@@ -69,7 +70,7 @@
 			<p class="mt-auto mb-2 mx-auto text-center">Light</p>
 		</button>
 	<button
-		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor('dark')}"
+		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor(userTheme,'dark')}"
 		onclick={() => {
 			changeTheme('dark');
 		}}>
@@ -83,10 +84,10 @@
 			<p class="mt-auto mb-2 mx-auto text-center">Dark</p>
 		</button>
 	<button
-		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor('system')}"
+		class="h-40 w-56 flex flex-col rounded-xl standard-button {getColor(userTheme,'system')}"
 		onclick={() => {
 			changeTheme('system');
-	}}>
+		}}>
 		<div class="rounded-xl h-full flex flex-row ring-2 bg-white m-2 flex-1">
 			<div class="flex flex-col w-1/2 h-full gap-2 bg-white pr-1 pl-3 pt-3 pb-3 rounded-l-xl">
 				<div class="h-2 w-2/3 bg-black rounded-xl"></div>
@@ -104,3 +105,15 @@
 		<p class="mt-auto mb-2 mx-auto text-center">System</p>
 	</button>
 </div>
+
+<h3 class="text-2xl mt-4 mb-2">Show email in sidebar</h3>
+<div class="flex flex-row pl-1 gap-4">
+	<button class="standard-button rounded-xl h-40 w-56 {getColor(userEmailShow, true)}" onclick={() => {changeEmailVisibility(true)}}>
+		True
+	</button>
+	<button class="standard-button rounded-xl h-40 w-56 {getColor(userEmailShow, false)}" onclick={() => {changeEmailVisibility(false)}}>
+		False
+	</button>
+</div>
+<!-- 
+<h1 class="mt-8">Profiles</h1> -->
