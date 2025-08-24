@@ -143,7 +143,7 @@
 				</svg>
 			</button>
 			<button
-				class="uncolored-flat-button flex size-4 cursor-pointer items-center justify-center rounded-full ring-2 ring-slate-900 {getButtonColor()}
+				class="uncolored-flat-button flex size-4 items-center justify-center rounded-full ring-2 ring-slate-900 {getButtonColor()}
 				{length < 5 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}"
 				onclick={removeCourse}
 				aria-label="Remove course"

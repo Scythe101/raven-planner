@@ -108,10 +108,10 @@
 
 <h3 class="text-2xl mt-4 mb-2">Show email in sidebar</h3>
 <div class="flex flex-row pl-1 gap-4">
-	<button class="standard-button rounded-xl h-40 w-56 {getColor(userEmailShow, true)}" onclick={() => {changeEmailVisibility(true)}}>
+	<button class="text-xl font-noto-serif  standard-button rounded-xl h-20 w-26 {getColor(userEmailShow, true)}" onclick={() => {changeEmailVisibility(true)}}>
 		True
 	</button>
-	<button class="standard-button rounded-xl h-40 w-56 {getColor(userEmailShow, false)}" onclick={() => {changeEmailVisibility(false)}}>
+	<button class="text-xl font-noto-serif standard-button rounded-xl h-20 w-26 {getColor(userEmailShow, false)}" onclick={() => {changeEmailVisibility(false)}}>
 		False
 	</button>
 </div>
