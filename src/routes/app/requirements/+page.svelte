@@ -74,6 +74,22 @@
 		});
 	});
 
+	const flatSophomoreSelection = $derived.by(() => {
+		if (!userSelection) {
+			return null;
+		}
+		const sophomore = userSelection["sophomore"];
+		return [...(sophomore.fall || []), ...(sophomore.spring || [])];
+	});
+
+	const flatJuniorSelection = $derived.by(() => {
+		if (!userSelection) {
+			return null;
+		}
+		const junior = userSelection["junior"];
+		return [...(junior.fall || []), ...(junior.spring || [])];
+	});
+
 	const creditRequirements = {
 		'social studies': 30,
 		english: 40,
@@ -194,15 +210,17 @@
 		])
 	);
 
-	// calculate max possible gpa
+	let ignoredClasses = ['Unscheduled', 'Athletics PE Credit', 'Conservatory Cinema', 'Envision Visual Arts Conservatory', 'Conservatory Dance', 'Conservatory Humanities', 'Conservatory Instrumental Music', 'Conservatory Theater', 'Conservatory Vocal Music' ];
 	let maxGPA = $derived.by(() => {
 		let temp = 0.0;
 		let count = 0.0;
+		let honorsPoints = 0.0;
 		if (!flatSelection || !courses) {
 			return;
 		}
+		
 		Object.values(flatSelection).forEach((sel) => {
-			if (sel === 'Unscheduled' || sel === 'Athletics PE Credit') {
+			if (ignoredClasses.includes(sel)) {
 				return;
 			}
 			if (courses[sel]?.weighted === true) {
@@ -212,10 +230,54 @@
 			}
 			count += 1;
 		});
+
 		if (count === 0) {
 			return (0.0).toFixed(2);
 		}
 		return (temp / count).toFixed(2);
+	});
+
+	let maxUCGPA = $derived.by(() => {
+		// let temp = 0.0;
+		let count = 0.0;
+		let honorsPoints = 0.0;
+		if (!flatSelection || !courses) {
+			return;
+		}
+		Object.values(flatSophomoreSelection).forEach((sel) => {
+			if (ignoredClasses.includes(sel)) {
+				return;
+			}
+			if(honorsPoints < 4) {
+				if (courses[sel]?.weighted === true) {
+					honorsPoints += 1;
+				}
+				else if (sel === "Calculus 3/Linear Algebra" || sel === "AP Government/AP Economics") {
+					honorsPoints += 1;
+				}
+			}
+			count += 1;
+		});
+
+		Object.values(flatJuniorSelection).forEach((sel) => {
+			if (ignoredClasses.includes(sel)) {
+				return;
+			}
+			if(honorsPoints < 8) {
+				if (courses[sel]?.weighted === true) {
+					honorsPoints += 1;
+				}
+				else if (sel === "Calculus 3/Linear Algebra" || sel === "AP Government/AP Economics") {
+					honorsPoints += 1;
+				}
+			}
+			count += 1;
+		});
+
+		if (count === 0) {
+			return (0.0).toFixed(2);
+		}
+		return ((honorsPoints + count * 4) / count).toFixed(2);
 	});
 </script>
 
@@ -300,13 +362,19 @@
 	<Checkbox checked={english11Req} text="English 11" />
 	<Checkbox checked={english12Req} text="English 12" />
 </div>
+
 <div class="mt-8">
 	<h2>Max Possible GPA</h2>
-	<!-- <p class="text-xl">This calculates the max possible GPA you can get from your schedule:</p> -->
-	<p class="text-xl">{maxGPA}</p>
+	<p class="text-2xl mb-4">{maxGPA}</p>
+</div>
+
+<div class="mt-8">
+	<h2>Max Possible UC GPA</h2>
+	<p class="text-lg">The UC GPA is calculated as courses in 10th-11th grade, with a maximum of 4 honors points in 10th grade, and a maximum of 8 in total. <a class="visible-link" href="https://admission.universityofcalifornia.edu/admission-requirements/first-year-requirements/gpa-requirement.html" target="_blank">Learn more here</a>.</p>
+	<p class="text-2xl mb-4 mt-1">{maxUCGPA}</p>
 </div>
 <!-- <button
 	onclick={() => {
-		console.log(flatSelection);
+		console.log(flatSophomoreSelection);
 	}}>test</button
 > -->

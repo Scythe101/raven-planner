@@ -57,7 +57,7 @@
 
 <h2 class="mt-4">Warnings</h2>
 <p class="text-xl">
-	This should not be taken as academic advice, it's just a tool to help you plan. If you are in need
+	I HAVE NOT REVIEWED ALL OF THIS INFORMATION WITH A COUNSELOR (YET). This should not be taken as academic advice, it's just a tool to help you plan. If you are in need
 	of academic help, <a
 		target="_blank"
 		class="visible-link"
@@ -82,8 +82,15 @@
 	painstakingly copying over 150+ course profiles.
 </p>
 <p class="mt-2 text-xl">
-	This doesn't stop you from putting courses in the wrong slot (ie English 9 in sophomore year) so
+	This website doesn't stop you from putting courses in the wrong slot (ie English 9 in sophomore year) so
 	look at the prerequisites in the course profiles.
+</p>
+<p class="mt-2 text-xl">
+	Classes marked as "weighted" are classes on the <a
+		target="_blank"
+		class="visible-link"
+		href="https://hs-articulation.ucop.edu/agcourselist/">UC Honors course list</a
+	>.
 </p>
 
 <h2 class="mt-4">Technical Info (feel free to skip if you're not interested)</h2>
