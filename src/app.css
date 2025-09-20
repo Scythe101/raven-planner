@@ -563,6 +563,7 @@ input {
 		width: 20px;
 		
 	}
+	scrollbar-color: var(--color-ctp-overlay1) var(--color-ctp-surface0);
 	::-webkit-scrollbar-track {
 		@apply bg-ctp-surface0 rounded-lg border-2 border-ctp-rosewater;
 	}
