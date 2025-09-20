@@ -477,6 +477,16 @@ input {
 	.standard-button{
 		@apply shadow-sharp ring-slate-900 shadow-slate-900 ring-2 hover:shadow-sharp-hover hover:-translate-0.5 transition-all duration-150;
 	}
+	::-webkit-scrollbar {
+		width: 20px;
+		
+	}
+	::-webkit-scrollbar-track {
+		@apply bg-amber-100 rounded-lg border-2 border-slate-950;
+	}
+	::-webkit-scrollbar-thumb {
+		@apply bg-white rounded-lg border-2 border-slate-950;
+	}
 }
 
 /* PLEASE REWRITE THIS TO AVOID REPETITION :D */
@@ -548,5 +558,15 @@ input {
 	}
 	.standard-button{
 		@apply shadow-sharp ring-ctp-rosewater shadow-ctp-rosewater ring-2 hover:shadow-sharp-hover hover:-translate-0.5 transition-all duration-150;
+	}
+	::-webkit-scrollbar {
+		width: 20px;
+		
+	}
+	::-webkit-scrollbar-track {
+		@apply bg-ctp-surface0 rounded-lg border-2 border-ctp-rosewater;
+	}
+	::-webkit-scrollbar-thumb {
+		@apply bg-ctp-overlay1 rounded-lg border-2 border-ctp-rosewater;
 	}
 }
