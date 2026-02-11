@@ -75,5 +75,3 @@
 		>This project is open-source!</a
 	>
 </div>
-
-<p class="mt-20 ml-1 text-xs">(if it wasnt obvious, this landing page was rushed asf)</p>
