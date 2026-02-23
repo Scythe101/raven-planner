@@ -196,7 +196,7 @@
 	);
 	let usHistoryReq = $derived(containsClass(userSelection, ['US History', 'AP US History']));
 	let economyGovReq = $derived(
-		containsClass(userSelection, ['Government/Economy', 'AP Government/AP Economics'])
+		containsClass(userSelection, ['Government/Economics', 'AP Government/AP Economics'])
 	);
 	let biologyReq = $derived(containsClass(userSelection, ['Biology']));
 	let chemistryReq = $derived(containsClass(userSelection, ['Chemistry', 'Honors Chemistry']));
